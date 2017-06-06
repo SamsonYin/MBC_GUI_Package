@@ -54,6 +54,9 @@ namespace SerialPortConnection
                 case "38400":
                     cbBaudRate.SelectedIndex = 7;
                     break;
+                case "57600":
+                    cbBaudRate.SelectedIndex = 7;
+                    break;
                 case "115200":
                     cbBaudRate.SelectedIndex = 8;
                     break;
