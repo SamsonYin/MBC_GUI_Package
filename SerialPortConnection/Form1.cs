@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using INIFILE;
 using System.Text.RegularExpressions;
 
 namespace SerialPortConnection
@@ -24,108 +23,15 @@ namespace SerialPortConnection
 
         //加载
         private void Form1_Load(object sender, EventArgs e)
-        {
-            INIFILE.Profile.LoadProfile();//加载所有
-            
+        {            
            // 预置波特率
-            switch (Profile.G_BAUDRATE)
-            {
-                case "300":
-                    cbBaudRate.SelectedIndex = 0;
-                    break;
-                case "600":
-                    cbBaudRate.SelectedIndex = 1;
-                    break;
-                case "1200":
-                    cbBaudRate.SelectedIndex = 2;
-                    break; 
-                case "2400":
-                    cbBaudRate.SelectedIndex = 3;
-                    break;
-                case "4800":
-                    cbBaudRate.SelectedIndex = 4;
-                    break;
-                case "9600":
-                    cbBaudRate.SelectedIndex = 5;
-                    break;
-                case "19200":
-                    cbBaudRate.SelectedIndex = 6;
-                    break; 
-                case "38400":
-                    cbBaudRate.SelectedIndex = 7;
-                    break;
-                case "57600":
-                    cbBaudRate.SelectedIndex = 7;
-                    break;
-                case "115200":
-                    cbBaudRate.SelectedIndex = 8;
-                    break;
-                default:
-                    {
-                        MessageBox.Show("波特率预置参数错误。");
-                        return;
-                    }                  
-            }
-
-            //预置波特率
-            switch (Profile.G_DATABITS)
-            {
-                case "5":
-                    cbDataBits.SelectedIndex = 0;
-                    break;
-                case "6":
-                    cbDataBits.SelectedIndex = 1;
-                    break; 
-                case "7":
-                    cbDataBits.SelectedIndex = 2;
-                    break; 
-                case  "8":
-                    cbDataBits.SelectedIndex = 3;
-                    break;
-                default:
-                    {
-                        MessageBox.Show("数据位预置参数错误。");
-                        return;
-                    }
-
-            }
-            //预置停止位
-            switch (Profile.G_STOP)
-            {
-                case "1":
-                    cbStop.SelectedIndex = 0;
-                        break;
-                case "1.5":
-                    cbStop.SelectedIndex = 1;
-                    break;
-                case "2":
-                    cbStop.SelectedIndex = 2;
-                    break;
-                default:
-                    {
-                        MessageBox.Show("停止位预置参数错误。");
-                        return;
-                    }
-            }
-
-            //预置校验位
-            switch(Profile.G_PARITY)
-            {
-                case "NONE":
-                    cbParity.SelectedIndex = 0;
-                    break;
-                case "ODD":
-                    cbParity.SelectedIndex = 1;
-                    break;
-                case "EVEN":
-                    cbParity.SelectedIndex = 2;
-                    break;
-                default:
-                    {
-                        MessageBox.Show("校验位预置参数错误。");
-                        return;
-                    }
-            }
+           cbBaudRate.SelectedIndex = 8;   
+           // 预置数据位 
+           cbDataBits.SelectedIndex = 3;
+           // 预置停止位
+           cbStop.SelectedIndex = 0;
+           // 预置校验位
+           cbParity.SelectedIndex = 0;
 
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
@@ -415,7 +321,6 @@ namespace SerialPortConnection
         //关闭时事件
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            INIFILE.Profile.SaveProfile();
             sp1.Close();
         }
 
@@ -451,52 +356,6 @@ namespace SerialPortConnection
         private void btnSave_Click(object sender, EventArgs e)
         {
             
-            //设置各“串口设置”
-            string strBaudRate = cbBaudRate.Text;
-            string strDateBits = cbDataBits.Text;
-            string strStopBits = cbStop.Text;
-            Int32 iBaudRate = Convert.ToInt32(strBaudRate);
-            Int32 iDateBits = Convert.ToInt32(strDateBits);
-
-            Profile.G_BAUDRATE = iBaudRate+"";       //波特率
-            Profile.G_DATABITS = iDateBits+"";       //数据位
-            switch (cbStop.Text)            //停止位
-            {
-                case "1":
-                    Profile.G_STOP = "1";
-                    break;
-                case "1.5":
-                    Profile.G_STOP = "1.5";
-                    break;
-                case "2":
-                    Profile.G_STOP ="2";
-                    break;
-                default:
-                    MessageBox.Show("Error：参数不正确!", "Error");
-                    break;
-            }
-            switch (cbParity.Text)             //校验位
-            {
-                case "无":
-                    Profile.G_PARITY = "NONE";
-                    break;
-                case "奇校验":
-                    Profile.G_PARITY = "ODD";
-                    break;
-                case "偶校验":
-                    Profile.G_PARITY = "EVEN";
-                    break;
-                default:
-                    MessageBox.Show("Error：参数不正确!", "Error");
-                    break;
-            }
-
-            //保存设置
-            // public static string G_BAUDRATE = "1200";//给ini文件赋新值，并且影响界面下拉框的显示
-            //public static string G_DATABITS = "8";
-            //public static string G_STOP = "1";
-            //public static string G_PARITY = "NONE";
-            Profile.SaveProfile();
         }
 
         //定时器
