@@ -108,10 +108,13 @@ namespace SerialPortConnection
                         //int decNum = 0;//存储十进制
                         for (int i = 0; i < receivedData.Length; i++) //窗体显示
                         {
-                          
                             strRcv += receivedData[i].ToString("X2");  //16进制显示
                         }
                         txtReceive.Text += strRcv + "\r\n";
+                        if (receivedData[0] == 105)
+                        {
+                            vpiYI.Text = receivedData[1].ToString();
+                        }
                     }
                     catch (System.Exception ex)
                     {
@@ -394,6 +397,58 @@ namespace SerialPortConnection
             {
                 e.Handled = true;
             }
+        }
+
+        private void readVpi_Click(object sender, EventArgs e)
+        {
+            tmSend.Enabled = false;
+            if (!sp1.IsOpen) //如果没打开
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+            string[] strArray = {"69","0","0","0","0","0","0"};
+
+            int byteBufferLength = strArray.Length;
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                if (strArray[i] == "")
+                {
+                    byteBufferLength--;
+                }
+            }
+            // int temp = 0;
+            byte[] byteBuffer = new byte[byteBufferLength];
+            int ii = 0;
+            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+            {
+                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                int decNum = 0;
+                if (strArray[i] == "")
+                {
+                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                    continue;
+                }
+                else
+                {
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                }
+
+                try    //防止输错，使其只能输入一个字节的字符
+                {
+                    byteBuffer[ii] = Convert.ToByte(decNum);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                    tmSend.Enabled = false;
+                    return;
+                }
+
+                ii++;
+            }
+            sp1.Write(byteBuffer, 0, byteBuffer.Length);
         }
     }
 }

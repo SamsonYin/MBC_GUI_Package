@@ -30,6 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.readVpi = new System.Windows.Forms.Button();
+            this.vpiXP = new System.Windows.Forms.TextBox();
+            this.Vpi_YI = new System.Windows.Forms.Label();
+            this.vpiXQ = new System.Windows.Forms.TextBox();
+            this.vpiXI = new System.Windows.Forms.TextBox();
+            this.vpiYP = new System.Windows.Forms.TextBox();
+            this.vpiYQ = new System.Windows.Forms.TextBox();
+            this.vpiYI = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -70,6 +84,7 @@
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -79,6 +94,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.groupBox3);
@@ -95,18 +111,153 @@
             this.groupBox1.Controls.Add(this.cbSerial);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(8);
             this.groupBox1.Size = new System.Drawing.Size(742, 915);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "发送方";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.readVpi);
+            this.groupBox4.Controls.Add(this.vpiXP);
+            this.groupBox4.Controls.Add(this.Vpi_YI);
+            this.groupBox4.Controls.Add(this.vpiXQ);
+            this.groupBox4.Controls.Add(this.vpiXI);
+            this.groupBox4.Controls.Add(this.vpiYP);
+            this.groupBox4.Controls.Add(this.vpiYQ);
+            this.groupBox4.Controls.Add(this.vpiYI);
+            this.groupBox4.Location = new System.Drawing.Point(22, 287);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(695, 228);
+            this.groupBox4.TabIndex = 42;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "半波电压";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(573, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 30);
+            this.label11.TabIndex = 45;
+            this.label11.Text = "Vpi_XP";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(460, 56);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 30);
+            this.label10.TabIndex = 44;
+            this.label10.Text = "Vpi_XQ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(347, 56);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 30);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Vpi_XI";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(234, 56);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(103, 30);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "Vpi_YP";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(121, 56);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(103, 30);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Vpi_YQ";
+            // 
+            // readVpi
+            // 
+            this.readVpi.Location = new System.Drawing.Point(480, 161);
+            this.readVpi.Margin = new System.Windows.Forms.Padding(8);
+            this.readVpi.Name = "readVpi";
+            this.readVpi.Size = new System.Drawing.Size(188, 52);
+            this.readVpi.TabIndex = 33;
+            this.readVpi.Text = "读取";
+            this.readVpi.UseVisualStyleBackColor = true;
+            this.readVpi.Click += new System.EventHandler(this.readVpi_Click);
+            // 
+            // vpiXP
+            // 
+            this.vpiXP.Enabled = false;
+            this.vpiXP.Location = new System.Drawing.Point(583, 108);
+            this.vpiXP.Name = "vpiXP";
+            this.vpiXP.Size = new System.Drawing.Size(83, 42);
+            this.vpiXP.TabIndex = 39;
+            // 
+            // Vpi_YI
+            // 
+            this.Vpi_YI.AutoSize = true;
+            this.Vpi_YI.Location = new System.Drawing.Point(8, 56);
+            this.Vpi_YI.Name = "Vpi_YI";
+            this.Vpi_YI.Size = new System.Drawing.Size(103, 30);
+            this.Vpi_YI.TabIndex = 40;
+            this.Vpi_YI.Text = "Vpi_YI";
+            // 
+            // vpiXQ
+            // 
+            this.vpiXQ.Enabled = false;
+            this.vpiXQ.Location = new System.Drawing.Point(469, 108);
+            this.vpiXQ.Name = "vpiXQ";
+            this.vpiXQ.Size = new System.Drawing.Size(83, 42);
+            this.vpiXQ.TabIndex = 38;
+            // 
+            // vpiXI
+            // 
+            this.vpiXI.Enabled = false;
+            this.vpiXI.Location = new System.Drawing.Point(355, 108);
+            this.vpiXI.Name = "vpiXI";
+            this.vpiXI.Size = new System.Drawing.Size(83, 42);
+            this.vpiXI.TabIndex = 37;
+            // 
+            // vpiYP
+            // 
+            this.vpiYP.Enabled = false;
+            this.vpiYP.Location = new System.Drawing.Point(241, 108);
+            this.vpiYP.Name = "vpiYP";
+            this.vpiYP.Size = new System.Drawing.Size(83, 42);
+            this.vpiYP.TabIndex = 36;
+            // 
+            // vpiYQ
+            // 
+            this.vpiYQ.Enabled = false;
+            this.vpiYQ.Location = new System.Drawing.Point(127, 108);
+            this.vpiYQ.Name = "vpiYQ";
+            this.vpiYQ.Size = new System.Drawing.Size(83, 42);
+            this.vpiYQ.TabIndex = 35;
+            // 
+            // vpiYI
+            // 
+            this.vpiYI.Enabled = false;
+            this.vpiYI.Location = new System.Drawing.Point(13, 108);
+            this.vpiYI.Name = "vpiYI";
+            this.vpiYI.Size = new System.Drawing.Size(83, 42);
+            this.vpiYI.TabIndex = 34;
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(518, 35);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(188, 52);
             this.btnSave.TabIndex = 32;
@@ -119,7 +270,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label9.Location = new System.Drawing.Point(18, 550);
+            this.label9.Location = new System.Drawing.Point(17, 568);
             this.label9.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(553, 30);
@@ -137,9 +288,9 @@
             this.groupBox3.Controls.Add(this.cbBaudRate);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Location = new System.Drawing.Point(22, 98);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(8);
             this.groupBox3.Size = new System.Drawing.Size(695, 178);
             this.groupBox3.TabIndex = 30;
             this.groupBox3.TabStop = false;
@@ -154,7 +305,7 @@
             "奇校验",
             "偶校验"});
             this.cbParity.Location = new System.Drawing.Point(505, 110);
-            this.cbParity.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbParity.Margin = new System.Windows.Forms.Padding(8);
             this.cbParity.Name = "cbParity";
             this.cbParity.Size = new System.Drawing.Size(164, 38);
             this.cbParity.TabIndex = 29;
@@ -168,7 +319,7 @@
             "1.5",
             "2"});
             this.cbStop.Location = new System.Drawing.Point(152, 110);
-            this.cbStop.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbStop.Margin = new System.Windows.Forms.Padding(8);
             this.cbStop.Name = "cbStop";
             this.cbStop.Size = new System.Drawing.Size(152, 38);
             this.cbStop.TabIndex = 28;
@@ -205,7 +356,7 @@
             "7",
             "8"});
             this.cbDataBits.Location = new System.Drawing.Point(505, 45);
-            this.cbDataBits.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbDataBits.Margin = new System.Windows.Forms.Padding(8);
             this.cbDataBits.Name = "cbDataBits";
             this.cbDataBits.Size = new System.Drawing.Size(164, 38);
             this.cbDataBits.TabIndex = 26;
@@ -237,7 +388,7 @@
             "57600",
             "115200"});
             this.cbBaudRate.Location = new System.Drawing.Point(152, 45);
-            this.cbBaudRate.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbBaudRate.Margin = new System.Windows.Forms.Padding(8);
             this.cbBaudRate.Name = "cbBaudRate";
             this.cbBaudRate.Size = new System.Drawing.Size(152, 38);
             this.cbBaudRate.TabIndex = 24;
@@ -255,8 +406,8 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(570, 552);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnSend.Location = new System.Drawing.Point(576, 596);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(8);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(150, 62);
             this.btnSend.TabIndex = 22;
@@ -266,8 +417,8 @@
             // 
             // txtSend
             // 
-            this.txtSend.Location = new System.Drawing.Point(15, 485);
-            this.txtSend.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtSend.Location = new System.Drawing.Point(13, 518);
+            this.txtSend.Margin = new System.Windows.Forms.Padding(8);
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(699, 42);
             this.txtSend.TabIndex = 21;
@@ -277,7 +428,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 448);
+            this.label4.Location = new System.Drawing.Point(22, 612);
             this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(163, 30);
@@ -287,7 +438,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(628, 398);
+            this.label3.Location = new System.Drawing.Point(541, 671);
             this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 30);
@@ -296,8 +447,8 @@
             // 
             // txtSecond
             // 
-            this.txtSecond.Location = new System.Drawing.Point(498, 385);
-            this.txtSecond.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtSecond.Location = new System.Drawing.Point(421, 659);
+            this.txtSecond.Margin = new System.Windows.Forms.Padding(8);
             this.txtSecond.Name = "txtSecond";
             this.txtSecond.Size = new System.Drawing.Size(104, 42);
             this.txtSecond.TabIndex = 18;
@@ -306,7 +457,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 398);
+            this.label2.Location = new System.Drawing.Point(281, 662);
             this.label2.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 30);
@@ -316,8 +467,8 @@
             // cbTimeSend
             // 
             this.cbTimeSend.AutoSize = true;
-            this.cbTimeSend.Location = new System.Drawing.Point(25, 398);
-            this.cbTimeSend.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbTimeSend.Location = new System.Drawing.Point(22, 662);
+            this.cbTimeSend.Margin = new System.Windows.Forms.Padding(8);
             this.cbTimeSend.Name = "cbTimeSend";
             this.cbTimeSend.Size = new System.Drawing.Size(231, 34);
             this.cbTimeSend.TabIndex = 16;
@@ -328,10 +479,10 @@
             // 
             this.groupBox8.Controls.Add(this.rbRcvStr);
             this.groupBox8.Controls.Add(this.rbRcv16);
-            this.groupBox8.Location = new System.Drawing.Point(365, 288);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox8.Location = new System.Drawing.Point(392, 740);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(8);
             this.groupBox8.Size = new System.Drawing.Size(355, 90);
             this.groupBox8.TabIndex = 15;
             this.groupBox8.TabStop = false;
@@ -341,7 +492,7 @@
             // 
             this.rbRcvStr.AutoSize = true;
             this.rbRcvStr.Location = new System.Drawing.Point(180, 35);
-            this.rbRcvStr.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.rbRcvStr.Margin = new System.Windows.Forms.Padding(8);
             this.rbRcvStr.Name = "rbRcvStr";
             this.rbRcvStr.Size = new System.Drawing.Size(140, 34);
             this.rbRcvStr.TabIndex = 2;
@@ -353,7 +504,7 @@
             // 
             this.rbRcv16.AutoSize = true;
             this.rbRcv16.Location = new System.Drawing.Point(22, 35);
-            this.rbRcv16.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.rbRcv16.Margin = new System.Windows.Forms.Padding(8);
             this.rbRcv16.Name = "rbRcv16";
             this.rbRcv16.Size = new System.Drawing.Size(140, 34);
             this.rbRcv16.TabIndex = 1;
@@ -365,10 +516,10 @@
             // 
             this.groupBox7.Controls.Add(this.radio1);
             this.groupBox7.Controls.Add(this.rdSendStr);
-            this.groupBox7.Location = new System.Drawing.Point(15, 288);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox7.Location = new System.Drawing.Point(27, 738);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(8);
             this.groupBox7.Size = new System.Drawing.Size(335, 92);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
@@ -378,7 +529,7 @@
             // 
             this.radio1.AutoSize = true;
             this.radio1.Location = new System.Drawing.Point(22, 38);
-            this.radio1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.radio1.Margin = new System.Windows.Forms.Padding(8);
             this.radio1.Name = "radio1";
             this.radio1.Size = new System.Drawing.Size(140, 34);
             this.radio1.TabIndex = 7;
@@ -390,7 +541,7 @@
             // 
             this.rdSendStr.AutoSize = true;
             this.rdSendStr.Location = new System.Drawing.Point(182, 38);
-            this.rdSendStr.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.rdSendStr.Margin = new System.Windows.Forms.Padding(8);
             this.rdSendStr.Name = "rdSendStr";
             this.rdSendStr.Size = new System.Drawing.Size(140, 34);
             this.rdSendStr.TabIndex = 6;
@@ -401,7 +552,7 @@
             // btnSwitch
             // 
             this.btnSwitch.Location = new System.Drawing.Point(318, 35);
-            this.btnSwitch.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnSwitch.Margin = new System.Windows.Forms.Padding(8);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(188, 52);
             this.btnSwitch.TabIndex = 9;
@@ -413,8 +564,8 @@
             // 
             this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerial.FormattingEnabled = true;
-            this.cbSerial.Location = new System.Drawing.Point(132, 35);
-            this.cbSerial.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.cbSerial.Location = new System.Drawing.Point(132, 43);
+            this.cbSerial.Margin = new System.Windows.Forms.Padding(8);
             this.cbSerial.Name = "cbSerial";
             this.cbSerial.Size = new System.Drawing.Size(149, 38);
             this.cbSerial.TabIndex = 8;
@@ -434,9 +585,9 @@
             // 
             this.groupBox2.Controls.Add(this.txtReceive);
             this.groupBox2.Location = new System.Drawing.Point(775, 12);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(8);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(8);
             this.groupBox2.Size = new System.Drawing.Size(788, 915);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
@@ -446,7 +597,7 @@
             // 
             this.txtReceive.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtReceive.Location = new System.Drawing.Point(45, 52);
-            this.txtReceive.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtReceive.Margin = new System.Windows.Forms.Padding(8);
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
             this.txtReceive.Size = new System.Drawing.Size(702, 816);
@@ -460,7 +611,7 @@
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(1252, 950);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(8);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(148, 58);
             this.btnClear.TabIndex = 10;
@@ -471,7 +622,7 @@
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(1415, 950);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(8);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(148, 58);
             this.btnExit.TabIndex = 10;
@@ -534,14 +685,16 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "串口通信助手";
+            this.Text = "上位机测试软件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -599,6 +752,20 @@
         private System.Windows.Forms.ToolStripStatusLabel tsParity;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button readVpi;
+        private System.Windows.Forms.TextBox vpiXP;
+        private System.Windows.Forms.Label Vpi_YI;
+        private System.Windows.Forms.TextBox vpiXQ;
+        private System.Windows.Forms.TextBox vpiXI;
+        private System.Windows.Forms.TextBox vpiYP;
+        private System.Windows.Forms.TextBox vpiYQ;
+        private System.Windows.Forms.TextBox vpiYI;
     }
 }
 
