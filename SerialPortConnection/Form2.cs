@@ -13,6 +13,10 @@ namespace SerialPortConnection
 {
     public partial class Form2 : Form
     {
+        private Button btnSwitch;
+        private ComboBox cbSerial;
+        private Label label1;
+
         SerialPort sp1 = new SerialPort();
 
         public Form2()
@@ -79,7 +83,7 @@ namespace SerialPortConnection
                 //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                 //txtReceive.SelectAll();
                 //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-
+                int MBCVersion;
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
                 //{
@@ -109,7 +113,16 @@ namespace SerialPortConnection
 
                             strRcv += receivedData[i].ToString("X2");  //16进制显示
                         }
-                        //txtReceive.Text += strRcv + "\r\n";
+                    //txtReceive.Text += strRcv + "\r\n";
+                    MBCVersion = receivedData[1];
+                        if (receivedData[0] == 170)
+                        {
+                            MessageBox.Show("打开DPIQ控制窗口", "xxx");
+                         }
+                        else
+                        {
+                            MessageBox.Show("控制器连接失败，请重试！", "错误代码0x10");
+                        }
                     }
                     catch (System.Exception ex)
                     {
@@ -124,7 +137,7 @@ namespace SerialPortConnection
             }
         }
 
-        //开关按钮
+        //串口开关按钮
         private void btnSwitch_Click(object sender, EventArgs e)
         {
             //serialPort1.IsOpen
@@ -176,10 +189,11 @@ namespace SerialPortConnection
                     //        break;
                     //}
 
-                    sp1.StopBits = StopBits.One;
-                    sp1.Parity = Parity.None;
                     sp1.BaudRate = 57600;
                     sp1.DataBits = 8;
+                    sp1.StopBits = StopBits.One;
+                    sp1.Parity = Parity.None;
+
                     if (sp1.IsOpen == true)//如果打开状态，则先关闭一下
                     {
                         sp1.Close();
@@ -200,6 +214,48 @@ namespace SerialPortConnection
 
                     sp1.Open();     //打开串口
                     btnSwitch.Text = "关闭串口";
+
+                    string[] strArray = { "aa", "0", "0", "0", "0", "0", "0" };
+
+                    int byteBufferLength = strArray.Length;
+                    for (int i = 0; i < strArray.Length; i++)
+                    {
+                        if (strArray[i] == "")
+                        {
+                            byteBufferLength--;
+                        }
+                    }
+                    byte[] byteBuffer = new byte[byteBufferLength];
+                    int ii = 0;
+                    for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+                    {
+                        Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                        int decNum = 0;
+                        if (strArray[i] == "")
+                        {
+                            //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                            continue;
+                        }
+                        else
+                        {
+                            decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                        }
+
+                        try    //防止输错，使其只能输入一个字节的字符
+                        {
+                            byteBuffer[ii] = Convert.ToByte(decNum);
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                            //tmSend.Enabled = false;
+                            return;
+                        }
+
+                        ii++;
+                    }
+                    sp1.Write(byteBuffer, 0, byteBuffer.Length);
                 }
                 catch (System.Exception ex)
                 {
@@ -210,14 +266,14 @@ namespace SerialPortConnection
             }
             else
             {
-                ////状态栏设置
+                //状态栏设置
                 //tsSpNum.Text = "串口号：未指定|";
                 //tsBaudRate.Text = "波特率：未指定|";
                 //tsDataBits.Text = "数据位：未指定|";
                 //tsStopBits.Text = "停止位：未指定|";
                 //tsParity.Text = "校验位：未指定|";
-                ////恢复控件功能
-                ////设置必要控件不可用
+                //恢复控件功能
+                //设置必要控件不可用
                 //cbSerial.Enabled = true;
                 //cbBaudRate.Enabled = true;
                 //cbDataBits.Enabled = true;
@@ -234,6 +290,62 @@ namespace SerialPortConnection
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             sp1.Close();
+        }
+
+        private void InitializeComponent()
+        {
+            this.btnSwitch = new System.Windows.Forms.Button();
+            this.cbSerial = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.Location = new System.Drawing.Point(370, 129);
+            this.btnSwitch.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(113, 31);
+            this.btnSwitch.TabIndex = 10;
+            this.btnSwitch.Text = "打开串口";
+            this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
+            // cbSerial
+            // 
+            this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSerial.FormattingEnabled = true;
+            this.cbSerial.Location = new System.Drawing.Point(262, 132);
+            this.cbSerial.Margin = new System.Windows.Forms.Padding(5);
+            this.cbSerial.Name = "cbSerial";
+            this.cbSerial.Size = new System.Drawing.Size(91, 26);
+            this.cbSerial.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(162, 132);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 21);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "串口：";
+            // 
+            // Form2
+            // 
+            this.ClientSize = new System.Drawing.Size(846, 451);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbSerial);
+            this.Controls.Add(this.btnSwitch);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "上位机测试软件";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
+            this.Load += new System.EventHandler(this.Form2_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
     }
 }
