@@ -18,10 +18,23 @@ namespace SerialPortConnection
         private Label label1;
 
         SerialPort sp1 = new SerialPort();
+        //sp1.ReceivedBytesThreshold = 1;//只要有1个字符送达端口时便触发DataReceived事件 
+        private delegate void ShowFormDelegate();
+        Form1 MBC_Control_Unit = null;
+        ShowFormDelegate ShowFormDelegateCommand = null;
 
         public Form2()
         {
             InitializeComponent();
+        }
+
+        private void ShowForm()
+        {
+            if (Common.MBCVersion == 1)
+            {
+                MBC_Control_Unit = new Form1();
+                MBC_Control_Unit.Show();
+            }
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -74,6 +87,10 @@ namespace SerialPortConnection
             sp1.Close();
         }
 
+        public static class Common
+        {
+            public static int MBCVersion;
+        }
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
@@ -83,7 +100,6 @@ namespace SerialPortConnection
                 //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                 //txtReceive.SelectAll();
                 //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                int MBCVersion;
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
                 //{
@@ -114,10 +130,11 @@ namespace SerialPortConnection
                             strRcv += receivedData[i].ToString("X2");  //16进制显示
                         }
                     //txtReceive.Text += strRcv + "\r\n";
-                    MBCVersion = receivedData[1];
+                        Common.MBCVersion = receivedData[1];
                         if (receivedData[0] == 170)
                         {
-                            MessageBox.Show("打开DPIQ控制窗口", "xxx");
+                            this.BeginInvoke(()ShowForm());
+                            //MessageBox.Show("打开DPIQ控制窗口", "xxx");
                          }
                         else
                         {
