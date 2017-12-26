@@ -21,7 +21,7 @@ namespace SerialPortConnection
         //sp1.ReceivedBytesThreshold = 1;//只要有1个字符送达端口时便触发DataReceived事件 
         private delegate void ShowFormDelegate();
         Form1 MBC_Control_Unit = null;
-        ShowFormDelegate ShowFormDelegateCommand = null;
+        //ShowFormDelegate ShowFormDelegateCommand = null;
 
         public Form2()
         {
@@ -34,6 +34,7 @@ namespace SerialPortConnection
             {
                 MBC_Control_Unit = new Form1();
                 MBC_Control_Unit.Show();
+                sp1.Close();
             }
         }
 
@@ -133,7 +134,7 @@ namespace SerialPortConnection
                         Common.MBCVersion = receivedData[1];
                         if (receivedData[0] == 170)
                         {
-                            this.BeginInvoke(()ShowForm());
+                            this.BeginInvoke(new MethodInvoker(() => ShowForm()));
                             //MessageBox.Show("打开DPIQ控制窗口", "xxx");
                          }
                         else
