@@ -30,30 +30,44 @@ namespace SerialPortConnection
 
         private void ShowForm()
         {
-            if (Common.MBCVersion == 1)
+            switch (Common.MBCVersion)
             {
-                MBC_Control_Unit = new Form1();
-                MBC_Control_Unit.Show();
-                sp1.Close();
+                case 1:
+                    MBC_Control_Unit = new Form1();
+                    MBC_Control_Unit.Show();
+                    break;
+                case 2:
+                    MessageBox.Show("IQ", "Error");
+                    break;
+                case 3:
+                    MessageBox.Show("MZM", "Error");
+                    break;
+                case 4:
+                    MessageBox.Show("Q", "Error");
+                    break;
+                case 5:
+                    MessageBox.Show("NULL", "Error");
+                    break;
+                case 6:
+                    MessageBox.Show("Q_Ditherless", "Error");
+                    break;
+                default:
+                    MessageBox.Show("控制器响应异常，请重试!", "错误0x31");
+                    sp1.Close();
+                    btnSwitch.Text = "打开串口";
+                    break;
             }
+            //sp1.Close();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            // 预置波特率
-            //cbBaudRate.SelectedIndex = 8;
-            //// 预置数据位 
-            //cbDataBits.SelectedIndex = 3;
-            //// 预置停止位
-            //cbStop.SelectedIndex = 0;
-            //// 预置校验位
-            //cbParity.SelectedIndex = 0;
 
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
             if (str == null)
             {
-                MessageBox.Show("本机没有串口！", "Error");
+                MessageBox.Show("本机没有串口！", "错误0xff");
                 return;
             }
 
@@ -64,20 +78,9 @@ namespace SerialPortConnection
                 cbSerial.Items.Add(s);
             }
 
-            //串口设置默认选择项
-            //cbSerial.SelectedIndex = 0;         //note：获得COM9口，但别忘修改
-            //cbBaudRate.SelectedIndex = 5;
-            // cbDataBits.SelectedIndex = 3;
-            // cbStop.SelectedIndex = 0;
-            //  cbParity.SelectedIndex = 0;
-            //sp1.BaudRate = 57600;
-
             Control.CheckForIllegalCrossThreadCalls = false;    //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
-
-            //radio1.Checked = true;  //单选按钮默认是选中的
-            //rbRcvStr.Checked = true;
 
             //准备就绪              
             sp1.DtrEnable = true;
@@ -86,72 +89,50 @@ namespace SerialPortConnection
             sp1.ReadTimeout = 1000;
 
             sp1.Close();
+
         }
 
         public static class Common
         {
             public static int MBCVersion;
         }
+
+        //接收控制器返回的数据
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
-                //输出当前时间
-                //DateTime dt = DateTime.Now;
-                //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                //txtReceive.SelectAll();
-                //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
-                //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
-                //{
-                //    txtReceive.Text += sp1.ReadLine() + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
-                //    sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
-                //}
-                //else                                            //'发送16进制按钮'
-                //{
-                    try
+                try
+                {
+                    Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
+                    sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
+                    sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
+                    string strRcv = null;
+                    //int decNum = 0;//存储十进制
+                    for (int i = 0; i < receivedData.Length; i++) //窗体显示
                     {
-                        Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
-                        sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
-                        //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
-                        sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
-                        //这是用以显示字符串
-                        //    string strRcv = null;
-                        //    for (int i = 0; i < receivedData.Length; i++ )
-                        //    {
-                        //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
-                        //    }
-                        //    txtReceive.Text += strRcv + "\r\n";             //显示信息
-                        //}
-                        string strRcv = null;
-                        //int decNum = 0;//存储十进制
-                        for (int i = 0; i < receivedData.Length; i++) //窗体显示
-                        {
-
-                            strRcv += receivedData[i].ToString("X2");  //16进制显示
-                        }
-                    //txtReceive.Text += strRcv + "\r\n";
-                        Common.MBCVersion = receivedData[1];
-                        if (receivedData[0] == 170)
-                        {
-                            this.BeginInvoke(new MethodInvoker(() => ShowForm()));
-                            //MessageBox.Show("打开DPIQ控制窗口", "xxx");
-                         }
-                        else
-                        {
-                            MessageBox.Show("控制器连接失败，请重试！", "错误代码0x10");
-                        }
+                        strRcv += receivedData[i].ToString("X2");  //16进制显示
                     }
-                    catch (System.Exception ex)
+                    Common.MBCVersion = receivedData[1];
+                    if (receivedData[0] == 170)
                     {
-                        MessageBox.Show(ex.Message, "出错提示");
-                        //txtSend.Text = "";
+                        this.BeginInvoke(new MethodInvoker(() => ShowForm()));
+                     }
+                    else
+                    {
+                        MessageBox.Show("连接控制器失败，请重试！", "错误0x01");
                     }
-                //}
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "错误0x02");
+                    //txtSend.Text = "";
+                }
             }
             else
             {
-                MessageBox.Show("请打开某个串口", "错误提示");
+                MessageBox.Show("串口处于关闭状态，请打开串口", "错误0x03");
             }
         }
 
@@ -159,53 +140,13 @@ namespace SerialPortConnection
         private void btnSwitch_Click(object sender, EventArgs e)
         {
             //serialPort1.IsOpen
-            if (!sp1.IsOpen)
+            if (!sp1.IsOpen) //(btnSwitch.Text == "打开串口") || (!sp1.IsOpen))
             {
                 try
                 {
                     //设置串口号
                     string serialName = cbSerial.SelectedItem.ToString();
                     sp1.PortName = serialName;
-
-                    //设置各“串口设置”
-                    //string strBaudRate = cbBaudRate.Text;
-                    //string strDateBits = cbDataBits.Text;
-                    //string strStopBits = cbStop.Text;
-                    //Int32 iBaudRate = Convert.ToInt32(strBaudRate);
-                    //Int32 iDateBits = Convert.ToInt32(strDateBits);
-
-                    //sp1.BaudRate = iBaudRate;       //波特率
-                    //sp1.DataBits = iDateBits;       //数据位
-                    //switch (cbStop.Text)            //停止位
-                    //{
-                    //    case "1":
-                    //        sp1.StopBits = StopBits.One;
-                    //        break;
-                    //    case "1.5":
-                    //        sp1.StopBits = StopBits.OnePointFive;
-                    //        break;
-                    //    case "2":
-                    //        sp1.StopBits = StopBits.Two;
-                    //        break;
-                    //    default:
-                    //        MessageBox.Show("Error：参数不正确!", "Error");
-                    //        break;
-                    //}
-                    //switch (cbParity.Text)             //校验位
-                    //{
-                    //    case "无":
-                    //        sp1.Parity = Parity.None;
-                    //        break;
-                    //    case "奇校验":
-                    //        sp1.Parity = Parity.Odd;
-                    //        break;
-                    //    case "偶校验":
-                    //        sp1.Parity = Parity.Even;
-                    //        break;
-                    //    default:
-                    //        MessageBox.Show("Error：参数不正确!", "Error");
-                    //        break;
-                    //}
 
                     sp1.BaudRate = 57600;
                     sp1.DataBits = 8;
@@ -216,19 +157,6 @@ namespace SerialPortConnection
                     {
                         sp1.Close();
                     }
-                    //状态栏设置
-                    //tsSpNum.Text = "串口号：" + sp1.PortName + "|";
-                    //tsBaudRate.Text = "波特率：" + sp1.BaudRate + "|";
-                    //tsDataBits.Text = "数据位：" + sp1.DataBits + "|";
-                    //tsStopBits.Text = "停止位：" + sp1.StopBits + "|";
-                    //tsParity.Text = "校验位：" + sp1.Parity + "|";
-
-                    //设置必要控件不可用
-                    //cbSerial.Enabled = false;
-                    //cbBaudRate.Enabled = false;
-                    //cbDataBits.Enabled = false;
-                    //cbStop.Enabled = false;
-                    //cbParity.Enabled = false;
 
                     sp1.Open();     //打开串口
                     btnSwitch.Text = "关闭串口";
@@ -260,47 +188,33 @@ namespace SerialPortConnection
                             decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
                         }
 
-                        try    //防止输错，使其只能输入一个字节的字符
-                        {
-                            byteBuffer[ii] = Convert.ToByte(decNum);
-                        }
-                        catch (System.Exception ex)
-                        {
-                            MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                            //tmSend.Enabled = false;
-                            return;
-                        }
+                        //try    //防止输错，使其只能输入一个字节的字符
+                        //{
+                        byteBuffer[ii] = Convert.ToByte(decNum);
+                        //}
+                        //catch (System.Exception ex)
+                        //{
+                        //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                        //    //tmSend.Enabled = false;
+                        //    return;
+                        //}
 
                         ii++;
                     }
                     sp1.Write(byteBuffer, 0, byteBuffer.Length);
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
-                    MessageBox.Show("Error:" + ex.Message, "Error");
+                    MessageBox.Show("请先选择串口", "错误0x11");
                     //tmSend.Enabled = false;
                     return;
                 }
             }
             else
             {
-                //状态栏设置
-                //tsSpNum.Text = "串口号：未指定|";
-                //tsBaudRate.Text = "波特率：未指定|";
-                //tsDataBits.Text = "数据位：未指定|";
-                //tsStopBits.Text = "停止位：未指定|";
-                //tsParity.Text = "校验位：未指定|";
-                //恢复控件功能
-                //设置必要控件不可用
-                //cbSerial.Enabled = true;
-                //cbBaudRate.Enabled = true;
-                //cbDataBits.Enabled = true;
-                //cbStop.Enabled = true;
-                //cbParity.Enabled = true;
-
                 sp1.Close();                    //关闭串口
                 btnSwitch.Text = "打开串口";
-                //tmSend.Enabled = false;         //关闭计时器
+                MBC_Control_Unit.Close();
             }
         }
 
@@ -319,7 +233,7 @@ namespace SerialPortConnection
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(370, 129);
+            this.btnSwitch.Location = new System.Drawing.Point(240, 52);
             this.btnSwitch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(113, 31);
@@ -332,7 +246,7 @@ namespace SerialPortConnection
             // 
             this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerial.FormattingEnabled = true;
-            this.cbSerial.Location = new System.Drawing.Point(262, 132);
+            this.cbSerial.Location = new System.Drawing.Point(128, 57);
             this.cbSerial.Margin = new System.Windows.Forms.Padding(5);
             this.cbSerial.Name = "cbSerial";
             this.cbSerial.Size = new System.Drawing.Size(91, 26);
@@ -342,7 +256,7 @@ namespace SerialPortConnection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(162, 132);
+            this.label1.Location = new System.Drawing.Point(65, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 21);
@@ -351,7 +265,7 @@ namespace SerialPortConnection
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(846, 451);
+            this.ClientSize = new System.Drawing.Size(441, 164);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.btnSwitch);
