@@ -119,6 +119,11 @@ namespace SerialPortConnection
         //    }
         //}
 
+        public static class FormParameter
+        {
+            public static string strRcv;
+        }
+
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
@@ -130,38 +135,39 @@ namespace SerialPortConnection
                 //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
-                                                                //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
-                                                                //{
-                                                                //    txtReceive.Text += sp1.ReadLine() + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
-                                                                //    sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
-                                                                //}
-                                                                //else                                            //'发送16进制按钮'
-                                                                //{
+                //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
+                //{
+                //    txtReceive.Text += sp1.ReadLine() + "\r\n"; //注意：回车换行必须这样写，单独使用"\r"和"\n"都不会有效果
+                //    sp1.DiscardInBuffer();                      //清空SerialPort控件的Buffer 
+                //}
+                //else                                            //'发送16进制按钮'
+                //{
                 try
                 {
                     Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
                     sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
-                                                                            //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
+                    //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
                     sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
-                                                                            //这是用以显示字符串
-                                                                            //    string strRcv = null;
-                                                                            //    for (int i = 0; i < receivedData.Length; i++ )
-                                                                            //    {
-                                                                            //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
-                                                                            //    }
-                                                                            //    txtReceive.Text += strRcv + "\r\n";             //显示信息
-                                                                            //}
-                    string strRcv = null;
+                    //这是用以显示字符串
+                    //    string strRcv = null;
+                    //    for (int i = 0; i < receivedData.Length; i++ )
+                    //    {
+                    //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
+                    //    }
+                    //    txtReceive.Text += strRcv + "\r\n";             //显示信息
+                    //}
+                    FormParameter.strRcv = null;
                     //int decNum = 0;//存储十进制
                     for (int i = 0; i < receivedData.Length; i++) //窗体显示
                     {
-                        strRcv += receivedData[i].ToString("X2");  //16进制显示
+                        FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
                     }
-                    txtReceive.Text += strRcv + "\r\n";
-                    if (receivedData[0] == 105)
-                    {
-                        vpiYI.Text = receivedData[1].ToString();
-                    }
+                    UART_Handler(receivedData);
+                    //txtReceive.Text += FormParameter.strRcv + "\r\n";
+                    //if (receivedData[0] == 105)
+                    //{
+                    //    vpiYI.Text = receivedData[1].ToString();
+                    //}
                 }
                 catch (System.Exception ex)
                 {
@@ -173,6 +179,28 @@ namespace SerialPortConnection
             else
             {
                 MessageBox.Show("请打开某个串口", "错误提示");
+            }
+        }
+
+        private void UART_Handler(Byte[] uart_result)
+        {
+            //sp1.PortName = "COM8";// Common.serialName;
+            //sp1.BaudRate = 57600;
+            //sp1.DataBits = 8;
+            //sp1.StopBits = StopBits.One;
+            //sp1.Parity = Parity.None;
+            //try
+            //{
+            //    sp1.Open();
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("连接异常，请重启程序", "错误0x41");
+            //}
+            txtReceive.Text += FormParameter.strRcv + "\r\n";
+            if (uart_result[0] == 105)
+            {
+                vpiYI.Text = uart_result[1].ToString();
             }
         }
 
