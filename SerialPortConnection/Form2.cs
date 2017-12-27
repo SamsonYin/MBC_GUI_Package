@@ -35,7 +35,8 @@ namespace SerialPortConnection
                 case 1:
                     MBC_Control_Unit = new Form1();
                     MBC_Control_Unit.Show();
-                    Common.formstatus = 1;
+                    sp1.Close();
+                    //Common.formstatus = 1;
                     break;
                 case 2:
                     MessageBox.Show("IQ", "Error");
@@ -161,7 +162,7 @@ namespace SerialPortConnection
                     }
 
                     sp1.Open();     //打开串口
-                    btnSwitch.Text = "关闭串口";
+                    //btnSwitch.Text = "关闭串口";
 
                     string[] strArray = { "aa", "0", "0", "0", "0", "0", "0" };
 
@@ -215,12 +216,12 @@ namespace SerialPortConnection
             else
             {
                 sp1.Close();                    //关闭串口
-                btnSwitch.Text = "打开串口";
-                if(Common.formstatus == 1)
-                {
-                    MBC_Control_Unit.Close();
-                    Common.formstatus = 0;
-                }
+                //btnSwitch.Text = "打开串口";
+                //if(Common.formstatus == 1)
+                //{
+                //    MBC_Control_Unit.Close();
+                //    Common.formstatus = 0;
+                //}
             }
         }
 
@@ -245,7 +246,7 @@ namespace SerialPortConnection
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(113, 31);
             this.btnSwitch.TabIndex = 10;
-            this.btnSwitch.Text = "打开串口";
+            this.btnSwitch.Text = "连接控制器";
             this.btnSwitch.UseVisualStyleBackColor = true;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
