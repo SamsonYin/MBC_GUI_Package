@@ -33,9 +33,9 @@ namespace SerialPortConnection
             switch (Common.MBCVersion)
             {
                 case 1:
+                    sp1.Close();
                     MBC_Control_Unit = new Form1();
                     MBC_Control_Unit.Show();
-                    sp1.Close();
                     //Common.formstatus = 1;
                     break;
                 case 2:
@@ -98,6 +98,7 @@ namespace SerialPortConnection
         {
             public static int MBCVersion;
             public static int formstatus;
+            public static string serialName;
         }
 
         //接收控制器返回的数据
@@ -148,8 +149,8 @@ namespace SerialPortConnection
                 try
                 {
                     //设置串口号
-                    string serialName = cbSerial.SelectedItem.ToString();
-                    sp1.PortName = serialName;
+                    Common.serialName = cbSerial.SelectedItem.ToString();
+                    sp1.PortName = Common.serialName;
 
                     sp1.BaudRate = 57600;
                     sp1.DataBits = 8;
