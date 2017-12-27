@@ -36,7 +36,7 @@ namespace SerialPortConnection
                     sp1.Close();
                     MBC_Control_Unit = new Form1();
                     MBC_Control_Unit.Show();
-                    //Common.formstatus = 1;
+                    Common.formstatus = 1;
                     break;
                 case 2:
                     MessageBox.Show("IQ", "Error");
@@ -146,72 +146,79 @@ namespace SerialPortConnection
             //serialPort1.IsOpen
             if (!sp1.IsOpen) //(btnSwitch.Text == "打开串口") || (!sp1.IsOpen))
             {
-                try
+                if (Common.formstatus == 0)
                 {
-                    //设置串口号
-                    Common.serialName = cbSerial.SelectedItem.ToString();
-                    sp1.PortName = Common.serialName;
-
-                    sp1.BaudRate = 57600;
-                    sp1.DataBits = 8;
-                    sp1.StopBits = StopBits.One;
-                    sp1.Parity = Parity.None;
-
-                    if (sp1.IsOpen == true)//如果打开状态，则先关闭一下
+                    try
                     {
-                        sp1.Close();
-                    }
+                        //设置串口号
+                        Common.serialName = cbSerial.SelectedItem.ToString();
+                        sp1.PortName = Common.serialName;
 
-                    sp1.Open();     //打开串口
-                    //btnSwitch.Text = "关闭串口";
+                        sp1.BaudRate = 57600;
+                        sp1.DataBits = 8;
+                        sp1.StopBits = StopBits.One;
+                        sp1.Parity = Parity.None;
 
-                    string[] strArray = { "aa", "0", "0", "0", "0", "0", "0" };
-
-                    int byteBufferLength = strArray.Length;
-                    for (int i = 0; i < strArray.Length; i++)
-                    {
-                        if (strArray[i] == "")
+                        if (sp1.IsOpen == true)//如果打开状态，则先关闭一下
                         {
-                            byteBufferLength--;
-                        }
-                    }
-                    byte[] byteBuffer = new byte[byteBufferLength];
-                    int ii = 0;
-                    for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-                    {
-                        Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
-
-                        int decNum = 0;
-                        if (strArray[i] == "")
-                        {
-                            //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                            continue;
-                        }
-                        else
-                        {
-                            decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                            sp1.Close();
                         }
 
-                        //try    //防止输错，使其只能输入一个字节的字符
-                        //{
-                        byteBuffer[ii] = Convert.ToByte(decNum);
-                        //}
-                        //catch (System.Exception ex)
-                        //{
-                        //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                        //    //tmSend.Enabled = false;
-                        //    return;
-                        //}
+                        sp1.Open();     //打开串口
+                        //btnSwitch.Text = "关闭串口";
 
-                        ii++;
+                        string[] strArray = { "aa", "0", "0", "0", "0", "0", "0" };
+
+                        int byteBufferLength = strArray.Length;
+                        for (int i = 0; i < strArray.Length; i++)
+                        {
+                            if (strArray[i] == "")
+                            {
+                                byteBufferLength--;
+                            }
+                        }
+                        byte[] byteBuffer = new byte[byteBufferLength];
+                        int ii = 0;
+                        for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+                        {
+                            Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                            int decNum = 0;
+                            if (strArray[i] == "")
+                            {
+                                //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                                continue;
+                            }
+                            else
+                            {
+                                decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                            }
+
+                            //try    //防止输错，使其只能输入一个字节的字符
+                            //{
+                            byteBuffer[ii] = Convert.ToByte(decNum);
+                            //}
+                            //catch (System.Exception ex)
+                            //{
+                            //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                            //    //tmSend.Enabled = false;
+                            //    return;
+                            //}
+
+                            ii++;
+                        }
+                        sp1.Write(byteBuffer, 0, byteBuffer.Length);
                     }
-                    sp1.Write(byteBuffer, 0, byteBuffer.Length);
+                    catch (System.Exception)
+                    {
+                        MessageBox.Show("请先选择串口", "错误0x11");
+                        //tmSend.Enabled = false;
+                        return;
+                    }
                 }
-                catch (System.Exception)
+                else
                 {
-                    MessageBox.Show("请先选择串口", "错误0x11");
-                    //tmSend.Enabled = false;
-                    return;
+                    MessageBox.Show("控制程序已启动", "错误0x12");
                 }
             }
             else

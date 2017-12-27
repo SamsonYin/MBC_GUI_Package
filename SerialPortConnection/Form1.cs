@@ -383,7 +383,8 @@ namespace SerialPortConnection
         //关闭时事件
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //sp2.Close();
+            Common.formstatus = 0;
+            sp2.Close();
         }
 
         private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
