@@ -122,6 +122,8 @@ namespace SerialPortConnection
         public static class FormParameter
         {
             public static string strRcv;
+            public static uint byteID;
+            public static int UART_CMD;
         }
 
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -162,6 +164,7 @@ namespace SerialPortConnection
                     {
                         FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
                     }
+                    FormParameter.byteID = receivedData[0];
                     UART_Handler(receivedData);
                     //txtReceive.Text += FormParameter.strRcv + "\r\n";
                     //if (receivedData[0] == 105)
@@ -184,24 +187,63 @@ namespace SerialPortConnection
 
         private void UART_Handler(Byte[] uart_result)
         {
-            //sp1.PortName = "COM8";// Common.serialName;
-            //sp1.BaudRate = 57600;
-            //sp1.DataBits = 8;
-            //sp1.StopBits = StopBits.One;
-            //sp1.Parity = Parity.None;
-            //try
-            //{
-            //    sp1.Open();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("连接异常，请重启程序", "错误0x41");
-            //}
             txtReceive.Text += FormParameter.strRcv + "\r\n";
-            if (uart_result[0] == 105)
+            switch(FormParameter.byteID)
             {
-                vpiYI.Text = uart_result[1].ToString();
+                case 105:
+                    {
+                        if(FormParameter.UART_CMD == 105)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 1:
+                                    {
+                                        txtReceive.Text += "Stablizing. \r\n";
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        txtReceive.Text += "Stablized. \r\n";
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        txtReceive.Text += "Light too weak. \r\n";
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        txtReceive.Text += "Light too strong. \r\n";
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        txtReceive.Text += "Manual control. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        //txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        break;
+                    }     
             }
+            //if (FormParameter.byteID == 105)
+            //{
+            //    vpiYI.Text = uart_result[1].ToString();
+            //}
         }
 
         //发送按钮
@@ -520,7 +562,7 @@ namespace SerialPortConnection
                 }
                 else
                 {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
                 }
 
                 try    //防止输错，使其只能输入一个字节的字符
@@ -541,7 +583,54 @@ namespace SerialPortConnection
 
         private void ReadStatusbtn_Click(object sender, EventArgs e)
         {
+            if(!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
 
+            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
+
+            int byteBufferLength = strArray.Length;
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                if (strArray[i] == "")
+                {
+                    byteBufferLength--;
+                }
+            }
+            byte[] byteBuffer = new byte[byteBufferLength];
+            int ii = 0;
+            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+            {
+                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                int decNum = 0;
+                if (strArray[i] == "")
+                {
+                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                    continue;
+                }
+                else
+                {
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
+                }
+
+                //try    //防止输错，使其只能输入一个字节的字符
+                //{
+                byteBuffer[ii] = Convert.ToByte(decNum);
+                //}
+                //catch (System.Exception ex)
+                //{
+                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                //    //tmSend.Enabled = false;
+                //    return;
+                //}
+
+                ii++;
+            }
+            sp1.Write(byteBuffer, 0, byteBuffer.Length);
+            FormParameter.UART_CMD = 105;
         }
 
         private void Resetbtn_Click(object sender, EventArgs e)
@@ -576,7 +665,7 @@ namespace SerialPortConnection
                 }
                 else
                 {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
                 }
 
                 //try    //防止输错，使其只能输入一个字节的字符
@@ -593,6 +682,8 @@ namespace SerialPortConnection
                 ii++;
             }
             sp1.Write(byteBuffer, 0, byteBuffer.Length);
+            FormParameter.UART_CMD = 109;
+            txtReceive.Text += "Reset Command has been sended. \r\n";
         }
     }
 }

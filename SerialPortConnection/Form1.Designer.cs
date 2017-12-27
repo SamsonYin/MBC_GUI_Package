@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Resetbtn = new System.Windows.Forms.Button();
             this.ReadStatusbtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Resetbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -108,6 +108,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能列表";
             // 
+            // Resetbtn
+            // 
+            this.Resetbtn.Location = new System.Drawing.Point(60, 240);
+            this.Resetbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.Resetbtn.Name = "Resetbtn";
+            this.Resetbtn.Size = new System.Drawing.Size(113, 31);
+            this.Resetbtn.TabIndex = 44;
+            this.Resetbtn.Text = "Reset";
+            this.Resetbtn.UseVisualStyleBackColor = true;
+            this.Resetbtn.Click += new System.EventHandler(this.Resetbtn_Click);
+            // 
             // ReadStatusbtn
             // 
             this.ReadStatusbtn.Location = new System.Drawing.Point(248, 240);
@@ -115,7 +126,7 @@
             this.ReadStatusbtn.Name = "ReadStatusbtn";
             this.ReadStatusbtn.Size = new System.Drawing.Size(113, 31);
             this.ReadStatusbtn.TabIndex = 43;
-            this.ReadStatusbtn.Text = "读取";
+            this.ReadStatusbtn.Text = "ReadStatus";
             this.ReadStatusbtn.UseVisualStyleBackColor = true;
             this.ReadStatusbtn.Click += new System.EventHandler(this.ReadStatusbtn_Click);
             // 
@@ -690,17 +701,6 @@
             this.tsParity.Size = new System.Drawing.Size(127, 24);
             this.tsParity.Text = "停止位:未指定|";
             // 
-            // Resetbtn
-            // 
-            this.Resetbtn.Location = new System.Drawing.Point(60, 240);
-            this.Resetbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.Resetbtn.Name = "Resetbtn";
-            this.Resetbtn.Size = new System.Drawing.Size(113, 31);
-            this.Resetbtn.TabIndex = 44;
-            this.Resetbtn.Text = "Reset";
-            this.Resetbtn.UseVisualStyleBackColor = true;
-            this.Resetbtn.Click += new System.EventHandler(this.Resetbtn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -732,7 +732,6 @@
             this.Text = "上位机测试软件";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            //this.Load += new System.EventHandler(this.UART_Init);
             this.groupBox1.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
