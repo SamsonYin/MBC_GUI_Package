@@ -35,6 +35,7 @@ namespace SerialPortConnection
                 case 1:
                     MBC_Control_Unit = new Form1();
                     MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
                     break;
                 case 2:
                     MessageBox.Show("IQ", "Error");
@@ -95,6 +96,7 @@ namespace SerialPortConnection
         public static class Common
         {
             public static int MBCVersion;
+            public static int formstatus;
         }
 
         //接收控制器返回的数据
@@ -214,7 +216,11 @@ namespace SerialPortConnection
             {
                 sp1.Close();                    //关闭串口
                 btnSwitch.Text = "打开串口";
-                MBC_Control_Unit.Close();
+                if(Common.formstatus == 1)
+                {
+                    MBC_Control_Unit.Close();
+                    Common.formstatus = 0;
+                }
             }
         }
 
@@ -226,6 +232,7 @@ namespace SerialPortConnection
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.btnSwitch = new System.Windows.Forms.Button();
             this.cbSerial = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -270,6 +277,7 @@ namespace SerialPortConnection
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.btnSwitch);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "上位机测试软件";
