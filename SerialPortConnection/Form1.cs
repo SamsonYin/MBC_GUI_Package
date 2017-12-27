@@ -35,29 +35,18 @@ namespace SerialPortConnection
             while (s < delayTime);
             return true;
         }
-        //public static bool UART_Init(SerialPort UART_Name)
-        //{
-        //    try
-        //    {
-        //        SerialPort.Open();
-        //    }
-        //    catch
-        //    {
 
-        //    }
-        //    return true;
-        //}
         //加载
         private void Form1_Load(object sender, EventArgs e)
         {
-            // 预置波特率
-            cbBaudRate.SelectedIndex = 8;
-            // 预置数据位 
-            cbDataBits.SelectedIndex = 3;
-            // 预置停止位
-            cbStop.SelectedIndex = 0;
-            // 预置校验位
-            cbParity.SelectedIndex = 0;
+            //// 预置波特率
+            //cbBaudRate.SelectedIndex = 8;
+            //// 预置数据位 
+            //cbDataBits.SelectedIndex = 3;
+            //// 预置停止位
+            //cbStop.SelectedIndex = 0;
+            //// 预置校验位
+            //cbParity.SelectedIndex = 0;
 
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
@@ -80,14 +69,14 @@ namespace SerialPortConnection
             // cbDataBits.SelectedIndex = 3;
             // cbStop.SelectedIndex = 0;
             //  cbParity.SelectedIndex = 0;
-            sp2.BaudRate = 9600;
+            //sp2.BaudRate = 9600;
 
             Control.CheckForIllegalCrossThreadCalls = false;    //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp2.DataReceived += new SerialDataReceivedEventHandler(sp2_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
 
-            radio1.Checked = true;  //单选按钮默认是选中的
-            rbRcvStr.Checked = true;
+            //radio1.Checked = true;  //单选按钮默认是选中的
+            //rbRcvStr.Checked = true;
 
             //准备就绪              
             sp2.DtrEnable = true;
@@ -97,16 +86,6 @@ namespace SerialPortConnection
 
             sp2.Close();
 
-            //sp2.PortName = Common.serialName;
-            //sp2.BaudRate = 57600;
-            //sp2.DataBits = 8;
-            //sp2.StopBits = StopBits.One;
-            //sp2.Parity = Parity.None;
-            ////sp2.Open();
-            //if (!sp2.IsOpen)
-            //{
-            //    sp2.Open();
-            //}
         }
 
         private void UART_Init(object sender, EventArgs x)
@@ -116,7 +95,14 @@ namespace SerialPortConnection
             sp2.DataBits = 8;
             sp2.StopBits = StopBits.One;
             sp2.Parity = Parity.None;
-            sp2.Open();
+            try
+            {
+                sp2.Open();
+            }
+            catch
+            {
+                MessageBox.Show("连接异常，请重启程序", "错误0x41");
+            }
         }
 
         void sp2_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -124,10 +110,10 @@ namespace SerialPortConnection
             if (sp2.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
                 //输出当前时间
-                DateTime dt = DateTime.Now;
-                txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                txtReceive.SelectAll();
-                txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                //DateTime dt = DateTime.Now;
+                //txtReceive.Text += dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                //txtReceive.SelectAll();
+                //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
 
                 byte[] byteRead = new byte[sp2.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 if (rdSendStr.Checked)                          //'发送字符串'单选按钮
@@ -505,6 +491,62 @@ namespace SerialPortConnection
                     tmSend.Enabled = false;
                     return;
                 }
+
+                ii++;
+            }
+            sp2.Write(byteBuffer, 0, byteBuffer.Length);
+        }
+
+        private void ReadStatusbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Resetbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp2.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "6D", "0", "0", "0", "0", "0", "0" };
+
+            int byteBufferLength = strArray.Length;
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                if (strArray[i] == "")
+                {
+                    byteBufferLength--;
+                }
+            }
+            byte[] byteBuffer = new byte[byteBufferLength];
+            int ii = 0;
+            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+            {
+                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                int decNum = 0;
+                if (strArray[i] == "")
+                {
+                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                    continue;
+                }
+                else
+                {
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+                }
+
+                //try    //防止输错，使其只能输入一个字节的字符
+                //{
+                byteBuffer[ii] = Convert.ToByte(decNum);
+                //}
+                //catch (System.Exception ex)
+                //{
+                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                //    //tmSend.Enabled = false;
+                //    return;
+                //}
 
                 ii++;
             }
