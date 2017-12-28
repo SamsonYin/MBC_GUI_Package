@@ -110,6 +110,7 @@ namespace SerialPortConnection
                 MessageBox.Show("连接异常，请重启程序", "错误0x41");
             }
 
+            Resumebtn.Enabled = false;
         }
 
         //private void UART_Init(object sender, EventArgs x)
@@ -219,6 +220,85 @@ namespace SerialPortConnection
                             Power.intData = Power.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                             Power.intData = Power.intData + (Convert.ToUInt32(uart_result[1]));
                             txtReceive.Text += "Feedback Power = " + (Convert.ToString(Power.floatData)) + "uW \r\n";
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 102:
+                    {
+                        if (FormParameter.UART_CMD == 102)
+                        {
+                            switch (FormParameter.arm)
+                            {
+                                case 1:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YI_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YQ_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YP_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XI_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XQ_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        float_U32 bias = new float_U32();
+                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XP_Bias:" + (Convert.ToString(bias.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "ReadBias Error. Please try again. \r\n";
+                                        break;
+                                    }
+                            }
                         }
                         else
                         {
@@ -424,6 +504,65 @@ namespace SerialPortConnection
                         }
                         break;
                     }
+                case 115:
+                    {
+                        if (FormParameter.UART_CMD == 115)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Pause Control Set! \r\n";
+                                        break;
+                                    }
+                                case 119:
+                                    {
+                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 116:
+                    {
+                        if (FormParameter.UART_CMD == 116)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Resume Control Set! \r\n";
+                                        Resumebtn.Enabled = false;
+                                        break;
+                                    }
+                                case 119:
+                                    {
+                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 120:
                     {
                         if (FormParameter.UART_CMD == 120)
@@ -447,10 +586,6 @@ namespace SerialPortConnection
                         break;
                     }     
             }
-            //if (FormParameter.byteID == 105)
-            //{
-            //    vpiYI.Text = uart_result[1].ToString();
-            //}
         }
 
         private void Command_tx(string[] CMD_strArray)
@@ -946,6 +1081,117 @@ namespace SerialPortConnection
             FormParameter.UART_CMD = 101;
 
             string[] strArray = { "65", "0", "0", "0", "0", "0", "0" };
+            Command_tx(strArray);
+        }
+
+        private void ReadBiasbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            FormParameter.UART_CMD = 102;
+
+            //uint Bias_arm = Convert.ToUInt16(BiasArm_txBox.Text);
+            if(String.IsNullOrEmpty(BiasArm_txBox.Text) ==false)
+            {
+                FormParameter.arm = Convert.ToUInt16(BiasArm_txBox.Text);
+            }
+            else
+            {
+                MessageBox.Show("请输入偏压通道", "Error");
+                return;
+            }
+            switch (FormParameter.arm)
+            {
+                case 1:
+                    {
+                        string[] strArray = { "66", "1", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                case 2:
+                    {
+                        string[] strArray = { "66", "2", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                case 3:
+                    {
+                        string[] strArray = { "66", "3", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                case 4:
+                    {
+                        string[] strArray = { "66", "4", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                case 5:
+                    {
+                        string[] strArray = { "66", "5", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                case 6:
+                    {
+                        string[] strArray = { "66", "6", "0", "0", "0", "0", "0" };
+                        Command_tx(strArray);
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("输入范围是1-6", "Error");
+                        break;
+                    }
+            }
+        }
+
+        private void BiasArm_txBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BiasArm_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar >= 55) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Pausebtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "73", "0", "0", "0", "0", "0", "0" };
+
+            FormParameter.UART_CMD = 115;
+
+            Command_tx(strArray);
+
+            Resumebtn.Enabled = true;
+        }
+
+        private void Resumebtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "74", "0", "0", "0", "0", "0", "0" };
+
+            FormParameter.UART_CMD = 116;
+
             Command_tx(strArray);
         }
     }
