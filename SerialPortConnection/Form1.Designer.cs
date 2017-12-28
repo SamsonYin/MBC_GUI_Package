@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Resumebtn = new System.Windows.Forms.Button();
+            this.Pausebtn = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.BiasArm_txBox = new System.Windows.Forms.TextBox();
             this.ReadBiasbtn = new System.Windows.Forms.Button();
@@ -92,8 +94,6 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Pausebtn = new System.Windows.Forms.Button();
-            this.Resumebtn = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.DitherYIAmp_txBox = new System.Windows.Forms.TextBox();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
@@ -103,6 +103,19 @@
             this.DitherXIAmp_txBox = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.DitherXQAmp_txBox = new System.Windows.Forms.TextBox();
+            this.YIPolarBox = new System.Windows.Forms.ComboBox();
+            this.YQPolarBox = new System.Windows.Forms.ComboBox();
+            this.YPPolarBox = new System.Windows.Forms.ComboBox();
+            this.XPPolarBox = new System.Windows.Forms.ComboBox();
+            this.XQPolarBox = new System.Windows.Forms.ComboBox();
+            this.XIPolarBox = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.SetPolarbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,6 +147,28 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能列表";
+            // 
+            // Resumebtn
+            // 
+            this.Resumebtn.Location = new System.Drawing.Point(252, 448);
+            this.Resumebtn.Margin = new System.Windows.Forms.Padding(5);
+            this.Resumebtn.Name = "Resumebtn";
+            this.Resumebtn.Size = new System.Drawing.Size(113, 31);
+            this.Resumebtn.TabIndex = 53;
+            this.Resumebtn.Text = "ResumeControl";
+            this.Resumebtn.UseVisualStyleBackColor = true;
+            this.Resumebtn.Click += new System.EventHandler(this.Resumebtn_Click);
+            // 
+            // Pausebtn
+            // 
+            this.Pausebtn.Location = new System.Drawing.Point(64, 448);
+            this.Pausebtn.Margin = new System.Windows.Forms.Padding(5);
+            this.Pausebtn.Name = "Pausebtn";
+            this.Pausebtn.Size = new System.Drawing.Size(113, 31);
+            this.Pausebtn.TabIndex = 52;
+            this.Pausebtn.Text = "PauseControl";
+            this.Pausebtn.UseVisualStyleBackColor = true;
+            this.Pausebtn.Click += new System.EventHandler(this.Pausebtn_Click);
             // 
             // label15
             // 
@@ -805,28 +840,6 @@
             this.tsParity.Size = new System.Drawing.Size(127, 24);
             this.tsParity.Text = "停止位:未指定|";
             // 
-            // Pausebtn
-            // 
-            this.Pausebtn.Location = new System.Drawing.Point(64, 448);
-            this.Pausebtn.Margin = new System.Windows.Forms.Padding(5);
-            this.Pausebtn.Name = "Pausebtn";
-            this.Pausebtn.Size = new System.Drawing.Size(113, 31);
-            this.Pausebtn.TabIndex = 52;
-            this.Pausebtn.Text = "PauseControl";
-            this.Pausebtn.UseVisualStyleBackColor = true;
-            this.Pausebtn.Click += new System.EventHandler(this.Pausebtn_Click);
-            // 
-            // Resumebtn
-            // 
-            this.Resumebtn.Location = new System.Drawing.Point(252, 448);
-            this.Resumebtn.Margin = new System.Windows.Forms.Padding(5);
-            this.Resumebtn.Name = "Resumebtn";
-            this.Resumebtn.Size = new System.Drawing.Size(113, 31);
-            this.Resumebtn.TabIndex = 53;
-            this.Resumebtn.Text = "ResumeControl";
-            this.Resumebtn.UseVisualStyleBackColor = true;
-            this.Resumebtn.Click += new System.EventHandler(this.Resumebtn_Click);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -918,11 +931,173 @@
             this.DitherXQAmp_txBox.TabIndex = 61;
             this.DitherXQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherXQAmp_txBox_KeyPress);
             // 
+            // YIPolarBox
+            // 
+            this.YIPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.YIPolarBox.FormattingEnabled = true;
+            this.YIPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.YIPolarBox.Location = new System.Drawing.Point(619, 430);
+            this.YIPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.YIPolarBox.Name = "YIPolarBox";
+            this.YIPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.YIPolarBox.TabIndex = 63;
+            // 
+            // YQPolarBox
+            // 
+            this.YQPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.YQPolarBox.FormattingEnabled = true;
+            this.YQPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.YQPolarBox.Location = new System.Drawing.Point(619, 483);
+            this.YQPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.YQPolarBox.Name = "YQPolarBox";
+            this.YQPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.YQPolarBox.TabIndex = 64;
+            // 
+            // YPPolarBox
+            // 
+            this.YPPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.YPPolarBox.FormattingEnabled = true;
+            this.YPPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.YPPolarBox.Location = new System.Drawing.Point(618, 540);
+            this.YPPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.YPPolarBox.Name = "YPPolarBox";
+            this.YPPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.YPPolarBox.TabIndex = 65;
+            // 
+            // XPPolarBox
+            // 
+            this.XPPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.XPPolarBox.FormattingEnabled = true;
+            this.XPPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.XPPolarBox.Location = new System.Drawing.Point(619, 696);
+            this.XPPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.XPPolarBox.Name = "XPPolarBox";
+            this.XPPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.XPPolarBox.TabIndex = 68;
+            // 
+            // XQPolarBox
+            // 
+            this.XQPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.XQPolarBox.FormattingEnabled = true;
+            this.XQPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.XQPolarBox.Location = new System.Drawing.Point(618, 640);
+            this.XQPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.XQPolarBox.Name = "XQPolarBox";
+            this.XQPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.XQPolarBox.TabIndex = 67;
+            // 
+            // XIPolarBox
+            // 
+            this.XIPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.XIPolarBox.FormattingEnabled = true;
+            this.XIPolarBox.Items.AddRange(new object[] {
+            "Positive",
+            "Negative"});
+            this.XIPolarBox.Location = new System.Drawing.Point(618, 587);
+            this.XIPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.XIPolarBox.Name = "XIPolarBox";
+            this.XIPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.XIPolarBox.TabIndex = 66;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(486, 433);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(125, 18);
+            this.label20.TabIndex = 69;
+            this.label20.Text = "Set YI Polar:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(486, 486);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(125, 18);
+            this.label21.TabIndex = 70;
+            this.label21.Text = "Set YQ Polar:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(486, 543);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(125, 18);
+            this.label22.TabIndex = 71;
+            this.label22.Text = "Set YP Polar:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(486, 590);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(125, 18);
+            this.label23.TabIndex = 72;
+            this.label23.Text = "Set XI Polar:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(486, 643);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(125, 18);
+            this.label24.TabIndex = 73;
+            this.label24.Text = "Set XQ Polar:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(485, 701);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(125, 18);
+            this.label25.TabIndex = 74;
+            this.label25.Text = "Set XP Polar:";
+            // 
+            // SetPolarbtn
+            // 
+            this.SetPolarbtn.Location = new System.Drawing.Point(784, 430);
+            this.SetPolarbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.SetPolarbtn.Name = "SetPolarbtn";
+            this.SetPolarbtn.Size = new System.Drawing.Size(113, 292);
+            this.SetPolarbtn.TabIndex = 75;
+            this.SetPolarbtn.Text = "Set Polar";
+            this.SetPolarbtn.UseVisualStyleBackColor = true;
+            this.SetPolarbtn.Click += new System.EventHandler(this.SetPolarbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2035, 851);
+            this.Controls.Add(this.SetPolarbtn);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.XPPolarBox);
+            this.Controls.Add(this.XQPolarBox);
+            this.Controls.Add(this.XIPolarBox);
+            this.Controls.Add(this.YPPolarBox);
+            this.Controls.Add(this.YQPolarBox);
+            this.Controls.Add(this.YIPolarBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.DitherXQAmp_txBox);
             this.Controls.Add(this.label18);
@@ -1053,6 +1228,19 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox DitherXQAmp_txBox;
         private System.Windows.Forms.TextBox DitherYIAmp_txBox;
+        private System.Windows.Forms.ComboBox YIPolarBox;
+        private System.Windows.Forms.ComboBox YQPolarBox;
+        private System.Windows.Forms.ComboBox YPPolarBox;
+        private System.Windows.Forms.ComboBox XPPolarBox;
+        private System.Windows.Forms.ComboBox XQPolarBox;
+        private System.Windows.Forms.ComboBox XIPolarBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button SetPolarbtn;
     }
 }
 

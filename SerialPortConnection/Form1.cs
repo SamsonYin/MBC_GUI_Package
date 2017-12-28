@@ -49,6 +49,14 @@ namespace SerialPortConnection
         //加载
         private void Form1_Load(object sender, EventArgs e)
         {
+            //预设Polar值
+            YIPolarBox.SelectedIndex = 0;
+            YQPolarBox.SelectedIndex = 0;
+            YPPolarBox.SelectedIndex = 0;
+            XIPolarBox.SelectedIndex = 0;
+            XQPolarBox.SelectedIndex = 0;
+            XPPolarBox.SelectedIndex = 0;
+
             //// 预置波特率
             //cbBaudRate.SelectedIndex = 8;
             //// 预置数据位 
@@ -508,6 +516,65 @@ namespace SerialPortConnection
                         }
                         break;
                     }
+                case 108:
+                    {
+                        if (FormParameter.UART_CMD == 108)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Set Polar Command Sended! \r\n";
+                                        break;
+                                    }
+                                case 119:
+                                    {
+                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
+                                        break;
+                                    }
+                                case 136:
+                                    {
+                                        txtReceive.Text += "Setup failed, please try later. \r\n";
+                                        break;
+                                    }
+                                        default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 111:
+                    {
+                        if (FormParameter.UART_CMD == 111)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Set Dither Amp Command has been sended! \r\n";
+                                        Resumebtn.Enabled = false;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 115:
                     {
                         if (FormParameter.UART_CMD == 115)
@@ -582,6 +649,10 @@ namespace SerialPortConnection
                         {
                             txtReceive.Text += "Unknown Error. Please try again. \r\n";
                         }
+                        break;
+                    }
+                case 255:
+                    {
                         break;
                     }
                 default:
@@ -1280,5 +1351,70 @@ namespace SerialPortConnection
                 e.Handled = true;
             }
         }
+
+        private void SetPolarbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+
+            FormParameter.UART_CMD = 108;
+
+            string[] strArray = { "6C", "1", "1", "1", "1", "1", "1" };
+            if ((YIPolarBox.Text) == "Positive")
+            {
+                strArray[1] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[1] = Convert.ToString(2);
+            }
+            if ((YQPolarBox.Text) == "Positive")
+            {
+                strArray[2] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[2] = Convert.ToString(2);
+            }
+            if ((YPPolarBox.Text) == "Positive")
+            {
+                strArray[3] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[3] = Convert.ToString(2);
+            }
+            if ((XIPolarBox.Text) == "Positive")
+            {
+                strArray[4] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[4] = Convert.ToString(2);
+            }
+            if ((XQPolarBox.Text) == "Positive")
+            {
+                strArray[5] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[5] = Convert.ToString(2);
+            }
+            if ((XPPolarBox.Text) == "Positive")
+            {
+                strArray[6] = Convert.ToString(1);
+            }
+            else
+            {
+                strArray[6] = Convert.ToString(2);
+            }
+
+            Command_tx(strArray);
+        }
+
     }
 }
