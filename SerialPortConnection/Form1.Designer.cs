@@ -85,6 +85,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ReadPolarbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ReadPolarbtn);
             this.groupBox1.Controls.Add(this.Resetbtn);
             this.groupBox1.Controls.Add(this.ReadStatusbtn);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -628,6 +630,7 @@
             this.txtReceive.Size = new System.Drawing.Size(423, 491);
             this.txtReceive.TabIndex = 0;
             this.txtReceive.Text = "";
+            this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
             // 
             // tmSend
             // 
@@ -700,6 +703,17 @@
             this.tsParity.Name = "tsParity";
             this.tsParity.Size = new System.Drawing.Size(127, 24);
             this.tsParity.Text = "停止位:未指定|";
+            // 
+            // ReadPolarbtn
+            // 
+            this.ReadPolarbtn.Location = new System.Drawing.Point(60, 301);
+            this.ReadPolarbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadPolarbtn.Name = "ReadPolarbtn";
+            this.ReadPolarbtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadPolarbtn.TabIndex = 45;
+            this.ReadPolarbtn.Text = "ReadPolar";
+            this.ReadPolarbtn.UseVisualStyleBackColor = true;
+            this.ReadPolarbtn.Click += new System.EventHandler(this.ReadPolarbtn_Click);
             // 
             // Form1
             // 
@@ -808,6 +822,7 @@
         private System.Windows.Forms.TextBox vpiYI;
         private System.Windows.Forms.Button ReadStatusbtn;
         private System.Windows.Forms.Button Resetbtn;
+        private System.Windows.Forms.Button ReadPolarbtn;
     }
 }
 

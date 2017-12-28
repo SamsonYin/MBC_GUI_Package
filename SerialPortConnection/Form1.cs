@@ -165,7 +165,7 @@ namespace SerialPortConnection
                         FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
                     }
                     FormParameter.byteID = receivedData[0];
-                    UART_Handler(receivedData);
+                    UART_Handler(receivedData);  //receivedData是收到的数据，数据格式为十进制
                     //txtReceive.Text += FormParameter.strRcv + "\r\n";
                     //if (receivedData[0] == 105)
                     //{
@@ -190,6 +190,81 @@ namespace SerialPortConnection
             txtReceive.Text += FormParameter.strRcv + "\r\n";
             switch(FormParameter.byteID)
             {
+                case 104:
+                    {
+                        if (FormParameter.UART_CMD == 104)
+                        {
+                            int polarI_1;
+                            int polarQ_1;
+                            int polarP_1;
+                            int polarI_2;
+                            int polarQ_2;
+                            int polarP_2;
+                            polarI_1 = uart_result[1] + 1;
+                            polarQ_1 = uart_result[2] + 1;
+                            polarP_1 = uart_result[3] + 1;
+                            polarI_2 = uart_result[4] + 1;
+                            polarQ_2 = uart_result[5] + 1;
+                            polarP_2 = uart_result[6] + 1;
+                            if (polarI_1 == 1)
+                            {
+                                txtReceive.Text += "Polar I_1: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar I_1: Negative \r\n";
+                            }
+                            if (polarQ_1 == 1)
+                            {
+                                txtReceive.Text += "Polar Q_1: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar Q_1: Negative \r\n";
+                            }
+                            if (polarP_1 == 1)
+                            {
+                                txtReceive.Text += "Polar P_1: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar P_1: Negative \r\n";
+                            }
+                            if (polarI_2 == 1)
+                            {
+                                txtReceive.Text += "Polar I_2: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar I_2: Negative \r\n";
+                            }
+                            if (polarQ_2 == 1)
+                            {
+                                txtReceive.Text += "Polar Q_2: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar Q_2: Negative \r\n";
+                            }
+                            if (polarP_2 == 1)
+                            {
+                                txtReceive.Text += "Polar P_2: Positive \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Polar P_2: Negative \r\n";
+                            }
+                            if(uart_result[7] == 119)
+                            {
+                                txtReceive.Text += "This function cannot be used now, please try later \r\n";
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 105:
                     {
                         if(FormParameter.UART_CMD == 105)
@@ -236,7 +311,7 @@ namespace SerialPortConnection
                     }
                 default:
                     {
-                        //txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        txtReceive.Text += "Unknown Error. Please try again. \r\n";
                         break;
                     }     
             }
@@ -684,6 +759,64 @@ namespace SerialPortConnection
             sp1.Write(byteBuffer, 0, byteBuffer.Length);
             FormParameter.UART_CMD = 109;
             txtReceive.Text += "Reset Command has been sended. \r\n";
+        }
+
+        private void ReadPolarbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "68", "0", "0", "0", "0", "0", "0" };
+
+            int byteBufferLength = strArray.Length;
+            for (int i = 0; i < strArray.Length; i++)
+            {
+                if (strArray[i] == "")
+                {
+                    byteBufferLength--;
+                }
+            }
+            byte[] byteBuffer = new byte[byteBufferLength];
+            int ii = 0;
+            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+            {
+                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+
+                int decNum = 0;
+                if (strArray[i] == "")
+                {
+                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                    continue;
+                }
+                else
+                {
+                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
+                }
+
+                //try    //防止输错，使其只能输入一个字节的字符
+                //{
+                byteBuffer[ii] = Convert.ToByte(decNum);
+                //}
+                //catch (System.Exception ex)
+                //{
+                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+                //    //tmSend.Enabled = false;
+                //    return;
+                //}
+
+                ii++;
+            }
+            sp1.Write(byteBuffer, 0, byteBuffer.Length);
+            FormParameter.UART_CMD = 104;
+        }
+
+        private void txtReceive_TextChanged(object sender, EventArgs e)
+        {
+            txtReceive.Select(txtReceive.Text.Length, 0);
+            txtReceive.ScrollToCaret();
         }
     }
 }
