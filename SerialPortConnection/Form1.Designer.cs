@@ -87,6 +87,7 @@
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
             this.ReadVpibtn = new System.Windows.Forms.Button();
+            this.ReadDCbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -98,6 +99,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ReadDCbtn);
             this.groupBox1.Controls.Add(this.ReadVpibtn);
             this.groupBox1.Controls.Add(this.ReadPolarbtn);
             this.groupBox1.Controls.Add(this.Resetbtn);
@@ -729,6 +731,17 @@
             this.ReadVpibtn.UseVisualStyleBackColor = true;
             this.ReadVpibtn.Click += new System.EventHandler(this.ReadVpibtn_Click);
             // 
+            // ReadDCbtn
+            // 
+            this.ReadDCbtn.Location = new System.Drawing.Point(60, 365);
+            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadDCbtn.Name = "ReadDCbtn";
+            this.ReadDCbtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadDCbtn.TabIndex = 47;
+            this.ReadDCbtn.Text = "ReadDC";
+            this.ReadDCbtn.UseVisualStyleBackColor = true;
+            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -838,6 +851,7 @@
         private System.Windows.Forms.Button Resetbtn;
         private System.Windows.Forms.Button ReadPolarbtn;
         private System.Windows.Forms.Button ReadVpibtn;
+        private System.Windows.Forms.Button ReadDCbtn;
     }
 }
 

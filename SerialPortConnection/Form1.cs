@@ -281,7 +281,6 @@ namespace SerialPortConnection
                                         break;
                                     }
                             }
-                            
                         }
                         else
                         {
@@ -401,6 +400,23 @@ namespace SerialPortConnection
                                         break;
                                     }
                             }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 120:
+                    {
+                        if (FormParameter.UART_CMD == 120)
+                        {
+                            float_U32 DCvalue = new float_U32();
+                            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
                         }
                         else
                         {
@@ -888,6 +904,18 @@ namespace SerialPortConnection
 
         }
 
+        private void ReadDCbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
 
+            FormParameter.UART_CMD = 120;
+
+            string[] strArray = { "78", "0", "0", "0", "0", "0", "0" };
+            Command_tx(strArray);
+        }
     }
 }
