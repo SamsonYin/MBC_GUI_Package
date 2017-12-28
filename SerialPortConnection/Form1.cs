@@ -135,6 +135,7 @@ namespace SerialPortConnection
             public static uint byteID;
             public static int UART_CMD;
             public static uint arm;
+            public static uint shortDataLength = 9;
         }
 
         [StructLayout(LayoutKind.Explicit, Size = 8)]
@@ -164,7 +165,7 @@ namespace SerialPortConnection
                 //{
                 try
                 {
-                    Byte[] receivedData = new Byte[sp1.BytesToRead];        //创建接收字节数组
+                    Byte[] receivedData = new Byte[FormParameter.shortDataLength];   //直接收9个byte  //new Byte[sp1.BytesToRead];        //创建接收字节数组
                     sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
                     //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
                     sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
@@ -212,12 +213,75 @@ namespace SerialPortConnection
                     {
                         if (FormParameter.UART_CMD == 103)
                         {
-                            float_U32 vpi = new float_U32();
-                            vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                            txtReceive.Text += "Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                            switch(FormParameter.arm)
+                            {
+                                case 1:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YI_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YQ_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "YP_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XI_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XQ_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        float_U32 vpi = new float_U32();
+                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                        txtReceive.Text += "XP_Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "ReadVpi Error. Please try again. \r\n";
+                                        break;
+                                    }
+                            }
+                            
                         }
                         else
                         {
@@ -788,22 +852,34 @@ namespace SerialPortConnection
             FormParameter.UART_CMD = 103;
 
             string[] strArray = { "67", "1", "0", "0", "0", "0", "0" };
+            FormParameter.arm = 1;
             Command_tx(strArray);
+            Delay_ms(250);
 
             strArray[1] = "2";
+            FormParameter.arm = 2;
             Command_tx(strArray);
+            Delay_ms(250);
 
             strArray[1] = "3";
+            FormParameter.arm = 3;
             Command_tx(strArray);
+            Delay_ms(250);
 
-            //strArray[1] = "4";
-            //Command_tx(strArray);
+            strArray[1] = "4";
+            FormParameter.arm = 4;
+            Command_tx(strArray);
+            Delay_ms(250);
 
-            //strArray[1] = "5";
-            //Command_tx(strArray);
+            strArray[1] = "5";
+            FormParameter.arm = 5;
+            Command_tx(strArray);
+            Delay_ms(250);
 
-            //strArray[1] = "6";
-            //Command_tx(strArray);
+            strArray[1] = "6";
+            FormParameter.arm = 6;
+            Command_tx(strArray);
+            Delay_ms(250);
 
         }
 
