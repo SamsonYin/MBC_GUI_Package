@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using static SerialPortConnection.Form2;
+using System.Runtime.InteropServices;
 
 namespace SerialPortConnection
 {
@@ -22,7 +23,7 @@ namespace SerialPortConnection
             InitializeComponent();
         }
 
-        public static bool Delay(int delayTime)
+        public static bool Delay_s(int delayTime)
         {
             DateTime now = DateTime.Now;
             int s;
@@ -34,6 +35,15 @@ namespace SerialPortConnection
             }
             while (s < delayTime);
             return true;
+        }
+
+        public static void Delay_ms(int milliSecond)
+        {
+            int start = Environment.TickCount;
+            while (Math.Abs(Environment.TickCount - start) < milliSecond)
+            {
+                Application.DoEvents();
+            }
         }
 
         //加载
@@ -124,6 +134,14 @@ namespace SerialPortConnection
             public static string strRcv;
             public static uint byteID;
             public static int UART_CMD;
+            public static uint arm;
+        }
+
+        [StructLayout(LayoutKind.Explicit, Size = 8)]
+        public struct float_U32
+        {
+            [FieldOffset(0)] public uint intData;
+            [FieldOffset(0)] public float floatData;
         }
 
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -190,6 +208,23 @@ namespace SerialPortConnection
             txtReceive.Text += FormParameter.strRcv + "\r\n";
             switch(FormParameter.byteID)
             {
+                case 103:
+                    {
+                        if (FormParameter.UART_CMD == 103)
+                        {
+                            float_U32 vpi = new float_U32();
+                            vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "Vpi:" + (Convert.ToString(vpi.floatData)) + " \r\n";
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 104:
                     {
                         if (FormParameter.UART_CMD == 104)
@@ -311,7 +346,7 @@ namespace SerialPortConnection
                     }
                 default:
                     {
-                        txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        txtReceive.Text += "Unknown Error! \r\n";
                         break;
                     }     
             }
@@ -750,39 +785,33 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "67", "0", "0", "0", "0", "0", "0" };
-
-            int byteBufferLength = strArray.Length;
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                if (strArray[i] == "")
-                {
-                    byteBufferLength--;
-                }
-            }
-            byte[] byteBuffer = new byte[byteBufferLength];
-            int ii = 0;
-            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-            {
-                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
-
-                int decNum = 0;
-                if (strArray[i] == "")
-                {
-                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                    continue;
-                }
-                else
-                {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
-                }
-
-                byteBuffer[ii] = Convert.ToByte(decNum);
-
-                ii++;
-            }
-            sp1.Write(byteBuffer, 0, byteBuffer.Length);
             FormParameter.UART_CMD = 103;
+
+            string[] strArray = { "67", "1", "0", "0", "0", "0", "0" };
+            Command_tx(strArray);
+
+            strArray[1] = "2";
+            Command_tx(strArray);
+
+            strArray[1] = "3";
+            Command_tx(strArray);
+
+            //strArray[1] = "4";
+            //Command_tx(strArray);
+
+            //strArray[1] = "5";
+            //Command_tx(strArray);
+
+            //strArray[1] = "6";
+            //Command_tx(strArray);
+
         }
+
+        private void vpiXI_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

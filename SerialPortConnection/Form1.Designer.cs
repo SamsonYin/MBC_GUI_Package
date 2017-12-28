@@ -266,6 +266,7 @@
             this.vpiXI.Name = "vpiXI";
             this.vpiXI.Size = new System.Drawing.Size(51, 28);
             this.vpiXI.TabIndex = 37;
+            this.vpiXI.TextChanged += new System.EventHandler(this.vpiXI_TextChanged);
             // 
             // vpiYP
             // 
