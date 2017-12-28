@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ReadDCbtn = new System.Windows.Forms.Button();
+            this.ReadVpibtn = new System.Windows.Forms.Button();
             this.ReadPolarbtn = new System.Windows.Forms.Button();
             this.Resetbtn = new System.Windows.Forms.Button();
             this.ReadStatusbtn = new System.Windows.Forms.Button();
@@ -86,8 +88,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ReadVpibtn = new System.Windows.Forms.Button();
-            this.ReadDCbtn = new System.Windows.Forms.Button();
+            this.ReadPowerbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -99,6 +100,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ReadPowerbtn);
             this.groupBox1.Controls.Add(this.ReadDCbtn);
             this.groupBox1.Controls.Add(this.ReadVpibtn);
             this.groupBox1.Controls.Add(this.ReadPolarbtn);
@@ -113,6 +115,28 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能列表";
+            // 
+            // ReadDCbtn
+            // 
+            this.ReadDCbtn.Location = new System.Drawing.Point(60, 365);
+            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadDCbtn.Name = "ReadDCbtn";
+            this.ReadDCbtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadDCbtn.TabIndex = 47;
+            this.ReadDCbtn.Text = "ReadDC";
+            this.ReadDCbtn.UseVisualStyleBackColor = true;
+            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            // 
+            // ReadVpibtn
+            // 
+            this.ReadVpibtn.Location = new System.Drawing.Point(248, 301);
+            this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadVpibtn.Name = "ReadVpibtn";
+            this.ReadVpibtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadVpibtn.TabIndex = 46;
+            this.ReadVpibtn.Text = "ReadVpi";
+            this.ReadVpibtn.UseVisualStyleBackColor = true;
+            this.ReadVpibtn.Click += new System.EventHandler(this.ReadVpibtn_Click);
             // 
             // ReadPolarbtn
             // 
@@ -311,7 +335,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label9.Location = new System.Drawing.Point(1342, 731);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -370,7 +394,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.Location = new System.Drawing.Point(207, 71);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
@@ -381,7 +405,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.Location = new System.Drawing.Point(12, 71);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
@@ -407,7 +431,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.Location = new System.Drawing.Point(209, 31);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
@@ -439,7 +463,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.Location = new System.Drawing.Point(12, 31);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
@@ -616,7 +640,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("SimSun", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(876, 771);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
@@ -720,27 +744,16 @@
             this.tsParity.Size = new System.Drawing.Size(127, 24);
             this.tsParity.Text = "停止位:未指定|";
             // 
-            // ReadVpibtn
+            // ReadPowerbtn
             // 
-            this.ReadVpibtn.Location = new System.Drawing.Point(248, 301);
-            this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadVpibtn.Name = "ReadVpibtn";
-            this.ReadVpibtn.Size = new System.Drawing.Size(113, 31);
-            this.ReadVpibtn.TabIndex = 46;
-            this.ReadVpibtn.Text = "ReadVpi";
-            this.ReadVpibtn.UseVisualStyleBackColor = true;
-            this.ReadVpibtn.Click += new System.EventHandler(this.ReadVpibtn_Click);
-            // 
-            // ReadDCbtn
-            // 
-            this.ReadDCbtn.Location = new System.Drawing.Point(60, 365);
-            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadDCbtn.Name = "ReadDCbtn";
-            this.ReadDCbtn.Size = new System.Drawing.Size(113, 31);
-            this.ReadDCbtn.TabIndex = 47;
-            this.ReadDCbtn.Text = "ReadDC";
-            this.ReadDCbtn.UseVisualStyleBackColor = true;
-            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            this.ReadPowerbtn.Location = new System.Drawing.Point(248, 365);
+            this.ReadPowerbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadPowerbtn.Name = "ReadPowerbtn";
+            this.ReadPowerbtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadPowerbtn.TabIndex = 48;
+            this.ReadPowerbtn.Text = "ReadPower";
+            this.ReadPowerbtn.UseVisualStyleBackColor = true;
+            this.ReadPowerbtn.Click += new System.EventHandler(this.ReadPowerbtn_Click);
             // 
             // Form1
             // 
@@ -852,6 +865,7 @@
         private System.Windows.Forms.Button ReadPolarbtn;
         private System.Windows.Forms.Button ReadVpibtn;
         private System.Windows.Forms.Button ReadDCbtn;
+        private System.Windows.Forms.Button ReadPowerbtn;
     }
 }
 

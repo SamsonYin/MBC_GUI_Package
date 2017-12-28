@@ -209,6 +209,23 @@ namespace SerialPortConnection
             txtReceive.Text += FormParameter.strRcv + "\r\n";
             switch(FormParameter.byteID)
             {
+                case 101:
+                    {
+                        if (FormParameter.UART_CMD == 101)
+                        {
+                            float_U32 Power = new float_U32();
+                            Power.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            Power.intData = Power.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            Power.intData = Power.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            Power.intData = Power.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "Feedback Power = " + (Convert.ToString(Power.floatData)) + "uW \r\n";
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 103:
                     {
                         if (FormParameter.UART_CMD == 103)
@@ -915,6 +932,20 @@ namespace SerialPortConnection
             FormParameter.UART_CMD = 120;
 
             string[] strArray = { "78", "0", "0", "0", "0", "0", "0" };
+            Command_tx(strArray);
+        }
+
+        private void ReadPowerbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            FormParameter.UART_CMD = 101;
+
+            string[] strArray = { "65", "0", "0", "0", "0", "0", "0" };
             Command_tx(strArray);
         }
     }
