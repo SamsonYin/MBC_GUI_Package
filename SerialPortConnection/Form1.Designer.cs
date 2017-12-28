@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ReadPolarbtn = new System.Windows.Forms.Button();
             this.Resetbtn = new System.Windows.Forms.Button();
             this.ReadStatusbtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -85,7 +86,7 @@
             this.tsDataBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStopBits = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ReadPolarbtn = new System.Windows.Forms.Button();
+            this.ReadVpibtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ReadVpibtn);
             this.groupBox1.Controls.Add(this.ReadPolarbtn);
             this.groupBox1.Controls.Add(this.Resetbtn);
             this.groupBox1.Controls.Add(this.ReadStatusbtn);
@@ -109,6 +111,17 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "功能列表";
+            // 
+            // ReadPolarbtn
+            // 
+            this.ReadPolarbtn.Location = new System.Drawing.Point(60, 301);
+            this.ReadPolarbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadPolarbtn.Name = "ReadPolarbtn";
+            this.ReadPolarbtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadPolarbtn.TabIndex = 45;
+            this.ReadPolarbtn.Text = "ReadPolar";
+            this.ReadPolarbtn.UseVisualStyleBackColor = true;
+            this.ReadPolarbtn.Click += new System.EventHandler(this.ReadPolarbtn_Click);
             // 
             // Resetbtn
             // 
@@ -704,16 +717,16 @@
             this.tsParity.Size = new System.Drawing.Size(127, 24);
             this.tsParity.Text = "停止位:未指定|";
             // 
-            // ReadPolarbtn
+            // ReadVpibtn
             // 
-            this.ReadPolarbtn.Location = new System.Drawing.Point(60, 301);
-            this.ReadPolarbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadPolarbtn.Name = "ReadPolarbtn";
-            this.ReadPolarbtn.Size = new System.Drawing.Size(113, 31);
-            this.ReadPolarbtn.TabIndex = 45;
-            this.ReadPolarbtn.Text = "ReadPolar";
-            this.ReadPolarbtn.UseVisualStyleBackColor = true;
-            this.ReadPolarbtn.Click += new System.EventHandler(this.ReadPolarbtn_Click);
+            this.ReadVpibtn.Location = new System.Drawing.Point(248, 301);
+            this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadVpibtn.Name = "ReadVpibtn";
+            this.ReadVpibtn.Size = new System.Drawing.Size(113, 31);
+            this.ReadVpibtn.TabIndex = 46;
+            this.ReadVpibtn.Text = "ReadVpi";
+            this.ReadVpibtn.UseVisualStyleBackColor = true;
+            this.ReadVpibtn.Click += new System.EventHandler(this.ReadVpibtn_Click);
             // 
             // Form1
             // 
@@ -823,6 +836,7 @@
         private System.Windows.Forms.Button ReadStatusbtn;
         private System.Windows.Forms.Button Resetbtn;
         private System.Windows.Forms.Button ReadPolarbtn;
+        private System.Windows.Forms.Button ReadVpibtn;
     }
 }
 

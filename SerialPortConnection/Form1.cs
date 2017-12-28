@@ -321,6 +321,40 @@ namespace SerialPortConnection
             //}
         }
 
+        private void Command_tx(string[] CMD_strArray)
+        {
+            int byteBufferLength = CMD_strArray.Length;
+            for (int i = 0; i < CMD_strArray.Length; i++)
+            {
+                if (CMD_strArray[i] == "")
+                {
+                    byteBufferLength--;
+                }
+            }
+            byte[] byteBuffer = new byte[byteBufferLength];
+            int ii = 0;
+            for (int i = 0; i < CMD_strArray.Length; i++)        //对获取的字符做相加运算
+            {
+                Byte[] bytesOfStr = Encoding.Default.GetBytes(CMD_strArray[i]);
+
+                int decNum = 0;
+                if (CMD_strArray[i] == "")
+                {
+                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+                    continue;
+                }
+                else
+                {
+                    decNum = Convert.ToInt32(CMD_strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
+                }
+
+                byteBuffer[ii] = Convert.ToByte(decNum);
+
+                ii++;
+            }
+            sp1.Write(byteBuffer, 0, byteBuffer.Length);
+        }
+
         //发送按钮
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -666,45 +700,8 @@ namespace SerialPortConnection
 
             string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
 
-            int byteBufferLength = strArray.Length;
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                if (strArray[i] == "")
-                {
-                    byteBufferLength--;
-                }
-            }
-            byte[] byteBuffer = new byte[byteBufferLength];
-            int ii = 0;
-            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-            {
-                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+            Command_tx(strArray);
 
-                int decNum = 0;
-                if (strArray[i] == "")
-                {
-                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                    continue;
-                }
-                else
-                {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
-                }
-
-                //try    //防止输错，使其只能输入一个字节的字符
-                //{
-                byteBuffer[ii] = Convert.ToByte(decNum);
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                //    //tmSend.Enabled = false;
-                //    return;
-                //}
-
-                ii++;
-            }
-            sp1.Write(byteBuffer, 0, byteBuffer.Length);
             FormParameter.UART_CMD = 105;
         }
 
@@ -718,45 +715,8 @@ namespace SerialPortConnection
 
             string[] strArray = { "6D", "0", "0", "0", "0", "0", "0" };
 
-            int byteBufferLength = strArray.Length;
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                if (strArray[i] == "")
-                {
-                    byteBufferLength--;
-                }
-            }
-            byte[] byteBuffer = new byte[byteBufferLength];
-            int ii = 0;
-            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-            {
-                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+            Command_tx(strArray);
 
-                int decNum = 0;
-                if (strArray[i] == "")
-                {
-                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                    continue;
-                }
-                else
-                {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
-                }
-
-                //try    //防止输错，使其只能输入一个字节的字符
-                //{
-                byteBuffer[ii] = Convert.ToByte(decNum);
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                //    //tmSend.Enabled = false;
-                //    return;
-                //}
-
-                ii++;
-            }
-            sp1.Write(byteBuffer, 0, byteBuffer.Length);
             FormParameter.UART_CMD = 109;
             txtReceive.Text += "Reset Command has been sended. \r\n";
         }
@@ -771,6 +731,27 @@ namespace SerialPortConnection
 
             string[] strArray = { "68", "0", "0", "0", "0", "0", "0" };
 
+            Command_tx(strArray);
+
+            FormParameter.UART_CMD = 104;
+        }
+
+        private void txtReceive_TextChanged(object sender, EventArgs e)
+        {
+            txtReceive.Select(txtReceive.Text.Length, 0);
+            txtReceive.ScrollToCaret();
+        }
+
+        private void ReadVpibtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "67", "0", "0", "0", "0", "0", "0" };
+
             int byteBufferLength = strArray.Length;
             for (int i = 0; i < strArray.Length; i++)
             {
@@ -796,27 +777,12 @@ namespace SerialPortConnection
                     decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
                 }
 
-                //try    //防止输错，使其只能输入一个字节的字符
-                //{
                 byteBuffer[ii] = Convert.ToByte(decNum);
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                //    //tmSend.Enabled = false;
-                //    return;
-                //}
 
                 ii++;
             }
             sp1.Write(byteBuffer, 0, byteBuffer.Length);
-            FormParameter.UART_CMD = 104;
-        }
-
-        private void txtReceive_TextChanged(object sender, EventArgs e)
-        {
-            txtReceive.Select(txtReceive.Text.Length, 0);
-            txtReceive.ScrollToCaret();
+            FormParameter.UART_CMD = 103;
         }
     }
 }
