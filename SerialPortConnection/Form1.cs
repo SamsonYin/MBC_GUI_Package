@@ -136,6 +136,10 @@ namespace SerialPortConnection
             public static uint byteID;
             public static int UART_CMD;
             public static uint arm;
+            public static string YI_dither_amp;
+            public static string YQ_dither_amp;
+            public static string XI_dither_amp;
+            public static string XQ_dither_amp;
             public static uint shortDataLength = 9;
         }
 
@@ -1150,11 +1154,6 @@ namespace SerialPortConnection
             }
         }
 
-        private void BiasArm_txBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BiasArm_txBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar <= 48 || e.KeyChar >= 55) && (e.KeyChar != 8) && (e.KeyChar != 46))
@@ -1193,6 +1192,93 @@ namespace SerialPortConnection
             FormParameter.UART_CMD = 116;
 
             Command_tx(strArray);
+        }
+
+        private void DitherAmpSetbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            FormParameter.UART_CMD = 111;
+
+            if (String.IsNullOrEmpty(DitherYIAmp_txBox.Text) == false)
+            {
+                FormParameter.YI_dither_amp = DitherYIAmp_txBox.Text;
+            }
+            else
+            {
+                MessageBox.Show("请输入YI导频幅度系数!", "Error");
+                return;
+            }
+            if (String.IsNullOrEmpty(DitherYQAmp_txBox.Text) == false)
+            {
+                FormParameter.YQ_dither_amp = DitherYQAmp_txBox.Text;
+            }
+            else
+            {
+                MessageBox.Show("请输入YQ导频幅度系数!", "Error");
+                return;
+            }
+            if (String.IsNullOrEmpty(DitherXIAmp_txBox.Text) == false)
+            {
+                FormParameter.XI_dither_amp = DitherXIAmp_txBox.Text;
+            }
+            else
+            {
+                MessageBox.Show("请输入XI导频幅度系数!", "Error");
+                return;
+            }
+            if (String.IsNullOrEmpty(DitherXQAmp_txBox.Text) == false)
+            {
+                FormParameter.XQ_dither_amp = DitherXQAmp_txBox.Text;
+            }
+            else
+            {
+                MessageBox.Show("请输入XQ导频幅度系数!", "Error");
+                return;
+            }
+
+            string[] strArray = { "6F", "1", "1", "1", "1", "0", "0" };
+            strArray[1] = FormParameter.YI_dither_amp;
+            strArray[2] = FormParameter.YQ_dither_amp;
+            strArray[3] = FormParameter.XI_dither_amp;
+            strArray[4] = FormParameter.XQ_dither_amp;
+            Command_tx(strArray);
+        }
+
+        private void DitherYIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DitherYQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DitherXIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DitherXQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

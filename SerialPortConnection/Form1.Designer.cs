@@ -94,6 +94,15 @@
             this.tsParity = new System.Windows.Forms.ToolStripStatusLabel();
             this.Pausebtn = new System.Windows.Forms.Button();
             this.Resumebtn = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.DitherYIAmp_txBox = new System.Windows.Forms.TextBox();
+            this.DitherAmpSetbtn = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.DitherYQAmp_txBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.DitherXIAmp_txBox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.DitherXQAmp_txBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -144,7 +153,6 @@
             this.BiasArm_txBox.Name = "BiasArm_txBox";
             this.BiasArm_txBox.Size = new System.Drawing.Size(51, 28);
             this.BiasArm_txBox.TabIndex = 50;
-            this.BiasArm_txBox.TextChanged += new System.EventHandler(this.BiasArm_txBox_TextChanged);
             this.BiasArm_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BiasArm_txBox_KeyPress);
             // 
             // ReadBiasbtn
@@ -819,14 +827,114 @@
             this.Resumebtn.UseVisualStyleBackColor = true;
             this.Resumebtn.Click += new System.EventHandler(this.Resumebtn_Click);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(486, 211);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(170, 18);
+            this.label16.TabIndex = 56;
+            this.label16.Text = "Set YI Dither Amp:";
+            // 
+            // DitherYIAmp_txBox
+            // 
+            this.DitherYIAmp_txBox.Location = new System.Drawing.Point(660, 208);
+            this.DitherYIAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherYIAmp_txBox.MaxLength = 1;
+            this.DitherYIAmp_txBox.Name = "DitherYIAmp_txBox";
+            this.DitherYIAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherYIAmp_txBox.TabIndex = 55;
+            this.DitherYIAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherYIAmp_txBox_KeyPress);
+            // 
+            // DitherAmpSetbtn
+            // 
+            this.DitherAmpSetbtn.Location = new System.Drawing.Point(727, 205);
+            this.DitherAmpSetbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.DitherAmpSetbtn.Name = "DitherAmpSetbtn";
+            this.DitherAmpSetbtn.Size = new System.Drawing.Size(113, 162);
+            this.DitherAmpSetbtn.TabIndex = 54;
+            this.DitherAmpSetbtn.Text = "Set Dither Amp";
+            this.DitherAmpSetbtn.UseVisualStyleBackColor = true;
+            this.DitherAmpSetbtn.Click += new System.EventHandler(this.DitherAmpSetbtn_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(487, 254);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(170, 18);
+            this.label17.TabIndex = 58;
+            this.label17.Text = "Set YQ Dither Amp:";
+            // 
+            // DitherYQAmp_txBox
+            // 
+            this.DitherYQAmp_txBox.Location = new System.Drawing.Point(661, 251);
+            this.DitherYQAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherYQAmp_txBox.MaxLength = 1;
+            this.DitherYQAmp_txBox.Name = "DitherYQAmp_txBox";
+            this.DitherYQAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherYQAmp_txBox.TabIndex = 57;
+            this.DitherYQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherYQAmp_txBox_KeyPress);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(487, 299);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(170, 18);
+            this.label18.TabIndex = 60;
+            this.label18.Text = "Set XI Dither Amp:";
+            // 
+            // DitherXIAmp_txBox
+            // 
+            this.DitherXIAmp_txBox.Location = new System.Drawing.Point(661, 296);
+            this.DitherXIAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherXIAmp_txBox.MaxLength = 1;
+            this.DitherXIAmp_txBox.Name = "DitherXIAmp_txBox";
+            this.DitherXIAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherXIAmp_txBox.TabIndex = 59;
+            this.DitherXIAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherXIAmp_txBox_KeyPress);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(487, 342);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(170, 18);
+            this.label19.TabIndex = 62;
+            this.label19.Text = "Set XQ Dither Amp:";
+            // 
+            // DitherXQAmp_txBox
+            // 
+            this.DitherXQAmp_txBox.Location = new System.Drawing.Point(661, 339);
+            this.DitherXQAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherXQAmp_txBox.MaxLength = 1;
+            this.DitherXQAmp_txBox.Name = "DitherXQAmp_txBox";
+            this.DitherXQAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherXQAmp_txBox.TabIndex = 61;
+            this.DitherXQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherXQAmp_txBox_KeyPress);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2035, 851);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.DitherXQAmp_txBox);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.DitherXIAmp_txBox);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.DitherYQAmp_txBox);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.DitherYIAmp_txBox);
             this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.DitherAmpSetbtn);
             this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.groupBox3);
@@ -936,6 +1044,15 @@
         private System.Windows.Forms.TextBox BiasArm_txBox;
         private System.Windows.Forms.Button Pausebtn;
         private System.Windows.Forms.Button Resumebtn;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button DitherAmpSetbtn;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox DitherYQAmp_txBox;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox DitherXIAmp_txBox;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox DitherXQAmp_txBox;
+        private System.Windows.Forms.TextBox DitherYIAmp_txBox;
     }
 }
 
