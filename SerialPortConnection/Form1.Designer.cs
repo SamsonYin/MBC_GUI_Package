@@ -116,6 +116,13 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.SetPolarbtn = new System.Windows.Forms.Button();
+            this.ManualModebtn = new System.Windows.Forms.Button();
+            this.AutoModebtn = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.SetDACBox = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.SetDACtxBox = new System.Windows.Forms.TextBox();
+            this.SetDACbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -127,6 +134,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.SetDACbtn);
+            this.groupBox1.Controls.Add(this.label27);
+            this.groupBox1.Controls.Add(this.SetDACtxBox);
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.AutoModebtn);
+            this.groupBox1.Controls.Add(this.SetDACBox);
+            this.groupBox1.Controls.Add(this.ManualModebtn);
             this.groupBox1.Controls.Add(this.Resumebtn);
             this.groupBox1.Controls.Add(this.Pausebtn);
             this.groupBox1.Controls.Add(this.label15);
@@ -1080,6 +1094,85 @@
             this.SetPolarbtn.UseVisualStyleBackColor = true;
             this.SetPolarbtn.Click += new System.EventHandler(this.SetPolarbtn_Click);
             // 
+            // ManualModebtn
+            // 
+            this.ManualModebtn.Location = new System.Drawing.Point(252, 512);
+            this.ManualModebtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ManualModebtn.Name = "ManualModebtn";
+            this.ManualModebtn.Size = new System.Drawing.Size(113, 31);
+            this.ManualModebtn.TabIndex = 54;
+            this.ManualModebtn.Text = "ManualMode";
+            this.ManualModebtn.UseVisualStyleBackColor = true;
+            this.ManualModebtn.Click += new System.EventHandler(this.ManualModebtn_Click);
+            // 
+            // AutoModebtn
+            // 
+            this.AutoModebtn.Location = new System.Drawing.Point(64, 512);
+            this.AutoModebtn.Margin = new System.Windows.Forms.Padding(5);
+            this.AutoModebtn.Name = "AutoModebtn";
+            this.AutoModebtn.Size = new System.Drawing.Size(113, 31);
+            this.AutoModebtn.TabIndex = 55;
+            this.AutoModebtn.Text = "AutoMode";
+            this.AutoModebtn.UseVisualStyleBackColor = true;
+            this.AutoModebtn.Click += new System.EventHandler(this.AutoModebtn_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(51, 578);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(134, 18);
+            this.label26.TabIndex = 77;
+            this.label26.Text = "选择偏压通道：";
+            // 
+            // SetDACBox
+            // 
+            this.SetDACBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SetDACBox.FormattingEnabled = true;
+            this.SetDACBox.Items.AddRange(new object[] {
+            "Y-I",
+            "Y-Q",
+            "Y-P",
+            "X-I",
+            "X-Q",
+            "X-P"});
+            this.SetDACBox.Location = new System.Drawing.Point(190, 575);
+            this.SetDACBox.Margin = new System.Windows.Forms.Padding(5);
+            this.SetDACBox.Name = "SetDACBox";
+            this.SetDACBox.Size = new System.Drawing.Size(119, 26);
+            this.SetDACBox.TabIndex = 76;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(59, 615);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(125, 18);
+            this.label27.TabIndex = 79;
+            this.label27.Text = "输出偏压(V)：";
+            // 
+            // SetDACtxBox
+            // 
+            this.SetDACtxBox.Location = new System.Drawing.Point(190, 611);
+            this.SetDACtxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.SetDACtxBox.MaxLength = 10;
+            this.SetDACtxBox.Name = "SetDACtxBox";
+            this.SetDACtxBox.Size = new System.Drawing.Size(119, 28);
+            this.SetDACtxBox.TabIndex = 78;
+            // 
+            // SetDACbtn
+            // 
+            this.SetDACbtn.Location = new System.Drawing.Point(319, 575);
+            this.SetDACbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.SetDACbtn.Name = "SetDACbtn";
+            this.SetDACbtn.Size = new System.Drawing.Size(113, 64);
+            this.SetDACbtn.TabIndex = 80;
+            this.SetDACbtn.Text = "SetDAC";
+            this.SetDACbtn.UseVisualStyleBackColor = true;
+            this.SetDACbtn.Click += new System.EventHandler(this.SetDACbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1241,6 +1334,13 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button SetPolarbtn;
+        private System.Windows.Forms.Button ManualModebtn;
+        private System.Windows.Forms.Button AutoModebtn;
+        private System.Windows.Forms.Button SetDACbtn;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox SetDACtxBox;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox SetDACBox;
     }
 }
 

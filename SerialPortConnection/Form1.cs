@@ -57,6 +57,11 @@ namespace SerialPortConnection
             XQPolarBox.SelectedIndex = 0;
             XPPolarBox.SelectedIndex = 0;
 
+            //预设控件状态
+            Resumebtn.Enabled = false;
+            AutoModebtn.Enabled = false;
+            SetDACBox.SelectedIndex = 0;
+
             //// 预置波特率
             //cbBaudRate.SelectedIndex = 8;
             //// 预置数据位 
@@ -118,7 +123,6 @@ namespace SerialPortConnection
                 MessageBox.Show("连接异常，请重启程序", "错误0x41");
             }
 
-            Resumebtn.Enabled = false;
         }
 
         //private void UART_Init(object sender, EventArgs x)
@@ -143,6 +147,7 @@ namespace SerialPortConnection
             public static string strRcv;
             public static uint byteID;
             public static int UART_CMD;
+            public static int mode_flag;
             public static uint arm;
             public static string YI_dither_amp;
             public static string YQ_dither_amp;
@@ -516,6 +521,81 @@ namespace SerialPortConnection
                         }
                         break;
                     }
+                case 106:
+                    {
+                        if (FormParameter.UART_CMD == 106)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        if(FormParameter.mode_flag == 2)
+                                        {
+                                            txtReceive.Text += "Manual Mode Set! \r\n";
+                                            AutoModebtn.Enabled = true;
+                                            ManualModebtn.Enabled = false;
+                                        }
+                                        else if(FormParameter.mode_flag == 1)
+                                        {
+                                            txtReceive.Text += "Auto Mode Set! \r\n";
+                                            AutoModebtn.Enabled = false;
+                                            ManualModebtn.Enabled = true;
+                                        }
+                                        break;
+                                    }
+                                case 119:
+                                    {
+                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
+                                        break;
+                                    }
+                                case 136:
+                                    {
+                                        txtReceive.Text += "This command is unavailable in Pause Conrol Mode. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 107:
+                    {
+                        if (FormParameter.UART_CMD == 107)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Output voltage has been Updated! \r\n";
+                                        Resumebtn.Enabled = true;
+                                        break;
+                                    }
+                                case 136:
+                                    {
+                                        txtReceive.Text += "Output voltage failed. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 108:
                     {
                         if (FormParameter.UART_CMD == 108)
@@ -584,6 +664,7 @@ namespace SerialPortConnection
                                 case 17:
                                     {
                                         txtReceive.Text += "Pause Control Set! \r\n";
+                                        Resumebtn.Enabled = true;
                                         break;
                                     }
                                 case 119:
@@ -1247,7 +1328,6 @@ namespace SerialPortConnection
 
             Command_tx(strArray);
 
-            Resumebtn.Enabled = true;
         }
 
         private void Resumebtn_Click(object sender, EventArgs e)
@@ -1416,5 +1496,123 @@ namespace SerialPortConnection
             Command_tx(strArray);
         }
 
+        private void ManualModebtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "6A", "2", "0", "0", "0", "0", "0" };
+
+            FormParameter.UART_CMD = 106;
+            FormParameter.mode_flag = 2;
+
+            Command_tx(strArray);
+        }
+
+        private void AutoModebtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            string[] strArray = { "6A", "1", "0", "0", "0", "0", "0" };
+
+            FormParameter.UART_CMD = 106;
+            FormParameter.mode_flag = 1;
+
+            Command_tx(strArray);
+        }
+
+        private void SetDACbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("请先打开串口！", "Error");
+                return;
+            }
+
+            FormParameter.UART_CMD = 107;
+
+            string[] strArray = { "6B", "0", "0", "0", "0", "0", "0" };
+            switch(SetDACBox.Text)
+            {
+                case "Y-I":
+                    {
+                        strArray[1] = Convert.ToString(1);
+                        break;
+                    }
+                case "Y-Q":
+                    {
+                        strArray[1] = Convert.ToString(2);
+                        break;
+                    }
+                case "Y-P":
+                    {
+                        strArray[1] = Convert.ToString(3);
+                        break;
+                    }
+                case "X-I":
+                    {
+                        strArray[1] = Convert.ToString(4);
+                        break;
+                    }
+                case "X-Q":
+                    {
+                        strArray[1] = Convert.ToString(5);
+                        break;
+                    }
+                case "X-P":
+                    {
+                        strArray[1] = Convert.ToString(6);
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("请选择偏压通道", "Error");
+                        return;
+                    }
+            }
+
+            double SetDACvalue;
+            double tempVoltage;
+            uint dataOne;
+            uint dataTwo;
+            if (String.IsNullOrEmpty(SetDACtxBox.Text) == false)
+            {
+                SetDACvalue = Convert.ToDouble(SetDACtxBox.Text);
+                if(SetDACvalue >= 0)
+                {
+                    strArray[4] = "0";
+                }
+                else
+                {
+                    strArray[4] = "1";
+                }
+                tempVoltage = Math.Floor(System.Math.Abs(SetDACvalue)*1000);
+                dataOne = (uint)Math.Floor(tempVoltage/256);
+                dataTwo = ((uint)tempVoltage) % 256;
+                strArray[2] = dataOne.ToString("x2");   //转成两位十六进制数
+                strArray[3] = dataTwo.ToString("x2");
+                if(ManualModebtn.Enabled == false)
+                {
+                    Command_tx(strArray);
+                }
+                else
+                {
+                    MessageBox.Show("请在Manual Mode下使用该功能", "Error");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("请输入偏压值", "Error");
+                return;
+            }
+        }
     }
 }
