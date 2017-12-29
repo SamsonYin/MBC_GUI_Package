@@ -936,6 +936,7 @@ namespace SerialPortConnection
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtReceive.Text = "";       //清空文本
+            OriginalDataTextBox.Text = "";
         }
 
         //退出按钮
