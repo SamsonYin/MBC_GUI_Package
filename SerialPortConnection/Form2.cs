@@ -13,6 +13,7 @@ namespace SerialPortConnection
 {
     public partial class Form2 : Form
     {
+        public static Form2 MainWindow = null;
         private Button btnSwitch;
         private ComboBox cbSerial;
         private Label label1;
@@ -26,6 +27,7 @@ namespace SerialPortConnection
         public Form2()
         {
             InitializeComponent();
+            MainWindow = this;
         }
 
         private void ShowForm()
@@ -35,6 +37,7 @@ namespace SerialPortConnection
                 case 1:
                     sp1.Close();
                     MBC_Control_Unit = new Form1();
+                    this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
                     break;
@@ -224,12 +227,6 @@ namespace SerialPortConnection
             else
             {
                 sp1.Close();                    //关闭串口
-                //btnSwitch.Text = "打开串口";
-                //if(Common.formstatus == 1)
-                //{
-                //    MBC_Control_Unit.Close();
-                //    Common.formstatus = 0;
-                //}
             }
         }
 

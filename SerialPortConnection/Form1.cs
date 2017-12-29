@@ -79,12 +79,12 @@ namespace SerialPortConnection
                 return;
             }
 
-            //添加串口项目
-            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
-            {//获取有多少个COM口
-                //System.Diagnostics.Debug.WriteLine(s);
-                cbSerial.Items.Add(s);
-            }
+            ////添加串口项目
+            //foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            //{//获取有多少个COM口
+            //    //System.Diagnostics.Debug.WriteLine(s);
+            //    cbSerial.Items.Add(s);
+            //}
 
             //串口设置默认选择项
             //cbSerial.SelectedIndex = 0;         //note：获得COM9口，但别忘修改
@@ -856,119 +856,119 @@ namespace SerialPortConnection
             }
         }
 
-        //开关按钮
-        private void btnSwitch_Click(object sender, EventArgs e)
-        {
-            //serialPort1.IsOpen
-            if (!sp1.IsOpen)
-            {
-                try
-                {
-                    ////设置串口号
-                    //string serialName = cbSerial.SelectedItem.ToString();
-                    //sp2.PortName = serialName;
+        ////开关按钮
+        //private void btnSwitch_Click(object sender, EventArgs e)
+        //{
+        //    //serialPort1.IsOpen
+        //    if (!sp1.IsOpen)
+        //    {
+        //        try
+        //        {
+        //            ////设置串口号
+        //            //string serialName = cbSerial.SelectedItem.ToString();
+        //            //sp2.PortName = serialName;
 
-                    ////设置各“串口设置”
-                    //string strBaudRate = cbBaudRate.Text;
-                    //string strDateBits = cbDataBits.Text;
-                    //string strStopBits = cbStop.Text;
-                    //Int32 iBaudRate = Convert.ToInt32(strBaudRate);
-                    //Int32 iDateBits = Convert.ToInt32(strDateBits);
+        //            ////设置各“串口设置”
+        //            //string strBaudRate = cbBaudRate.Text;
+        //            //string strDateBits = cbDataBits.Text;
+        //            //string strStopBits = cbStop.Text;
+        //            //Int32 iBaudRate = Convert.ToInt32(strBaudRate);
+        //            //Int32 iDateBits = Convert.ToInt32(strDateBits);
 
-                    //sp2.BaudRate = iBaudRate;       //波特率
-                    //sp2.DataBits = iDateBits;       //数据位
-                    //switch (cbStop.Text)            //停止位
-                    //{
-                    //    case "1":
-                    //        sp2.StopBits = StopBits.One;
-                    //        break;
-                    //    case "1.5":
-                    //        sp2.StopBits = StopBits.OnePointFive;
-                    //        break;
-                    //    case "2":
-                    //        sp2.StopBits = StopBits.Two;
-                    //        break;
-                    //    default:
-                    //        MessageBox.Show("Error：参数不正确!", "Error");
-                    //        break;
-                    //}
-                    //switch (cbParity.Text)             //校验位
-                    //{
-                    //    case "无":
-                    //        sp2.Parity = Parity.None;
-                    //        break;
-                    //    case "奇校验":
-                    //        sp2.Parity = Parity.Odd;
-                    //        break;
-                    //    case "偶校验":
-                    //        sp2.Parity = Parity.Even;
-                    //        break;
-                    //    default:
-                    //        MessageBox.Show("Error：参数不正确!", "Error");
-                    //        break;
-                    //}
+        //            //sp2.BaudRate = iBaudRate;       //波特率
+        //            //sp2.DataBits = iDateBits;       //数据位
+        //            //switch (cbStop.Text)            //停止位
+        //            //{
+        //            //    case "1":
+        //            //        sp2.StopBits = StopBits.One;
+        //            //        break;
+        //            //    case "1.5":
+        //            //        sp2.StopBits = StopBits.OnePointFive;
+        //            //        break;
+        //            //    case "2":
+        //            //        sp2.StopBits = StopBits.Two;
+        //            //        break;
+        //            //    default:
+        //            //        MessageBox.Show("Error：参数不正确!", "Error");
+        //            //        break;
+        //            //}
+        //            //switch (cbParity.Text)             //校验位
+        //            //{
+        //            //    case "无":
+        //            //        sp2.Parity = Parity.None;
+        //            //        break;
+        //            //    case "奇校验":
+        //            //        sp2.Parity = Parity.Odd;
+        //            //        break;
+        //            //    case "偶校验":
+        //            //        sp2.Parity = Parity.Even;
+        //            //        break;
+        //            //    default:
+        //            //        MessageBox.Show("Error：参数不正确!", "Error");
+        //            //        break;
+        //            //}
 
-                    if (sp1.IsOpen == true)//如果打开状态，则先关闭一下
-                    {
-                        sp1.Close();
-                    }
-                    //sp2.PortName = Common.serialName;
-                    //sp2.BaudRate = 57600;
-                    //sp2.DataBits = 8;
-                    //sp2.StopBits = StopBits.One;
-                    //sp2.Parity = Parity.None;
-                    //sp2.Open();
-                    //状态栏设置
-                    tsSpNum.Text = "串口号：" + sp1.PortName + "|";
-                    tsBaudRate.Text = "波特率：" + sp1.BaudRate + "|";
-                    tsDataBits.Text = "数据位：" + sp1.DataBits + "|";
-                    tsStopBits.Text = "停止位：" + sp1.StopBits + "|";
-                    tsParity.Text = "校验位：" + sp1.Parity + "|";
+        //            if (sp1.IsOpen == true)//如果打开状态，则先关闭一下
+        //            {
+        //                sp1.Close();
+        //            }
+        //            //sp2.PortName = Common.serialName;
+        //            //sp2.BaudRate = 57600;
+        //            //sp2.DataBits = 8;
+        //            //sp2.StopBits = StopBits.One;
+        //            //sp2.Parity = Parity.None;
+        //            //sp2.Open();
+        //            //状态栏设置
+        //            tsSpNum.Text = "串口号：" + sp1.PortName + "|";
+        //            tsBaudRate.Text = "波特率：" + sp1.BaudRate + "|";
+        //            tsDataBits.Text = "数据位：" + sp1.DataBits + "|";
+        //            tsStopBits.Text = "停止位：" + sp1.StopBits + "|";
+        //            tsParity.Text = "校验位：" + sp1.Parity + "|";
 
-                    //设置必要控件不可用
-                    cbSerial.Enabled = false;
-                    cbBaudRate.Enabled = false;
-                    cbDataBits.Enabled = false;
-                    cbStop.Enabled = false;
-                    cbParity.Enabled = false;
+        //            //设置必要控件不可用
+        //            cbSerial.Enabled = false;
+        //            cbBaudRate.Enabled = false;
+        //            cbDataBits.Enabled = false;
+        //            cbStop.Enabled = false;
+        //            cbParity.Enabled = false;
 
-                    //sp2.Open();     //打开串口
-                    //btnSwitch.Text = "关闭串口";
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show("Error:" + ex.Message, "Error");
-                    tmSend.Enabled = false;
-                    return;
-                }
-            }
-            else
-            {
-                //状态栏设置
-                tsSpNum.Text = "串口号：未指定|";
-                tsBaudRate.Text = "波特率：未指定|";
-                tsDataBits.Text = "数据位：未指定|";
-                tsStopBits.Text = "停止位：未指定|";
-                tsParity.Text = "校验位：未指定|";
-                //恢复控件功能
-                //设置必要控件不可用
-                cbSerial.Enabled = true;
-                cbBaudRate.Enabled = true;
-                cbDataBits.Enabled = true;
-                cbStop.Enabled = true;
-                cbParity.Enabled = true;
+        //            //sp2.Open();     //打开串口
+        //            //btnSwitch.Text = "关闭串口";
+        //        }
+        //        catch (System.Exception ex)
+        //        {
+        //            MessageBox.Show("Error:" + ex.Message, "Error");
+        //            tmSend.Enabled = false;
+        //            return;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //状态栏设置
+        //        tsSpNum.Text = "串口号：未指定|";
+        //        tsBaudRate.Text = "波特率：未指定|";
+        //        tsDataBits.Text = "数据位：未指定|";
+        //        tsStopBits.Text = "停止位：未指定|";
+        //        tsParity.Text = "校验位：未指定|";
+        //        //恢复控件功能
+        //        //设置必要控件不可用
+        //        cbSerial.Enabled = true;
+        //        cbBaudRate.Enabled = true;
+        //        cbDataBits.Enabled = true;
+        //        cbStop.Enabled = true;
+        //        cbParity.Enabled = true;
 
-                sp1.Close();                    //关闭串口
-                btnSwitch.Text = "打开串口";
-                tmSend.Enabled = false;         //关闭计时器
-            }
-            sp1.PortName = Common.serialName;
-            sp1.BaudRate = 57600;
-            sp1.DataBits = 8;
-            sp1.StopBits = StopBits.One;
-            sp1.Parity = Parity.None;
-            sp1.Open();
-        }
+        //        sp1.Close();                    //关闭串口
+        //        btnSwitch.Text = "打开串口";
+        //        tmSend.Enabled = false;         //关闭计时器
+        //    }
+        //    sp1.PortName = Common.serialName;
+        //    sp1.BaudRate = 57600;
+        //    sp1.DataBits = 8;
+        //    sp1.StopBits = StopBits.One;
+        //    sp1.Parity = Parity.None;
+        //    sp1.Open();
+        //}
 
         //清空按钮
         private void btnClear_Click(object sender, EventArgs e)
@@ -986,6 +986,7 @@ namespace SerialPortConnection
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Common.formstatus = 0;
+            Form2.MainWindow.Show();
             sp1.Close();
         }
 
