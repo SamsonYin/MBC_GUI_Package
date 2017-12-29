@@ -41,7 +41,6 @@
             this.Resumebtn = new System.Windows.Forms.Button();
             this.Pausebtn = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.BiasArm_txBox = new System.Windows.Forms.TextBox();
             this.ReadBiasbtn = new System.Windows.Forms.Button();
             this.ReadPowerbtn = new System.Windows.Forms.Button();
             this.ReadDCbtn = new System.Windows.Forms.Button();
@@ -82,12 +81,28 @@
             this.SetPolarbtn = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BiasChBox = new System.Windows.Forms.ComboBox();
+            this.YIVpitxBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.YQVpitxBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.YPVpitxBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.XIVpitxBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.XQVpitxBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.XPVpitxBox = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -219,27 +234,16 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(34, 285);
+            this.label15.Location = new System.Drawing.Point(34, 209);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(109, 22);
             this.label15.TabIndex = 51;
             this.label15.Text = "偏压通道:";
             // 
-            // BiasArm_txBox
-            // 
-            this.BiasArm_txBox.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BiasArm_txBox.Location = new System.Drawing.Point(147, 280);
-            this.BiasArm_txBox.Margin = new System.Windows.Forms.Padding(2);
-            this.BiasArm_txBox.MaxLength = 1;
-            this.BiasArm_txBox.Name = "BiasArm_txBox";
-            this.BiasArm_txBox.Size = new System.Drawing.Size(50, 35);
-            this.BiasArm_txBox.TabIndex = 50;
-            this.BiasArm_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BiasArm_txBox_KeyPress);
-            // 
             // ReadBiasbtn
             // 
-            this.ReadBiasbtn.Location = new System.Drawing.Point(215, 271);
+            this.ReadBiasbtn.Location = new System.Drawing.Point(215, 195);
             this.ReadBiasbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadBiasbtn.Name = "ReadBiasbtn";
             this.ReadBiasbtn.Size = new System.Drawing.Size(155, 55);
@@ -250,7 +254,7 @@
             // 
             // ReadPowerbtn
             // 
-            this.ReadPowerbtn.Location = new System.Drawing.Point(30, 195);
+            this.ReadPowerbtn.Location = new System.Drawing.Point(30, 120);
             this.ReadPowerbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadPowerbtn.Name = "ReadPowerbtn";
             this.ReadPowerbtn.Size = new System.Drawing.Size(155, 55);
@@ -272,7 +276,7 @@
             // 
             // ReadVpibtn
             // 
-            this.ReadVpibtn.Location = new System.Drawing.Point(215, 45);
+            this.ReadVpibtn.Location = new System.Drawing.Point(215, 357);
             this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadVpibtn.Name = "ReadVpibtn";
             this.ReadVpibtn.Size = new System.Drawing.Size(155, 55);
@@ -283,7 +287,7 @@
             // 
             // ReadPolarbtn
             // 
-            this.ReadPolarbtn.Location = new System.Drawing.Point(30, 120);
+            this.ReadPolarbtn.Location = new System.Drawing.Point(215, 45);
             this.ReadPolarbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadPolarbtn.Name = "ReadPolarbtn";
             this.ReadPolarbtn.Size = new System.Drawing.Size(155, 55);
@@ -342,7 +346,7 @@
             this.groupBox8.Controls.Add(this.DitherYQAmp_txBox);
             this.groupBox8.Controls.Add(this.DitherXIAmp_txBox);
             this.groupBox8.Controls.Add(this.label17);
-            this.groupBox8.Location = new System.Drawing.Point(442, 415);
+            this.groupBox8.Location = new System.Drawing.Point(442, 537);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(5);
@@ -353,6 +357,19 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.XPVpitxBox);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.Controls.Add(this.XQVpitxBox);
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.XIVpitxBox);
+            this.groupBox7.Controls.Add(this.label3);
+            this.groupBox7.Controls.Add(this.YPVpitxBox);
+            this.groupBox7.Controls.Add(this.label2);
+            this.groupBox7.Controls.Add(this.YQVpitxBox);
+            this.groupBox7.Controls.Add(this.label1);
+            this.groupBox7.Controls.Add(this.YIVpitxBox);
+            this.groupBox7.Controls.Add(this.BiasChBox);
             this.groupBox7.Controls.Add(this.ReadStatusbtn);
             this.groupBox7.Controls.Add(this.ReadPolarbtn);
             this.groupBox7.Controls.Add(this.ReadDCbtn);
@@ -360,12 +377,11 @@
             this.groupBox7.Controls.Add(this.ReadPowerbtn);
             this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.ReadBiasbtn);
-            this.groupBox7.Controls.Add(this.BiasArm_txBox);
-            this.groupBox7.Location = new System.Drawing.Point(11, 313);
+            this.groupBox7.Location = new System.Drawing.Point(11, 302);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox7.Size = new System.Drawing.Size(411, 353);
+            this.groupBox7.Size = new System.Drawing.Size(411, 504);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "读取参数";
@@ -373,23 +389,23 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtReceive);
-            this.groupBox2.Location = new System.Drawing.Point(892, 14);
+            this.groupBox2.Location = new System.Drawing.Point(892, 8);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(475, 794);
+            this.groupBox2.Size = new System.Drawing.Size(475, 394);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "数据接收区域";
+            this.groupBox2.Text = "控制器返回结果";
             // 
             // txtReceive
             // 
             this.txtReceive.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtReceive.Location = new System.Drawing.Point(27, 31);
+            this.txtReceive.Location = new System.Drawing.Point(28, 31);
             this.txtReceive.Margin = new System.Windows.Forms.Padding(5);
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
-            this.txtReceive.Size = new System.Drawing.Size(423, 733);
+            this.txtReceive.Size = new System.Drawing.Size(423, 336);
             this.txtReceive.TabIndex = 0;
             this.txtReceive.Text = "";
             this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
@@ -400,10 +416,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(771, 663);
+            this.btnClear.Location = new System.Drawing.Point(661, 771);
             this.btnClear.Margin = new System.Windows.Forms.Padding(5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(100, 50);
+            this.btnClear.Size = new System.Drawing.Size(100, 35);
             this.btnClear.TabIndex = 10;
             this.btnClear.Text = "清空";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -411,10 +427,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(771, 747);
+            this.btnExit.Location = new System.Drawing.Point(771, 771);
             this.btnExit.Margin = new System.Windows.Forms.Padding(5);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(100, 50);
+            this.btnExit.Size = new System.Drawing.Size(100, 35);
             this.btnExit.TabIndex = 10;
             this.btnExit.Text = "退出";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -677,20 +693,176 @@
             this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.SetDACtxBox);
             this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Location = new System.Drawing.Point(11, 676);
+            this.groupBox3.Location = new System.Drawing.Point(442, 395);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox3.Size = new System.Drawing.Size(411, 132);
+            this.groupBox3.Size = new System.Drawing.Size(429, 132);
             this.groupBox3.TabIndex = 81;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "手动设置输出偏压值";
+            // 
+            // BiasChBox
+            // 
+            this.BiasChBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BiasChBox.FormattingEnabled = true;
+            this.BiasChBox.Items.AddRange(new object[] {
+            "Y-I",
+            "Y-Q",
+            "Y-P",
+            "X-I",
+            "X-Q",
+            "X-P"});
+            this.BiasChBox.Location = new System.Drawing.Point(138, 207);
+            this.BiasChBox.Margin = new System.Windows.Forms.Padding(5);
+            this.BiasChBox.Name = "BiasChBox";
+            this.BiasChBox.Size = new System.Drawing.Size(58, 26);
+            this.BiasChBox.TabIndex = 82;
+            // 
+            // YIVpitxBox
+            // 
+            this.YIVpitxBox.Location = new System.Drawing.Point(97, 272);
+            this.YIVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.YIVpitxBox.MaxLength = 20;
+            this.YIVpitxBox.Name = "YIVpitxBox";
+            this.YIVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.YIVpitxBox.TabIndex = 83;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 277);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 18);
+            this.label1.TabIndex = 84;
+            this.label1.Text = "YI Vpi:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 316);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 18);
+            this.label2.TabIndex = 86;
+            this.label2.Text = "YQ Vpi:";
+            // 
+            // YQVpitxBox
+            // 
+            this.YQVpitxBox.Location = new System.Drawing.Point(97, 311);
+            this.YQVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.YQVpitxBox.MaxLength = 1;
+            this.YQVpitxBox.Name = "YQVpitxBox";
+            this.YQVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.YQVpitxBox.TabIndex = 85;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 355);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 18);
+            this.label3.TabIndex = 88;
+            this.label3.Text = "YP Vpi:";
+            // 
+            // YPVpitxBox
+            // 
+            this.YPVpitxBox.Location = new System.Drawing.Point(97, 350);
+            this.YPVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.YPVpitxBox.MaxLength = 1;
+            this.YPVpitxBox.Name = "YPVpitxBox";
+            this.YPVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.YPVpitxBox.TabIndex = 87;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 394);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 18);
+            this.label4.TabIndex = 90;
+            this.label4.Text = "XI Vpi:";
+            // 
+            // XIVpitxBox
+            // 
+            this.XIVpitxBox.Location = new System.Drawing.Point(97, 389);
+            this.XIVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.XIVpitxBox.MaxLength = 1;
+            this.XIVpitxBox.Name = "XIVpitxBox";
+            this.XIVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.XIVpitxBox.TabIndex = 89;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 433);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 18);
+            this.label5.TabIndex = 92;
+            this.label5.Text = "XQ Vpi:";
+            // 
+            // XQVpitxBox
+            // 
+            this.XQVpitxBox.Location = new System.Drawing.Point(97, 428);
+            this.XQVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.XQVpitxBox.MaxLength = 1;
+            this.XQVpitxBox.Name = "XQVpitxBox";
+            this.XQVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.XQVpitxBox.TabIndex = 91;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(27, 472);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 18);
+            this.label6.TabIndex = 94;
+            this.label6.Text = "XP Vpi:";
+            // 
+            // XPVpitxBox
+            // 
+            this.XPVpitxBox.Location = new System.Drawing.Point(97, 467);
+            this.XPVpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.XPVpitxBox.MaxLength = 1;
+            this.XPVpitxBox.Name = "XPVpitxBox";
+            this.XPVpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.XPVpitxBox.TabIndex = 93;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.OriginalDataTextBox);
+            this.groupBox5.Location = new System.Drawing.Point(892, 422);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox5.Size = new System.Drawing.Size(475, 394);
+            this.groupBox5.TabIndex = 82;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "原始数据接收区域";
+            // 
+            // OriginalDataTextBox
+            // 
+            this.OriginalDataTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.OriginalDataTextBox.Location = new System.Drawing.Point(28, 31);
+            this.OriginalDataTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.OriginalDataTextBox.Name = "OriginalDataTextBox";
+            this.OriginalDataTextBox.ReadOnly = true;
+            this.OriginalDataTextBox.Size = new System.Drawing.Size(423, 336);
+            this.OriginalDataTextBox.TabIndex = 0;
+            this.OriginalDataTextBox.Text = "";
+            this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1390, 836);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip1);
@@ -717,6 +889,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,7 +915,6 @@
         private System.Windows.Forms.Button ReadPowerbtn;
         private System.Windows.Forms.Button ReadBiasbtn;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox BiasArm_txBox;
         private System.Windows.Forms.Button Pausebtn;
         private System.Windows.Forms.Button Resumebtn;
         private System.Windows.Forms.Label label16;
@@ -776,6 +948,21 @@
         private System.Windows.Forms.ComboBox SetDACBox;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox BiasChBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox YIVpitxBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox XPVpitxBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox XQVpitxBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox XIVpitxBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox YPVpitxBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox YQVpitxBox;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RichTextBox OriginalDataTextBox;
     }
 }
 
