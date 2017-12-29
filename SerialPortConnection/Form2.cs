@@ -246,7 +246,7 @@ namespace SerialPortConnection
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(240, 52);
+            this.btnSwitch.Location = new System.Drawing.Point(217, 39);
             this.btnSwitch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(113, 31);
@@ -259,7 +259,7 @@ namespace SerialPortConnection
             // 
             this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerial.FormattingEnabled = true;
-            this.cbSerial.Location = new System.Drawing.Point(128, 57);
+            this.cbSerial.Location = new System.Drawing.Point(116, 44);
             this.cbSerial.Margin = new System.Windows.Forms.Padding(5);
             this.cbSerial.Name = "cbSerial";
             this.cbSerial.Size = new System.Drawing.Size(91, 26);
@@ -269,16 +269,16 @@ namespace SerialPortConnection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(65, 60);
+            this.label1.Location = new System.Drawing.Point(59, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 21);
+            this.label1.Size = new System.Drawing.Size(84, 21);
             this.label1.TabIndex = 12;
-            this.label1.Text = "串口：";
+            this.label1.Text = "串口号:";
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(441, 164);
+            this.ClientSize = new System.Drawing.Size(397, 122);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.btnSwitch);

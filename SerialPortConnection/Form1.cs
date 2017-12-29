@@ -62,44 +62,17 @@ namespace SerialPortConnection
             AutoModebtn.Enabled = false;
             SetDACBox.SelectedIndex = 0;
 
-            //// 预置波特率
-            //cbBaudRate.SelectedIndex = 8;
-            //// 预置数据位 
-            //cbDataBits.SelectedIndex = 3;
-            //// 预置停止位
-            //cbStop.SelectedIndex = 0;
-            //// 预置校验位
-            //cbParity.SelectedIndex = 0;
-
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
             if (str == null)
             {
-                MessageBox.Show("本机没有串口！", "Error");
+                MessageBox.Show("寻找串口失败！", "Error");
                 return;
             }
-
-            ////添加串口项目
-            //foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
-            //{//获取有多少个COM口
-            //    //System.Diagnostics.Debug.WriteLine(s);
-            //    cbSerial.Items.Add(s);
-            //}
-
-            //串口设置默认选择项
-            //cbSerial.SelectedIndex = 0;         //note：获得COM9口，但别忘修改
-            //cbBaudRate.SelectedIndex = 5;
-            // cbDataBits.SelectedIndex = 3;
-            // cbStop.SelectedIndex = 0;
-            //  cbParity.SelectedIndex = 0;
-            //sp2.BaudRate = 9600;
 
             Control.CheckForIllegalCrossThreadCalls = false;    //这个类中我们不检查跨线程的调用是否合法(因为.net 2.0以后加强了安全机制,，不允许在winform中直接跨线程访问控件的属性)
             sp1.DataReceived += new SerialDataReceivedEventHandler(sp1_DataReceived);
             //sp1.ReceivedBytesThreshold = 1;
-
-            //radio1.Checked = true;  //单选按钮默认是选中的
-            //rbRcvStr.Checked = true;
 
             //准备就绪              
             sp1.DtrEnable = true;
@@ -122,25 +95,7 @@ namespace SerialPortConnection
             {
                 MessageBox.Show("连接异常，请重启程序", "错误0x41");
             }
-
         }
-
-        //private void UART_Init(object sender, EventArgs x)
-        //{
-        //    sp1.PortName = "COM8";// Common.serialName;
-        //    sp1.BaudRate = 57600;
-        //    sp1.DataBits = 8;
-        //    sp1.StopBits = StopBits.One;
-        //    sp1.Parity = Parity.None;
-        //    try
-        //    {
-        //        sp1.Open();
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("连接异常，请重启程序", "错误0x41");
-        //    }
-        //}
 
         public static class FormParameter
         {
@@ -204,17 +159,12 @@ namespace SerialPortConnection
                     FormParameter.byteID = receivedData[0];
                     UART_Handler(receivedData);  //receivedData是收到的数据，数据格式为十进制
                     //txtReceive.Text += FormParameter.strRcv + "\r\n";
-                    //if (receivedData[0] == 105)
-                    //{
-                    //    vpiYI.Text = receivedData[1].ToString();
-                    //}
                 }
                 catch (System.Exception ex)
                 {
                     MessageBox.Show(ex.Message, "出错提示");
-                    txtSend.Text = "";
+                    //txtSend.Text = "";
                 }
-                //}
             }
             else
             {
@@ -778,83 +728,83 @@ namespace SerialPortConnection
             sp1.Write(byteBuffer, 0, byteBuffer.Length);
         }
 
-        //发送按钮
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            if (cbTimeSend.Checked)
-            {
-                tmSend.Enabled = true;
-            }
-            else
-            {
-                tmSend.Enabled = false;
-            }
+        ////发送按钮
+        //private void btnSend_Click(object sender, EventArgs e)
+        //{
+        //    if (cbTimeSend.Checked)
+        //    {
+        //        tmSend.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        tmSend.Enabled = false;
+        //    }
 
-            if (!sp1.IsOpen) //如果没打开
-            {
-                MessageBox.Show("请先打开串口！", "Error");
-                return;
-            }
+        //    if (!sp1.IsOpen) //如果没打开
+        //    {
+        //        MessageBox.Show("请先打开串口！", "Error");
+        //        return;
+        //    }
 
-            String strSend = txtSend.Text;
-            if (radio1.Checked == true)	//“HEX发送” 按钮 
-            {
-                //处理数字转换
-                string sendBuf = strSend;
-                string sendnoNull = sendBuf.Trim();
-                string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
-                string sendNOComma1 = sendNOComma.Replace('，', ' '); //去掉中文逗号
-                string strSendNoComma2 = sendNOComma1.Replace("0x", "");   //去掉0x
-                strSendNoComma2.Replace("0X", "");   //去掉0X
-                string[] strArray = strSendNoComma2.Split(' ');
+        //    String strSend = txtSend.Text;
+        //    if (radio1.Checked == true)	//“HEX发送” 按钮 
+        //    {
+        //        //处理数字转换
+        //        string sendBuf = strSend;
+        //        string sendnoNull = sendBuf.Trim();
+        //        string sendNOComma = sendnoNull.Replace(',', ' ');    //去掉英文逗号
+        //        string sendNOComma1 = sendNOComma.Replace('，', ' '); //去掉中文逗号
+        //        string strSendNoComma2 = sendNOComma1.Replace("0x", "");   //去掉0x
+        //        strSendNoComma2.Replace("0X", "");   //去掉0X
+        //        string[] strArray = strSendNoComma2.Split(' ');
 
-                int byteBufferLength = strArray.Length;
-                for (int i = 0; i < strArray.Length; i++)
-                {
-                    if (strArray[i] == "")
-                    {
-                        byteBufferLength--;
-                    }
-                }
-                // int temp = 0;
-                byte[] byteBuffer = new byte[byteBufferLength];
-                int ii = 0;
-                for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-                {
+        //        int byteBufferLength = strArray.Length;
+        //        for (int i = 0; i < strArray.Length; i++)
+        //        {
+        //            if (strArray[i] == "")
+        //            {
+        //                byteBufferLength--;
+        //            }
+        //        }
+        //        // int temp = 0;
+        //        byte[] byteBuffer = new byte[byteBufferLength];
+        //        int ii = 0;
+        //        for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
+        //        {
 
-                    Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
+        //            Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
 
-                    int decNum = 0;
-                    if (strArray[i] == "")
-                    {
-                        //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                        continue;
-                    }
-                    else
-                    {
-                        decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
-                    }
+        //            int decNum = 0;
+        //            if (strArray[i] == "")
+        //            {
+        //                //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
+        //                continue;
+        //            }
+        //            else
+        //            {
+        //                decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 
+        //            }
 
-                    try    //防止输错，使其只能输入一个字节的字符
-                    {
-                        byteBuffer[ii] = Convert.ToByte(decNum);
-                    }
-                    catch (System.Exception ex)
-                    {
-                        MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                        tmSend.Enabled = false;
-                        return;
-                    }
+        //            try    //防止输错，使其只能输入一个字节的字符
+        //            {
+        //                byteBuffer[ii] = Convert.ToByte(decNum);
+        //            }
+        //            catch (System.Exception ex)
+        //            {
+        //                MessageBox.Show("字节越界，请逐个字节输入！", "Error");
+        //                tmSend.Enabled = false;
+        //                return;
+        //            }
 
-                    ii++;
-                }
-                sp1.Write(byteBuffer, 0, byteBuffer.Length);
-            }
-            else		//以字符串形式发送时 
-            {
-                sp1.WriteLine(txtSend.Text);    //写入数据
-            }
-        }
+        //            ii++;
+        //        }
+        //        sp1.Write(byteBuffer, 0, byteBuffer.Length);
+        //    }
+        //    else		//以字符串形式发送时 
+        //    {
+        //        sp1.WriteLine(txtSend.Text);    //写入数据
+        //    }
+        //}
 
         ////开关按钮
         //private void btnSwitch_Click(object sender, EventArgs e)
@@ -971,6 +921,7 @@ namespace SerialPortConnection
         //}
 
         //清空按钮
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtReceive.Text = "";       //清空文本
@@ -990,52 +941,43 @@ namespace SerialPortConnection
             sp1.Close();
         }
 
-        private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (radio1.Checked== true)
-            {
-                //正则匹配
-                string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
-                Regex r = new Regex(patten);
-                Match m = r.Match(e.KeyChar.ToString());
+        //private void txtSend_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (radio1.Checked== true)
+        //    {
+        //        //正则匹配
+        //        string patten = "[0-9a-fA-F]|\b|0x|0X| "; //“\b”：退格键
+        //        Regex r = new Regex(patten);
+        //        Match m = r.Match(e.KeyChar.ToString());
 
-                if (m.Success )//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
-            }//end of radio1
-            else
-            {
-                e.Handled = false;
-            }
-        }
-
-        private void txtSend_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            
-        }
+        //        if (m.Success )//&&(txtSend.Text.LastIndexOf(" ") != txtSend.Text.Length-1))
+        //        {
+        //            e.Handled = false;
+        //        }
+        //        else
+        //        {
+        //            e.Handled = true;
+        //        }
+        //    }//end of radio1
+        //    else
+        //    {
+        //        e.Handled = false;
+        //    }
+        //}
 
         //定时器
+
         private void tmSend_Tick(object sender, EventArgs e)
         {
             //转换时间间隔
-            string strSecond = txtSecond.Text;
+            //string strSecond = txtSecond.Text;
             try
             {
-                int isecond = int.Parse(strSecond) * 1000;//Interval以微秒为单位
-                tmSend.Interval = isecond;
+                //int isecond = int.Parse(strSecond) * 1000;//Interval以微秒为单位
+                //tmSend.Interval = isecond;
                 if (tmSend.Enabled == true)
                 {
-                    btnSend.PerformClick();
+                    //btnSend.PerformClick();
                 }
             }
             catch (System.Exception ex)
@@ -1043,76 +985,24 @@ namespace SerialPortConnection
                 tmSend.Enabled = false;
                 MessageBox.Show("错误的定时输入！", "Error");
             }
-            
+
         }
 
-        private void txtSecond_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            string patten = "[0-9]|\b"; //“\b”：退格键
-            Regex r = new Regex(patten);
-            Match m = r.Match(e.KeyChar.ToString());
+        //private void txtSecond_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    string patten = "[0-9]|\b"; //“\b”：退格键
+        //    Regex r = new Regex(patten);
+        //    Match m = r.Match(e.KeyChar.ToString());
 
-            if (m.Success)
-            {
-                e.Handled = false;   //没操作“过”，系统会处理事件    
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void readVpi_Click(object sender, EventArgs e)
-        {
-            tmSend.Enabled = false;
-            if (!sp1.IsOpen) //如果没打开
-            {
-                MessageBox.Show("请先打开串口！", "Error");
-                return;
-            }
-            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
-
-            int byteBufferLength = strArray.Length;
-            for (int i = 0; i < strArray.Length; i++)
-            {
-                if (strArray[i] == "")
-                {
-                    byteBufferLength--;
-                }
-            }
-            // int temp = 0;
-            byte[] byteBuffer = new byte[byteBufferLength];
-            int ii = 0;
-            for (int i = 0; i < strArray.Length; i++)        //对获取的字符做相加运算
-            {
-                Byte[] bytesOfStr = Encoding.Default.GetBytes(strArray[i]);
-
-                int decNum = 0;
-                if (strArray[i] == "")
-                {
-                    //ii--;     //加上此句是错误的，下面的continue以延缓了一个ii，不与i同步
-                    continue;
-                }
-                else
-                {
-                    decNum = Convert.ToInt32(strArray[i], 16); //atrArray[i] == 12时，temp == 18 ,十六进制转十进制
-                }
-
-                try    //防止输错，使其只能输入一个字节的字符
-                {
-                    byteBuffer[ii] = Convert.ToByte(decNum);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show("字节越界，请逐个字节输入！", "Error");
-                    tmSend.Enabled = false;
-                    return;
-                }
-
-                ii++;
-            }
-            sp1.Write(byteBuffer, 0, byteBuffer.Length);
-        }
+        //    if (m.Success)
+        //    {
+        //        e.Handled = false;   //没操作“过”，系统会处理事件    
+        //    }
+        //    else
+        //    {
+        //        e.Handled = true;
+        //    }
+        //}
 
         private void ReadStatusbtn_Click(object sender, EventArgs e)
         {
@@ -1208,11 +1098,6 @@ namespace SerialPortConnection
 
         }
 
-        private void vpiXI_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ReadDCbtn_Click(object sender, EventArgs e)
         {
             if (!sp1.IsOpen)
@@ -1251,7 +1136,6 @@ namespace SerialPortConnection
 
             FormParameter.UART_CMD = 102;
 
-            //uint Bias_arm = Convert.ToUInt16(BiasArm_txBox.Text);
             if(String.IsNullOrEmpty(BiasArm_txBox.Text) ==false)
             {
                 FormParameter.arm = Convert.ToUInt16(BiasArm_txBox.Text);
