@@ -169,14 +169,14 @@ namespace SerialPortConnection
                     }
                     catch (System.Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "出错提示");
+                        MessageBox.Show(ex.Message, "Error 008");
                         //txtSend.Text = "";
                     }
                 }
             }
             else
             {
-                MessageBox.Show("请打开某个串口", "错误提示");
+                MessageBox.Show("Please open a serial port!", "Error 009");
             }
         }
 
@@ -1027,7 +1027,7 @@ namespace SerialPortConnection
         {
             if(!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 010");
                 return;
             }
 
@@ -1042,7 +1042,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 011");
                 return;
             }
 
@@ -1058,7 +1058,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 012");
                 return;
             }
 
@@ -1079,7 +1079,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 013");
                 return;
             }
 
@@ -1127,7 +1127,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 014");
                 return;
             }
 
@@ -1141,7 +1141,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 015");
                 return;
             }
 
@@ -1155,7 +1155,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 016");
                 return;
             }
 
@@ -1197,7 +1197,7 @@ namespace SerialPortConnection
                     }
                 default:
                     {
-                        MessageBox.Show("请选择偏压通道", "Error");
+                        MessageBox.Show("Please choose bias channel", "Error 017");
                         return;
                     }
             }
@@ -1216,7 +1216,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 018");
                 return;
             }
 
@@ -1232,7 +1232,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 019");
                 return;
             }
 
@@ -1247,7 +1247,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 020");
                 return;
             }
 
@@ -1259,7 +1259,7 @@ namespace SerialPortConnection
             }
             else
             {
-                MessageBox.Show("请输入YI导频幅度系数!", "Error");
+                MessageBox.Show("Please enter YI dither amplitude coefficient!", "Error 021");
                 return;
             }
             if (String.IsNullOrEmpty(DitherYQAmp_txBox.Text) == false)
@@ -1268,7 +1268,7 @@ namespace SerialPortConnection
             }
             else
             {
-                MessageBox.Show("请输入YQ导频幅度系数!", "Error");
+                MessageBox.Show("Please enter YQ dither amplitude coefficient!", "Error 022");
                 return;
             }
             if (String.IsNullOrEmpty(DitherXIAmp_txBox.Text) == false)
@@ -1277,7 +1277,7 @@ namespace SerialPortConnection
             }
             else
             {
-                MessageBox.Show("请输入XI导频幅度系数!", "Error");
+                MessageBox.Show("Please enter XI dither amplitude coefficient!", "Error 023");
                 return;
             }
             if (String.IsNullOrEmpty(DitherXQAmp_txBox.Text) == false)
@@ -1286,7 +1286,7 @@ namespace SerialPortConnection
             }
             else
             {
-                MessageBox.Show("请输入XQ导频幅度系数!", "Error");
+                MessageBox.Show("Please enter XQ dither amplitude coefficient!", "Error 024");
                 return;
             }
 
@@ -1334,7 +1334,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 025");
                 return;
             }
 
@@ -1398,7 +1398,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 026");
                 return;
             }
 
@@ -1414,7 +1414,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 027");
                 return;
             }
 
@@ -1430,7 +1430,7 @@ namespace SerialPortConnection
         {
             if (!sp1.IsOpen)
             {
-                MessageBox.Show("请先打开串口！", "Error");
+                MessageBox.Show("Please open a serial port！", "Error 028");
                 return;
             }
 
@@ -1471,7 +1471,7 @@ namespace SerialPortConnection
                     }
                 default:
                     {
-                        MessageBox.Show("请选择偏压通道", "Error");
+                        MessageBox.Show("Please choose a bias channel", "Error 029");
                         return;
                     }
             }
@@ -1502,13 +1502,13 @@ namespace SerialPortConnection
                 }
                 else
                 {
-                    MessageBox.Show("请在Manual Mode下使用该功能", "Error");
+                    MessageBox.Show("This function can only be used in Manual Mode!", "Error 030");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("请输入偏压值", "Error");
+                MessageBox.Show("Please enter bias voltage value!", "Error 031");
                 return;
             }
         }

@@ -21,7 +21,7 @@ namespace SerialPortConnection
         SerialPort sp1 = new SerialPort();
         //sp1.ReceivedBytesThreshold = 1;//只要有1个字符送达端口时便触发DataReceived事件 
         private delegate void ShowFormDelegate();
-        Form1 MBC_Control_Unit = null;
+        Form MBC_Control_Unit = null;
         //ShowFormDelegate ShowFormDelegateCommand = null;
 
         public Form2()
@@ -42,7 +42,11 @@ namespace SerialPortConnection
                     Common.formstatus = 1;
                     break;
                 case 2:
-                    MessageBox.Show("IQ", "Error");
+                    sp1.Close();
+                    MBC_Control_Unit = new Form3();
+                    this.Hide();
+                    MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
                     break;
                 case 3:
                     MessageBox.Show("MZM", "Error");
@@ -57,9 +61,9 @@ namespace SerialPortConnection
                     MessageBox.Show("Q_Ditherless", "Error");
                     break;
                 default:
-                    MessageBox.Show("控制器响应异常，请重试!", "错误0x31");
+                    MessageBox.Show("Unable to launch control unit,please try again!", "Error 001"); //控制器响应异常，无法分辨控制器版本
                     sp1.Close();
-                    btnSwitch.Text = "打开串口";
+                    //btnSwitch.Text = "打开串口";
                     break;
             }
             //sp1.Close();
@@ -72,7 +76,7 @@ namespace SerialPortConnection
             string[] str = SerialPort.GetPortNames();
             if (str == null)
             {
-                MessageBox.Show("本机没有串口！", "错误0xff");
+                MessageBox.Show("No serial port was detected！", "Error 002");     //没有检测到串口
                 return;
             }
 
@@ -128,18 +132,18 @@ namespace SerialPortConnection
                      }
                     else
                     {
-                        MessageBox.Show("连接控制器失败，请重试！", "错误0x01");
+                        MessageBox.Show("Unable to establish communication with MBC,please try again!", "Error 003");    //控制器响应异常
                     }
                 }
                 catch (System.Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "错误0x02");
+                    MessageBox.Show(ex.Message, "Error 004");
                     //txtSend.Text = "";
                 }
             }
             else
             {
-                MessageBox.Show("串口处于关闭状态，请打开串口", "错误0x03");
+                MessageBox.Show("The serial port is closed. Please open the serial port", "Error 005");
             }
         }
 
@@ -214,14 +218,14 @@ namespace SerialPortConnection
                     }
                     catch (System.Exception)
                     {
-                        MessageBox.Show("请先选择串口", "错误0x11");
+                        MessageBox.Show("Please select the serial port to use this function!", "Error 006");
                         //tmSend.Enabled = false;
                         return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("控制程序已启动", "错误0x12");
+                    MessageBox.Show("Control Unit has been launched!", "Error 007");
                 }
             }
             else
@@ -246,12 +250,12 @@ namespace SerialPortConnection
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(217, 39);
+            this.btnSwitch.Location = new System.Drawing.Point(222, 26);
             this.btnSwitch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.Size = new System.Drawing.Size(113, 31);
+            this.btnSwitch.Size = new System.Drawing.Size(82, 31);
             this.btnSwitch.TabIndex = 10;
-            this.btnSwitch.Text = "连接控制器";
+            this.btnSwitch.Text = "Launch";
             this.btnSwitch.UseVisualStyleBackColor = true;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
@@ -259,7 +263,7 @@ namespace SerialPortConnection
             // 
             this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerial.FormattingEnabled = true;
-            this.cbSerial.Location = new System.Drawing.Point(116, 44);
+            this.cbSerial.Location = new System.Drawing.Point(121, 31);
             this.cbSerial.Margin = new System.Windows.Forms.Padding(5);
             this.cbSerial.Name = "cbSerial";
             this.cbSerial.Size = new System.Drawing.Size(91, 26);
@@ -269,16 +273,16 @@ namespace SerialPortConnection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(59, 47);
+            this.label1.Location = new System.Drawing.Point(27, 34);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 21);
+            this.label1.Size = new System.Drawing.Size(142, 21);
             this.label1.TabIndex = 12;
-            this.label1.Text = "串口号:";
+            this.label1.Text = "Serial Port:";
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(397, 122);
+            this.ClientSize = new System.Drawing.Size(339, 93);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.btnSwitch);
@@ -286,7 +290,7 @@ namespace SerialPortConnection
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "上位机测试软件";
+            this.Text = "MBC Control Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
