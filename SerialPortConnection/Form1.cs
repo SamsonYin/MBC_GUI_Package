@@ -405,51 +405,51 @@ namespace SerialPortConnection
                             polarP_2 = uart_result[6] + 1;
                             if (polarI_1 == 1)
                             {
-                                txtReceive.Text += "Polar I_1: Positive \r\n";
+                                txtReceive.Text += "Polar YI: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar I_1: Negative \r\n";
+                                txtReceive.Text += "Polar YI: Negative \r\n";
                             }
                             if (polarQ_1 == 1)
                             {
-                                txtReceive.Text += "Polar Q_1: Positive \r\n";
+                                txtReceive.Text += "Polar YQ: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar Q_1: Negative \r\n";
+                                txtReceive.Text += "Polar YQ: Negative \r\n";
                             }
                             if (polarP_1 == 1)
                             {
-                                txtReceive.Text += "Polar P_1: Positive \r\n";
+                                txtReceive.Text += "Polar YP: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar P_1: Negative \r\n";
+                                txtReceive.Text += "Polar YP: Negative \r\n";
                             }
                             if (polarI_2 == 1)
                             {
-                                txtReceive.Text += "Polar I_2: Positive \r\n";
+                                txtReceive.Text += "Polar XI: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar I_2: Negative \r\n";
+                                txtReceive.Text += "Polar XI: Negative \r\n";
                             }
                             if (polarQ_2 == 1)
                             {
-                                txtReceive.Text += "Polar Q_2: Positive \r\n";
+                                txtReceive.Text += "Polar XQ: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar Q_2: Negative \r\n";
+                                txtReceive.Text += "Polar XQ: Negative \r\n";
                             }
                             if (polarP_2 == 1)
                             {
-                                txtReceive.Text += "Polar P_2: Positive \r\n";
+                                txtReceive.Text += "Polar XP: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar P_2: Negative \r\n";
+                                txtReceive.Text += "Polar XP: Negative \r\n";
                             }
                             if(uart_result[7] == 119)
                             {
