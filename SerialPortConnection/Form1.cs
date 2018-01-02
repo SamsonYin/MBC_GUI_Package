@@ -110,7 +110,6 @@ namespace SerialPortConnection
             public static string XI_dither_amp;
             public static string XQ_dither_amp;
             public static uint shortDataLength = 9;
-            public static uint retry_time = 0;
         }
 
         [StructLayout(LayoutKind.Explicit, Size = 8)]
