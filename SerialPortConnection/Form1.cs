@@ -137,34 +137,41 @@ namespace SerialPortConnection
                 //}
                 //else                                            //'发送16进制按钮'
                 //{
-                try
+                if (sp1.BytesToRead <= 0)
                 {
-                    Byte[] receivedData = new Byte[FormParameter.shortDataLength];   //直接收9个byte  //new Byte[sp1.BytesToRead];        //创建接收字节数组
-                    sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
-                    //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
-                    sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
-                    //这是用以显示字符串
-                    //    string strRcv = null;
-                    //    for (int i = 0; i < receivedData.Length; i++ )
-                    //    {
-                    //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
-                    //    }
-                    //    txtReceive.Text += strRcv + "\r\n";             //显示信息
-                    //}
-                    FormParameter.strRcv = null;
-                    //int decNum = 0;//存储十进制
-                    for (int i = 0; i < receivedData.Length; i++) //窗体显示
-                    {
-                        FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
-                    }
-                    FormParameter.byteID = receivedData[0];
-                    UART_Handler(receivedData);  //receivedData是收到的数据，数据格式为十进制
-                    //txtReceive.Text += FormParameter.strRcv + "\r\n";
+                    MessageBox.Show("请打开某个串口", "错误提示");
                 }
-                catch (System.Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "出错提示");
-                    //txtSend.Text = "";
+                    try
+                    {
+                        Byte[] receivedData = new Byte[FormParameter.shortDataLength];   //直接收9个byte  //new Byte[sp1.BytesToRead];        //创建接收字节数组
+                        sp1.Read(receivedData, 0, receivedData.Length);         //读取数据
+                                                                                //string text = sp1.Read();   //Encoding.ASCII.GetString(receivedData);
+                        sp1.DiscardInBuffer();                                  //清空SerialPort控件的Buffer
+                                                                                //这是用以显示字符串
+                                                                                //    string strRcv = null;
+                                                                                //    for (int i = 0; i < receivedData.Length; i++ )
+                                                                                //    {
+                                                                                //        strRcv += ((char)Convert.ToInt32(receivedData[i])) ;
+                                                                                //    }
+                                                                                //    txtReceive.Text += strRcv + "\r\n";             //显示信息
+                                                                                //}
+                        FormParameter.strRcv = null;
+                        //int decNum = 0;//存储十进制
+                        for (int i = 0; i < receivedData.Length; i++) //窗体显示
+                        {
+                            FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
+                        }
+                        FormParameter.byteID = receivedData[0];
+                        UART_Handler(receivedData);  //receivedData是收到的数据，数据格式为十进制
+                                                     //txtReceive.Text += FormParameter.strRcv + "\r\n";
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "出错提示");
+                        //txtSend.Text = "";
+                    }
                 }
             }
             else
