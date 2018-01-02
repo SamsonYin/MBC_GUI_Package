@@ -1,0 +1,9 @@
+E:\plug tech\Code\SerialApplication\SerialPortConnection\bin\Release\SerialPortConnection.exe
+E:\plug tech\Code\SerialApplication\SerialPortConnection\bin\Release\SerialPortConnection.pdb
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.Form1.resources
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.Form2.resources
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.Properties.Resources.resources
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.csproj.GenerateResource.Cache
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.csproj.CoreCompileInputs.cache
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.exe
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Release\SerialPortConnection.pdb

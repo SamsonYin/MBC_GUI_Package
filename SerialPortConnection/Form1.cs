@@ -110,6 +110,7 @@ namespace SerialPortConnection
             public static string XI_dither_amp;
             public static string XQ_dither_amp;
             public static uint shortDataLength = 9;
+            public static uint retry_time = 0;
         }
 
         [StructLayout(LayoutKind.Explicit, Size = 8)]
@@ -183,7 +184,7 @@ namespace SerialPortConnection
         private void UART_Handler(Byte[] uart_result)
         {
             OriginalDataTextBox.Text += FormParameter.strRcv + "\r\n";
-            switch(FormParameter.byteID)
+            switch(FormParameter.UART_CMD)//FormParameter.byteID)
             {
                 case 101:
                     {
@@ -443,45 +444,67 @@ namespace SerialPortConnection
                     }
                 case 105:
                     {
-                        if(FormParameter.UART_CMD == 105)
+                        if(FormParameter.byteID == 105)//FormParameter.UART_CMD == 105)
                         {
                             switch (uart_result[1])
                             {
                                 case 1:
                                     {
                                         txtReceive.Text += "Stablizing. \r\n";
+                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 2:
                                     {
                                         txtReceive.Text += "Stablized. \r\n";
+                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 3:
                                     {
                                         txtReceive.Text += "Light too weak. \r\n";
+                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 4:
                                     {
                                         txtReceive.Text += "Light too strong. \r\n";
+                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 5:
                                     {
                                         txtReceive.Text += "Manual control. \r\n";
+                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 default:
                                     {
-                                        txtReceive.Text += "Error! \r\n";
+                                        if(FormParameter.retry_time < 2)
+                                        {
+                                            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
+
+                                            Command_tx(strArray);
+
+                                            FormParameter.UART_CMD = 105;
+                                        }
+                                        else
+                                        {
+                                            txtReceive.Text += "Error! \r\n";
+                                        }
                                         break;
                                     }
                             }
                         }
                         else
                         {
-                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
+
+                            Command_tx(strArray);
+
+                            FormParameter.UART_CMD = 105;
+
+                            //txtReceive.Text += "Unknown Error. Please try again. \r\n";
                         }
                         break;
                     }
