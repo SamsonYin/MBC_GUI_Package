@@ -67,7 +67,7 @@ namespace SerialPortConnection
             string[] str = SerialPort.GetPortNames();
             if (str == null)
             {
-                MessageBox.Show("寻找串口失败！", "Error");
+                MessageBox.Show("Fail to searching serial port！", "Error 033");
                 return;
             }
 
@@ -94,7 +94,7 @@ namespace SerialPortConnection
             }
             catch
             {
-                MessageBox.Show("连接异常，请重启程序", "错误0x41");
+                MessageBox.Show("Connection exception, please restart the program", "Error 034");
             }
         }
 
@@ -122,14 +122,9 @@ namespace SerialPortConnection
 
         void sp1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            System.Threading.Thread.Sleep(50);
             if (sp1.IsOpen)     //此处可能没有必要判断是否打开串口，但为了严谨性，我还是加上了
             {
-                //输出当前时间
-                DateTime dt = DateTime.Now;
-                txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us"))  + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                txtReceive.SelectAll();
-                txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-
                 byte[] byteRead = new byte[sp1.BytesToRead];    //BytesToRead:sp1接收的字符个数
                 //if (rdSendStr.Checked)                          //'发送字符串'单选按钮
                 //{
@@ -140,7 +135,7 @@ namespace SerialPortConnection
                 //{
                 if (sp1.BytesToRead <= 0)
                 {
-                    MessageBox.Show("请打开某个串口", "错误提示");
+                    MessageBox.Show("Please open a serial port!", "Error 032");
                 }
                 else
                 {
@@ -164,6 +159,11 @@ namespace SerialPortConnection
                         {
                             FormParameter.strRcv += receivedData[i].ToString("X2");  //16进制显示
                         }
+                        ////输出当前时间
+                        //DateTime dt = DateTime.Now;
+                        //txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        //txtReceive.SelectAll();
+                        //txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         FormParameter.byteID = receivedData[0];
                         UART_Handler(receivedData);  //receivedData是收到的数据，数据格式为十进制
                                                      //txtReceive.Text += FormParameter.strRcv + "\r\n";
@@ -184,10 +184,15 @@ namespace SerialPortConnection
         private void UART_Handler(Byte[] uart_result)
         {
             OriginalDataTextBox.Text += FormParameter.strRcv + "\r\n";
-            switch(FormParameter.UART_CMD)//FormParameter.byteID)
+            switch(FormParameter.byteID)
             {
                 case 101:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 101)
                         {
                             float_U32 Power = new float_U32();
@@ -205,6 +210,11 @@ namespace SerialPortConnection
                     }
                 case 102:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 102)
                         {
                             switch (BiasChBox.Text)
@@ -284,6 +294,11 @@ namespace SerialPortConnection
                     }
                 case 103:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 103)
                         {
                             switch(FormParameter.arm)
@@ -369,6 +384,11 @@ namespace SerialPortConnection
                     }
                 case 104:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 104)
                         {
                             int polarI_1;
@@ -444,7 +464,12 @@ namespace SerialPortConnection
                     }
                 case 105:
                     {
-                        if(FormParameter.byteID == 105)//FormParameter.UART_CMD == 105)
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 105)
                         {
                             switch (uart_result[1])
                             {
@@ -480,36 +505,24 @@ namespace SerialPortConnection
                                     }
                                 default:
                                     {
-                                        if(FormParameter.retry_time < 2)
-                                        {
-                                            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
-
-                                            Command_tx(strArray);
-
-                                            FormParameter.UART_CMD = 105;
-                                        }
-                                        else
-                                        {
-                                            txtReceive.Text += "Error! \r\n";
-                                        }
+                                        txtReceive.Text += "Error! \r\n";
                                         break;
                                     }
                             }
                         }
                         else
                         {
-                            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
-
-                            Command_tx(strArray);
-
-                            FormParameter.UART_CMD = 105;
-
-                            //txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
                         }
                         break;
                     }
                 case 106:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 106)
                         {
                             switch (uart_result[1])
@@ -555,6 +568,11 @@ namespace SerialPortConnection
                     }
                 case 107:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 107)
                         {
                             switch (uart_result[1])
@@ -585,6 +603,11 @@ namespace SerialPortConnection
                     }
                 case 108:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 108)
                         {
                             switch (uart_result[1])
@@ -619,6 +642,11 @@ namespace SerialPortConnection
                     }
                 case 111:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 111)
                         {
                             switch (uart_result[1])
@@ -644,6 +672,11 @@ namespace SerialPortConnection
                     }
                 case 115:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 115)
                         {
                             switch (uart_result[1])
@@ -674,6 +707,11 @@ namespace SerialPortConnection
                     }
                 case 116:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 116)
                         {
                             switch (uart_result[1])
@@ -704,6 +742,11 @@ namespace SerialPortConnection
                     }
                 case 120:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 120)
                         {
                             float_U32 DCvalue = new float_U32();
@@ -729,6 +772,12 @@ namespace SerialPortConnection
                     }
                 default:
                     {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+
                         txtReceive.Text += "Unknown Error! \r\n";
                         break;
                     }     
@@ -1111,38 +1160,38 @@ namespace SerialPortConnection
             string[] strArray = { "67", "1", "0", "0", "0", "0", "0" };
             FormParameter.arm = 1;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
             strArray[1] = "2";
             FormParameter.arm = 2;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
             strArray[1] = "3";
             FormParameter.arm = 3;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
             strArray[1] = "4";
             FormParameter.arm = 4;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
             strArray[1] = "5";
             FormParameter.arm = 5;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
             strArray[1] = "6";
             FormParameter.arm = 6;
             Command_tx(strArray);
-            Delay_s(1);
-            //Delay_ms(250);
+            //Delay_s(1);
+            Delay_ms(100);
 
         }
 
