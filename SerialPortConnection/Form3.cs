@@ -218,64 +218,34 @@ namespace SerialPortConnection
                         {
                             switch (BiasChBox.Text)
                             {
-                                case "Y-I":
+                                case "I":
                                     {
                                         float_U32 bias = new float_U32();
                                         bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YI_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
+                                        txtReceive.Text += "I_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
                                         break;
                                     }
-                                case "Y-Q":
+                                case "Q":
                                     {
                                         float_U32 bias = new float_U32();
                                         bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YQ_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
+                                        txtReceive.Text += "Q_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
                                         break;
                                     }
-                                case "Y-P":
+                                case "P":
                                     {
                                         float_U32 bias = new float_U32();
                                         bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YP_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                case "X-I":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XI_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                case "X-Q":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XQ_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                case "X-P":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XP_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
+                                        txtReceive.Text += "P_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
                                         break;
                                     }
                                 default:
@@ -716,28 +686,28 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 120:
-                    {
-                        // 输出当前时间
-                        DateTime dt = DateTime.Now;
-                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                        txtReceive.SelectAll();
-                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 120)
-                        {
-                            float_U32 DCvalue = new float_U32();
-                            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
-                            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
-                        }
-                        else
-                        {
-                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
-                        }
-                        break;
-                    }
+                //case 120:
+                //    {
+                //        // 输出当前时间
+                //        DateTime dt = DateTime.Now;
+                //        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                //        txtReceive.SelectAll();
+                //        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                //        if (FormParameter.UART_CMD == 120)
+                //        {
+                //            float_U32 DCvalue = new float_U32();
+                //            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
+                //            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
+                //        }
+                //        else
+                //        {
+                //            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                //        }
+                //        break;
+                //    }
                 case 255:
                     {
                         break;
@@ -947,19 +917,19 @@ namespace SerialPortConnection
 
         }
 
-        private void ReadDCbtn_Click(object sender, EventArgs e)
-        {
-            if (!sp1.IsOpen)
-            {
-                MessageBox.Show("Please open a serial port！", "Error 014");
-                return;
-            }
+        //private void ReadDCbtn_Click(object sender, EventArgs e)
+        //{
+        //    if (!sp1.IsOpen)
+        //    {
+        //        MessageBox.Show("Please open a serial port！", "Error 014");
+        //        return;
+        //    }
 
-            FormParameter.UART_CMD = 120;
+        //    FormParameter.UART_CMD = 120;
 
-            string[] strArray = { "78", "0", "0", "0", "0", "0", "0" };
-            Command_tx(strArray);
-        }
+        //    string[] strArray = { "78", "0", "0", "0", "0", "0", "0" };
+        //    Command_tx(strArray);
+        //}
 
         private void ReadPowerbtn_Click(object sender, EventArgs e)
         {
@@ -989,34 +959,19 @@ namespace SerialPortConnection
 
             switch (BiasChBox.Text)
             {
-                case "Y-I":
+                case "I":
                     {
                         strArray[1] = Convert.ToString(1);
                         break;
                     }
-                case "Y-Q":
+                case "Q":
                     {
                         strArray[1] = Convert.ToString(2);
                         break;
                     }
-                case "Y-P":
+                case "P":
                     {
                         strArray[1] = Convert.ToString(3);
-                        break;
-                    }
-                case "X-I":
-                    {
-                        strArray[1] = Convert.ToString(4);
-                        break;
-                    }
-                case "X-Q":
-                    {
-                        strArray[1] = Convert.ToString(5);
-                        break;
-                    }
-                case "X-P":
-                    {
-                        strArray[1] = Convert.ToString(6);
                         break;
                     }
                 default:

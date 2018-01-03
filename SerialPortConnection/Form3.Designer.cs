@@ -56,7 +56,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.ReadBiasbtn = new System.Windows.Forms.Button();
             this.ReadPowerbtn = new System.Windows.Forms.Button();
-            this.ReadDCbtn = new System.Windows.Forms.Button();
             this.ReadVpibtn = new System.Windows.Forms.Button();
             this.ReadPolarbtn = new System.Windows.Forms.Button();
             this.Resetbtn = new System.Windows.Forms.Button();
@@ -413,17 +412,6 @@
             this.ReadPowerbtn.UseVisualStyleBackColor = true;
             this.ReadPowerbtn.Click += new System.EventHandler(this.ReadPowerbtn_Click);
             // 
-            // ReadDCbtn
-            // 
-            this.ReadDCbtn.Location = new System.Drawing.Point(215, 120);
-            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadDCbtn.Name = "ReadDCbtn";
-            this.ReadDCbtn.Size = new System.Drawing.Size(155, 55);
-            this.ReadDCbtn.TabIndex = 47;
-            this.ReadDCbtn.Text = "Read DC";
-            this.ReadDCbtn.UseVisualStyleBackColor = true;
-            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
-            // 
             // ReadVpibtn
             // 
             this.ReadVpibtn.Location = new System.Drawing.Point(215, 357);
@@ -625,7 +613,6 @@
             this.groupBox7.Controls.Add(this.BiasChBox);
             this.groupBox7.Controls.Add(this.ReadStatusbtn);
             this.groupBox7.Controls.Add(this.ReadPolarbtn);
-            this.groupBox7.Controls.Add(this.ReadDCbtn);
             this.groupBox7.Controls.Add(this.ReadVpibtn);
             this.groupBox7.Controls.Add(this.ReadPowerbtn);
             this.groupBox7.Controls.Add(this.label15);
@@ -758,12 +745,9 @@
             this.BiasChBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BiasChBox.FormattingEnabled = true;
             this.BiasChBox.Items.AddRange(new object[] {
-            "Y-I",
-            "Y-Q",
-            "Y-P",
-            "X-I",
-            "X-Q",
-            "X-P"});
+            "I",
+            "Q",
+            "P"});
             this.BiasChBox.Location = new System.Drawing.Point(138, 207);
             this.BiasChBox.Margin = new System.Windows.Forms.Padding(5);
             this.BiasChBox.Name = "BiasChBox";
@@ -924,7 +908,6 @@
         private System.Windows.Forms.Button Resetbtn;
         private System.Windows.Forms.Button ReadPolarbtn;
         private System.Windows.Forms.Button ReadVpibtn;
-        private System.Windows.Forms.Button ReadDCbtn;
         private System.Windows.Forms.Button ReadPowerbtn;
         private System.Windows.Forms.Button ReadBiasbtn;
         private System.Windows.Forms.Label label15;
