@@ -475,31 +475,26 @@ namespace SerialPortConnection
                                 case 1:
                                     {
                                         txtReceive.Text += "Stablizing. \r\n";
-                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 2:
                                     {
                                         txtReceive.Text += "Stablized. \r\n";
-                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 3:
                                     {
                                         txtReceive.Text += "Light too weak. \r\n";
-                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 4:
                                     {
                                         txtReceive.Text += "Light too strong. \r\n";
-                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 case 5:
                                     {
                                         txtReceive.Text += "Manual control. \r\n";
-                                        FormParameter.retry_time = 0;
                                         break;
                                     }
                                 default:
