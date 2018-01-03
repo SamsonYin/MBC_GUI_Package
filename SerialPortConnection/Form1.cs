@@ -1594,5 +1594,6 @@ namespace SerialPortConnection
             OriginalDataTextBox.Select(txtReceive.Text.Length, 0);
             OriginalDataTextBox.ScrollToCaret();
         }
+
     }
 }

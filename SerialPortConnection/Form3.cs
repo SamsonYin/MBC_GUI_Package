@@ -279,8 +279,8 @@ namespace SerialPortConnection
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YI_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        YIVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
+                                        txtReceive.Text += "I_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
+                                        IVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
                                         break;
                                     }
                                 case 2:
@@ -290,8 +290,8 @@ namespace SerialPortConnection
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YQ_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        YQVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
+                                        txtReceive.Text += "Q_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
+                                        QVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
                                         break;
                                     }
                                 case 3:
@@ -301,41 +301,8 @@ namespace SerialPortConnection
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
                                         vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "YP_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        YPVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                case 4:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XI_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        XIVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                case 5:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XQ_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        XQVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                case 6:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "XP_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        XPVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
+                                        txtReceive.Text += "P_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
+                                        PVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
                                         break;
                                     }
                                 default:
@@ -897,24 +864,6 @@ namespace SerialPortConnection
             //Delay_s(1);
             Delay_ms(100);
 
-            strArray[1] = "4";
-            FormParameter.arm = 4;
-            Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
-
-            strArray[1] = "5";
-            FormParameter.arm = 5;
-            Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
-
-            strArray[1] = "6";
-            FormParameter.arm = 6;
-            Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
-
         }
 
         //private void ReadDCbtn_Click(object sender, EventArgs e)
@@ -1297,5 +1246,6 @@ namespace SerialPortConnection
             OriginalDataTextBox.Select(txtReceive.Text.Length, 0);
             OriginalDataTextBox.ScrollToCaret();
         }
+
     }
 }

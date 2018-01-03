@@ -63,6 +63,7 @@
             this.ReadStatusbtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.DitherYIAmp_txBox = new System.Windows.Forms.TextBox();
@@ -93,10 +94,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -506,6 +506,17 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "DitherAmplitude Setting";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(20, 26);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(152, 18);
+            this.label8.TabIndex = 82;
+            this.label8.Text = "*Input Range:1-9";
+            // 
             // DitherAmpSetbtn
             // 
             this.DitherAmpSetbtn.Location = new System.Drawing.Point(276, 54);
@@ -640,10 +651,12 @@
             // 
             // XPVpitxBox
             // 
+            this.XPVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.XPVpitxBox.Location = new System.Drawing.Point(97, 467);
             this.XPVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.XPVpitxBox.MaxLength = 1;
+            this.XPVpitxBox.MaxLength = 0;
             this.XPVpitxBox.Name = "XPVpitxBox";
+            this.XPVpitxBox.ReadOnly = true;
             this.XPVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.XPVpitxBox.TabIndex = 93;
             // 
@@ -659,10 +672,12 @@
             // 
             // XQVpitxBox
             // 
+            this.XQVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.XQVpitxBox.Location = new System.Drawing.Point(97, 428);
             this.XQVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.XQVpitxBox.MaxLength = 1;
+            this.XQVpitxBox.MaxLength = 0;
             this.XQVpitxBox.Name = "XQVpitxBox";
+            this.XQVpitxBox.ReadOnly = true;
             this.XQVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.XQVpitxBox.TabIndex = 91;
             // 
@@ -678,10 +693,12 @@
             // 
             // XIVpitxBox
             // 
+            this.XIVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.XIVpitxBox.Location = new System.Drawing.Point(97, 389);
             this.XIVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.XIVpitxBox.MaxLength = 1;
+            this.XIVpitxBox.MaxLength = 0;
             this.XIVpitxBox.Name = "XIVpitxBox";
+            this.XIVpitxBox.ReadOnly = true;
             this.XIVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.XIVpitxBox.TabIndex = 89;
             // 
@@ -697,10 +714,12 @@
             // 
             // YPVpitxBox
             // 
+            this.YPVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.YPVpitxBox.Location = new System.Drawing.Point(97, 350);
             this.YPVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.YPVpitxBox.MaxLength = 1;
+            this.YPVpitxBox.MaxLength = 0;
             this.YPVpitxBox.Name = "YPVpitxBox";
+            this.YPVpitxBox.ReadOnly = true;
             this.YPVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.YPVpitxBox.TabIndex = 87;
             // 
@@ -716,10 +735,12 @@
             // 
             // YQVpitxBox
             // 
+            this.YQVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.YQVpitxBox.Location = new System.Drawing.Point(97, 311);
             this.YQVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.YQVpitxBox.MaxLength = 1;
+            this.YQVpitxBox.MaxLength = 0;
             this.YQVpitxBox.Name = "YQVpitxBox";
+            this.YQVpitxBox.ReadOnly = true;
             this.YQVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.YQVpitxBox.TabIndex = 85;
             // 
@@ -735,10 +756,12 @@
             // 
             // YIVpitxBox
             // 
+            this.YIVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.YIVpitxBox.Location = new System.Drawing.Point(97, 272);
             this.YIVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.YIVpitxBox.MaxLength = 20;
+            this.YIVpitxBox.MaxLength = 0;
             this.YIVpitxBox.Name = "YIVpitxBox";
+            this.YIVpitxBox.ReadOnly = true;
             this.YIVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.YIVpitxBox.TabIndex = 83;
             // 
@@ -826,6 +849,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Setting Bias Voltage";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(20, 27);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(332, 18);
+            this.label7.TabIndex = 81;
+            this.label7.Text = "*This function works in manual mode!";
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.OriginalDataTextBox);
@@ -849,28 +883,6 @@
             this.OriginalDataTextBox.TabIndex = 0;
             this.OriginalDataTextBox.Text = "";
             this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(20, 27);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(332, 18);
-            this.label7.TabIndex = 81;
-            this.label7.Text = "*This function works in manual mode!";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(20, 26);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 18);
-            this.label8.TabIndex = 82;
-            this.label8.Text = "*Input Range:1-9";
             // 
             // Form1
             // 
