@@ -63,6 +63,7 @@
             this.ReadStatusbtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.DitherYIAmp_txBox = new System.Windows.Forms.TextBox();
@@ -93,10 +94,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -506,6 +506,17 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "DitherAmplitude Setting";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(20, 26);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(152, 18);
+            this.label8.TabIndex = 82;
+            this.label8.Text = "*Input Range:1-9";
+            // 
             // DitherAmpSetbtn
             // 
             this.DitherAmpSetbtn.Location = new System.Drawing.Point(276, 54);
@@ -826,6 +837,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Setting Bias Voltage";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(20, 27);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(332, 18);
+            this.label7.TabIndex = 81;
+            this.label7.Text = "*This function works in manual mode!";
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.OriginalDataTextBox);
@@ -850,28 +872,6 @@
             this.OriginalDataTextBox.Text = "";
             this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(20, 27);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(332, 18);
-            this.label7.TabIndex = 81;
-            this.label7.Text = "*This function works in manual mode!";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(20, 26);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 18);
-            this.label8.TabIndex = 82;
-            this.label8.Text = "*Input Range:1-9";
-            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -890,7 +890,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DPIQ  Control Unit";
+            this.Text = "IQ  Control Unit";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form3_FormClosing);
             this.Load += new System.EventHandler(this.Form3_Load);
             this.groupBox1.ResumeLayout(false);

@@ -1117,7 +1117,17 @@ namespace SerialPortConnection
             Command_tx(strArray);
 
             FormParameter.UART_CMD = 109;
+
+            // 输出当前时间
+            DateTime dt = DateTime.Now;
+            txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+            txtReceive.SelectAll();
+            txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+
             txtReceive.Text += "Reset Command has been sended. \r\n";
+            ManualModebtn.Enabled = true;
+            Resumebtn.Enabled = false;
+            AutoModebtn.Enabled = false;
         }
 
         private void ReadPolarbtn_Click(object sender, EventArgs e)
