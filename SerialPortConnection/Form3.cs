@@ -390,67 +390,39 @@ namespace SerialPortConnection
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 104)
                         {
-                            int polarI_1;
-                            int polarQ_1;
-                            int polarP_1;
-                            int polarI_2;
-                            int polarQ_2;
-                            int polarP_2;
-                            polarI_1 = uart_result[1] + 1;
-                            polarQ_1 = uart_result[2] + 1;
-                            polarP_1 = uart_result[3] + 1;
-                            polarI_2 = uart_result[4] + 1;
-                            polarQ_2 = uart_result[5] + 1;
-                            polarP_2 = uart_result[6] + 1;
-                            if (polarI_1 == 1)
+                            int polarI;
+                            int polarQ;
+                            int polarP;
+
+                            polarI = uart_result[1] + 1;
+                            polarQ = uart_result[2] + 1;
+                            polarP = uart_result[3] + 1;
+
+                            if (polarI == 1)
                             {
-                                txtReceive.Text += "Polar YI: Positive \r\n";
+                                txtReceive.Text += "Polar I: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar YI: Negative \r\n";
+                                txtReceive.Text += "Polar I: Negative \r\n";
                             }
-                            if (polarQ_1 == 1)
+                            if (polarQ == 1)
                             {
-                                txtReceive.Text += "Polar YQ: Positive \r\n";
+                                txtReceive.Text += "Polar Q: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar YQ: Negative \r\n";
+                                txtReceive.Text += "Polar Q: Negative \r\n";
                             }
-                            if (polarP_1 == 1)
+                            if (polarP == 1)
                             {
-                                txtReceive.Text += "Polar YP: Positive \r\n";
+                                txtReceive.Text += "Polar P: Positive \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Polar YP: Negative \r\n";
+                                txtReceive.Text += "Polar P: Negative \r\n";
                             }
-                            if (polarI_2 == 1)
-                            {
-                                txtReceive.Text += "Polar XI: Positive \r\n";
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Polar XI: Negative \r\n";
-                            }
-                            if (polarQ_2 == 1)
-                            {
-                                txtReceive.Text += "Polar XQ: Positive \r\n";
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Polar XQ: Negative \r\n";
-                            }
-                            if (polarP_2 == 1)
-                            {
-                                txtReceive.Text += "Polar XP: Positive \r\n";
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Polar XP: Negative \r\n";
-                            }
-                            if (uart_result[7] == 119)
+                            if (uart_result[4] == 119)
                             {
                                 txtReceive.Text += "This function cannot be used now, please try later \r\n";
                             }
