@@ -58,13 +58,9 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.DitherYIAmp_txBox = new System.Windows.Forms.TextBox();
-            this.DitherXQAmp_txBox = new System.Windows.Forms.TextBox();
+            this.DitherIAmp_txBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.DitherYQAmp_txBox = new System.Windows.Forms.TextBox();
-            this.DitherXIAmp_txBox = new System.Windows.Forms.TextBox();
+            this.DitherQAmp_txBox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -387,13 +383,9 @@
             // 
             this.groupBox8.Controls.Add(this.label8);
             this.groupBox8.Controls.Add(this.DitherAmpSetbtn);
-            this.groupBox8.Controls.Add(this.label19);
-            this.groupBox8.Controls.Add(this.DitherYIAmp_txBox);
-            this.groupBox8.Controls.Add(this.DitherXQAmp_txBox);
+            this.groupBox8.Controls.Add(this.DitherIAmp_txBox);
             this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Controls.Add(this.label18);
-            this.groupBox8.Controls.Add(this.DitherYQAmp_txBox);
-            this.groupBox8.Controls.Add(this.DitherXIAmp_txBox);
+            this.groupBox8.Controls.Add(this.DitherQAmp_txBox);
             this.groupBox8.Controls.Add(this.label17);
             this.groupBox8.Location = new System.Drawing.Point(442, 549);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(5);
@@ -426,35 +418,15 @@
             this.DitherAmpSetbtn.UseVisualStyleBackColor = true;
             this.DitherAmpSetbtn.Click += new System.EventHandler(this.DitherAmpSetbtn_Click);
             // 
-            // label19
+            // DitherIAmp_txBox
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(36, 182);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(170, 18);
-            this.label19.TabIndex = 62;
-            this.label19.Text = "Set XQ Dither Amp:";
-            // 
-            // DitherYIAmp_txBox
-            // 
-            this.DitherYIAmp_txBox.Location = new System.Drawing.Point(208, 54);
-            this.DitherYIAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DitherYIAmp_txBox.MaxLength = 1;
-            this.DitherYIAmp_txBox.Name = "DitherYIAmp_txBox";
-            this.DitherYIAmp_txBox.Size = new System.Drawing.Size(51, 28);
-            this.DitherYIAmp_txBox.TabIndex = 55;
-            this.DitherYIAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherYIAmp_txBox_KeyPress);
-            // 
-            // DitherXQAmp_txBox
-            // 
-            this.DitherXQAmp_txBox.Location = new System.Drawing.Point(208, 179);
-            this.DitherXQAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DitherXQAmp_txBox.MaxLength = 1;
-            this.DitherXQAmp_txBox.Name = "DitherXQAmp_txBox";
-            this.DitherXQAmp_txBox.Size = new System.Drawing.Size(51, 28);
-            this.DitherXQAmp_txBox.TabIndex = 61;
-            this.DitherXQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherXQAmp_txBox_KeyPress);
+            this.DitherIAmp_txBox.Location = new System.Drawing.Point(208, 54);
+            this.DitherIAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherIAmp_txBox.MaxLength = 1;
+            this.DitherIAmp_txBox.Name = "DitherIAmp_txBox";
+            this.DitherIAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherIAmp_txBox.TabIndex = 55;
+            this.DitherIAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherIAmp_txBox_KeyPress);
             // 
             // label16
             // 
@@ -466,35 +438,15 @@
             this.label16.TabIndex = 56;
             this.label16.Text = "Set YI Dither Amp:";
             // 
-            // label18
+            // DitherQAmp_txBox
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(36, 142);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(170, 18);
-            this.label18.TabIndex = 60;
-            this.label18.Text = "Set XI Dither Amp:";
-            // 
-            // DitherYQAmp_txBox
-            // 
-            this.DitherYQAmp_txBox.Location = new System.Drawing.Point(208, 97);
-            this.DitherYQAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DitherYQAmp_txBox.MaxLength = 1;
-            this.DitherYQAmp_txBox.Name = "DitherYQAmp_txBox";
-            this.DitherYQAmp_txBox.Size = new System.Drawing.Size(51, 28);
-            this.DitherYQAmp_txBox.TabIndex = 57;
-            this.DitherYQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherYQAmp_txBox_KeyPress);
-            // 
-            // DitherXIAmp_txBox
-            // 
-            this.DitherXIAmp_txBox.Location = new System.Drawing.Point(208, 139);
-            this.DitherXIAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DitherXIAmp_txBox.MaxLength = 1;
-            this.DitherXIAmp_txBox.Name = "DitherXIAmp_txBox";
-            this.DitherXIAmp_txBox.Size = new System.Drawing.Size(51, 28);
-            this.DitherXIAmp_txBox.TabIndex = 59;
-            this.DitherXIAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherXIAmp_txBox_KeyPress);
+            this.DitherQAmp_txBox.Location = new System.Drawing.Point(208, 97);
+            this.DitherQAmp_txBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DitherQAmp_txBox.MaxLength = 1;
+            this.DitherQAmp_txBox.Name = "DitherQAmp_txBox";
+            this.DitherQAmp_txBox.Size = new System.Drawing.Size(51, 28);
+            this.DitherQAmp_txBox.TabIndex = 57;
+            this.DitherQAmp_txBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DitherQAmp_txBox_KeyPress);
             // 
             // label17
             // 
@@ -769,12 +721,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button DitherAmpSetbtn;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox DitherYQAmp_txBox;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox DitherXIAmp_txBox;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox DitherXQAmp_txBox;
-        private System.Windows.Forms.TextBox DitherYIAmp_txBox;
+        private System.Windows.Forms.TextBox DitherQAmp_txBox;
+        private System.Windows.Forms.TextBox DitherIAmp_txBox;
         private System.Windows.Forms.ComboBox IPolarBox;
         private System.Windows.Forms.ComboBox QPolarBox;
         private System.Windows.Forms.ComboBox PPolarBox;

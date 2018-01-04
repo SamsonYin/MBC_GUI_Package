@@ -102,10 +102,8 @@ namespace SerialPortConnection
             public static int UART_CMD;
             public static int mode_flag;
             public static uint arm;
-            public static string YI_dither_amp;
-            public static string YQ_dither_amp;
-            public static string XI_dither_amp;
-            public static string XQ_dither_amp;
+            public static string I_dither_amp;
+            public static string Q_dither_amp;
             public static uint shortDataLength = 9;
         }
 
@@ -978,81 +976,39 @@ namespace SerialPortConnection
 
             FormParameter.UART_CMD = 111;
 
-            if (String.IsNullOrEmpty(DitherYIAmp_txBox.Text) == false)
+            if (String.IsNullOrEmpty(DitherIAmp_txBox.Text) == false)
             {
-                FormParameter.YI_dither_amp = DitherYIAmp_txBox.Text;
+                FormParameter.I_dither_amp = DitherIAmp_txBox.Text;
             }
             else
             {
-                MessageBox.Show("Please enter YI dither amplitude coefficient!", "Error 021");
+                MessageBox.Show("Please enter I dither amplitude coefficient!", "Error 021");
                 return;
             }
-            if (String.IsNullOrEmpty(DitherYQAmp_txBox.Text) == false)
+            if (String.IsNullOrEmpty(DitherQAmp_txBox.Text) == false)
             {
-                FormParameter.YQ_dither_amp = DitherYQAmp_txBox.Text;
+                FormParameter.Q_dither_amp = DitherQAmp_txBox.Text;
             }
             else
             {
-                MessageBox.Show("Please enter YQ dither amplitude coefficient!", "Error 022");
-                return;
-            }
-            if (String.IsNullOrEmpty(DitherXIAmp_txBox.Text) == false)
-            {
-                FormParameter.XI_dither_amp = DitherXIAmp_txBox.Text;
-            }
-            else
-            {
-                MessageBox.Show("Please enter XI dither amplitude coefficient!", "Error 023");
-                return;
-            }
-            if (String.IsNullOrEmpty(DitherXQAmp_txBox.Text) == false)
-            {
-                FormParameter.XQ_dither_amp = DitherXQAmp_txBox.Text;
-            }
-            else
-            {
-                MessageBox.Show("Please enter XQ dither amplitude coefficient!", "Error 024");
+                MessageBox.Show("Please enter Q dither amplitude coefficient!", "Error 022");
                 return;
             }
 
-            string[] strArray = { "6F", "1", "1", "1", "1", "0", "0" };
-            strArray[1] = FormParameter.YI_dither_amp;
-            strArray[2] = FormParameter.YQ_dither_amp;
-            strArray[3] = FormParameter.XI_dither_amp;
-            strArray[4] = FormParameter.XQ_dither_amp;
+            string[] strArray = { "6F", "1", "1", "0", "0", "0", "0" };
+            strArray[1] = FormParameter.I_dither_amp;
+            strArray[2] = FormParameter.Q_dither_amp;
             Command_tx(strArray);
         }
 
-        private void DitherYIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void DitherIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
-            {
-                e.Handled = true;
-            }
+
         }
 
-        private void DitherYQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void DitherQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
-            {
-                e.Handled = true;
-            }
-        }
 
-        private void DitherXIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void DitherXQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
-            {
-                e.Handled = true;
-            }
         }
 
         private void SetPolarbtn_Click(object sender, EventArgs e)
