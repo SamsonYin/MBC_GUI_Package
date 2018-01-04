@@ -1140,34 +1140,19 @@ namespace SerialPortConnection
             string[] strArray = { "6B", "0", "0", "0", "0", "0", "0" };
             switch (SetDACBox.Text)
             {
-                case "Y-I":
+                case "I":
                     {
                         strArray[1] = Convert.ToString(1);
                         break;
                     }
-                case "Y-Q":
+                case "Q":
                     {
                         strArray[1] = Convert.ToString(2);
                         break;
                     }
-                case "Y-P":
+                case "P":
                     {
                         strArray[1] = Convert.ToString(3);
-                        break;
-                    }
-                case "X-I":
-                    {
-                        strArray[1] = Convert.ToString(4);
-                        break;
-                    }
-                case "X-Q":
-                    {
-                        strArray[1] = Convert.ToString(5);
-                        break;
-                    }
-                case "X-P":
-                    {
-                        strArray[1] = Convert.ToString(6);
                         break;
                     }
                 default:

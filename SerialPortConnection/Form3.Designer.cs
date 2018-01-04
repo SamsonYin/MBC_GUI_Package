@@ -236,12 +236,9 @@
             this.SetDACBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SetDACBox.FormattingEnabled = true;
             this.SetDACBox.Items.AddRange(new object[] {
-            "Y-I",
-            "Y-Q",
-            "Y-P",
-            "X-I",
-            "X-Q",
-            "X-P"});
+            "I",
+            "Q",
+            "P"});
             this.SetDACBox.Location = new System.Drawing.Point(159, 61);
             this.SetDACBox.Margin = new System.Windows.Forms.Padding(5);
             this.SetDACBox.Name = "SetDACBox";
