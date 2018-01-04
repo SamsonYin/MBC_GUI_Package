@@ -50,12 +50,9 @@ namespace SerialPortConnection
         private void Form3_Load(object sender, EventArgs e)
         {
             //预设Polar值
-            YIPolarBox.SelectedIndex = 0;
-            YQPolarBox.SelectedIndex = 0;
-            YPPolarBox.SelectedIndex = 0;
-            XIPolarBox.SelectedIndex = 0;
-            XQPolarBox.SelectedIndex = 0;
-            XPPolarBox.SelectedIndex = 0;
+            IPolarBox.SelectedIndex = 0;
+            QPolarBox.SelectedIndex = 0;
+            PPolarBox.SelectedIndex = 0;
 
             //预设控件状态
             Resumebtn.Enabled = false;
@@ -1069,8 +1066,8 @@ namespace SerialPortConnection
 
             FormParameter.UART_CMD = 108;
 
-            string[] strArray = { "6C", "1", "1", "1", "1", "1", "1" };
-            if ((YIPolarBox.Text) == "Positive")
+            string[] strArray = { "6C", "1", "1", "1", "0", "0", "0" };
+            if ((IPolarBox.Text) == "Positive")
             {
                 strArray[1] = Convert.ToString(1);
             }
@@ -1078,7 +1075,7 @@ namespace SerialPortConnection
             {
                 strArray[1] = Convert.ToString(2);
             }
-            if ((YQPolarBox.Text) == "Positive")
+            if ((QPolarBox.Text) == "Positive")
             {
                 strArray[2] = Convert.ToString(1);
             }
@@ -1086,7 +1083,7 @@ namespace SerialPortConnection
             {
                 strArray[2] = Convert.ToString(2);
             }
-            if ((YPPolarBox.Text) == "Positive")
+            if ((PPolarBox.Text) == "Positive")
             {
                 strArray[3] = Convert.ToString(1);
             }
@@ -1094,31 +1091,7 @@ namespace SerialPortConnection
             {
                 strArray[3] = Convert.ToString(2);
             }
-            if ((XIPolarBox.Text) == "Positive")
-            {
-                strArray[4] = Convert.ToString(1);
-            }
-            else
-            {
-                strArray[4] = Convert.ToString(2);
-            }
-            if ((XQPolarBox.Text) == "Positive")
-            {
-                strArray[5] = Convert.ToString(1);
-            }
-            else
-            {
-                strArray[5] = Convert.ToString(2);
-            }
-            if ((XPPolarBox.Text) == "Positive")
-            {
-                strArray[6] = Convert.ToString(1);
-            }
-            else
-            {
-                strArray[6] = Convert.ToString(2);
-            }
-
+            
             Command_tx(strArray);
         }
 

@@ -32,18 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SetPolarbtn = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.YIPolarBox = new System.Windows.Forms.ComboBox();
-            this.XPPolarBox = new System.Windows.Forms.ComboBox();
-            this.YQPolarBox = new System.Windows.Forms.ComboBox();
-            this.XQPolarBox = new System.Windows.Forms.ComboBox();
-            this.YPPolarBox = new System.Windows.Forms.ComboBox();
-            this.XIPolarBox = new System.Windows.Forms.ComboBox();
+            this.IPolarBox = new System.Windows.Forms.ComboBox();
+            this.QPolarBox = new System.Windows.Forms.ComboBox();
+            this.PPolarBox = new System.Windows.Forms.ComboBox();
             this.SetDACbtn = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.SetDACtxBox = new System.Windows.Forms.TextBox();
@@ -102,18 +96,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SetPolarbtn);
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.YIPolarBox);
-            this.groupBox1.Controls.Add(this.XPPolarBox);
-            this.groupBox1.Controls.Add(this.YQPolarBox);
-            this.groupBox1.Controls.Add(this.XQPolarBox);
-            this.groupBox1.Controls.Add(this.YPPolarBox);
-            this.groupBox1.Controls.Add(this.XIPolarBox);
+            this.groupBox1.Controls.Add(this.IPolarBox);
+            this.groupBox1.Controls.Add(this.QPolarBox);
+            this.groupBox1.Controls.Add(this.PPolarBox);
             this.groupBox1.Location = new System.Drawing.Point(442, 18);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
@@ -134,45 +122,15 @@
             this.SetPolarbtn.UseVisualStyleBackColor = true;
             this.SetPolarbtn.Click += new System.EventHandler(this.SetPolarbtn_Click);
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(19, 320);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(125, 18);
-            this.label25.TabIndex = 74;
-            this.label25.Text = "Set XP Polar:";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(20, 265);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(125, 18);
-            this.label24.TabIndex = 73;
-            this.label24.Text = "Set XQ Polar:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(20, 210);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(125, 18);
-            this.label23.TabIndex = 72;
-            this.label23.Text = "Set XI Polar:";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(20, 155);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(125, 18);
+            this.label22.Size = new System.Drawing.Size(116, 18);
             this.label22.TabIndex = 71;
-            this.label22.Text = "Set YP Polar:";
+            this.label22.Text = "Set P Polar:";
             // 
             // label21
             // 
@@ -180,9 +138,9 @@
             this.label21.Location = new System.Drawing.Point(20, 100);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(125, 18);
+            this.label21.Size = new System.Drawing.Size(116, 18);
             this.label21.TabIndex = 70;
-            this.label21.Text = "Set YQ Polar:";
+            this.label21.Text = "Set Q Polar:";
             // 
             // label20
             // 
@@ -190,87 +148,48 @@
             this.label20.Location = new System.Drawing.Point(20, 45);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(125, 18);
+            this.label20.Size = new System.Drawing.Size(116, 18);
             this.label20.TabIndex = 69;
-            this.label20.Text = "Set YI Polar:";
+            this.label20.Text = "Set I Polar:";
             // 
-            // YIPolarBox
+            // IPolarBox
             // 
-            this.YIPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.YIPolarBox.FormattingEnabled = true;
-            this.YIPolarBox.Items.AddRange(new object[] {
+            this.IPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.IPolarBox.FormattingEnabled = true;
+            this.IPolarBox.Items.AddRange(new object[] {
             "Positive",
             "Negative"});
-            this.YIPolarBox.Location = new System.Drawing.Point(150, 42);
-            this.YIPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.YIPolarBox.Name = "YIPolarBox";
-            this.YIPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.YIPolarBox.TabIndex = 63;
+            this.IPolarBox.Location = new System.Drawing.Point(150, 42);
+            this.IPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.IPolarBox.Name = "IPolarBox";
+            this.IPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.IPolarBox.TabIndex = 63;
             // 
-            // XPPolarBox
+            // QPolarBox
             // 
-            this.XPPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.XPPolarBox.FormattingEnabled = true;
-            this.XPPolarBox.Items.AddRange(new object[] {
+            this.QPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.QPolarBox.FormattingEnabled = true;
+            this.QPolarBox.Items.AddRange(new object[] {
             "Positive",
             "Negative"});
-            this.XPPolarBox.Location = new System.Drawing.Point(150, 317);
-            this.XPPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.XPPolarBox.Name = "XPPolarBox";
-            this.XPPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.XPPolarBox.TabIndex = 68;
+            this.QPolarBox.Location = new System.Drawing.Point(150, 97);
+            this.QPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.QPolarBox.Name = "QPolarBox";
+            this.QPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.QPolarBox.TabIndex = 64;
             // 
-            // YQPolarBox
+            // PPolarBox
             // 
-            this.YQPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.YQPolarBox.FormattingEnabled = true;
-            this.YQPolarBox.Items.AddRange(new object[] {
+            this.PPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PPolarBox.FormattingEnabled = true;
+            this.PPolarBox.Items.AddRange(new object[] {
             "Positive",
             "Negative"});
-            this.YQPolarBox.Location = new System.Drawing.Point(150, 97);
-            this.YQPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.YQPolarBox.Name = "YQPolarBox";
-            this.YQPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.YQPolarBox.TabIndex = 64;
-            // 
-            // XQPolarBox
-            // 
-            this.XQPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.XQPolarBox.FormattingEnabled = true;
-            this.XQPolarBox.Items.AddRange(new object[] {
-            "Positive",
-            "Negative"});
-            this.XQPolarBox.Location = new System.Drawing.Point(150, 262);
-            this.XQPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.XQPolarBox.Name = "XQPolarBox";
-            this.XQPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.XQPolarBox.TabIndex = 67;
-            // 
-            // YPPolarBox
-            // 
-            this.YPPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.YPPolarBox.FormattingEnabled = true;
-            this.YPPolarBox.Items.AddRange(new object[] {
-            "Positive",
-            "Negative"});
-            this.YPPolarBox.Location = new System.Drawing.Point(150, 152);
-            this.YPPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.YPPolarBox.Name = "YPPolarBox";
-            this.YPPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.YPPolarBox.TabIndex = 65;
-            // 
-            // XIPolarBox
-            // 
-            this.XIPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.XIPolarBox.FormattingEnabled = true;
-            this.XIPolarBox.Items.AddRange(new object[] {
-            "Positive",
-            "Negative"});
-            this.XIPolarBox.Location = new System.Drawing.Point(150, 207);
-            this.XIPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.XIPolarBox.Name = "XIPolarBox";
-            this.XIPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.XIPolarBox.TabIndex = 66;
+            this.PPolarBox.Location = new System.Drawing.Point(150, 152);
+            this.PPolarBox.Margin = new System.Windows.Forms.Padding(5);
+            this.PPolarBox.Name = "PPolarBox";
+            this.PPolarBox.Size = new System.Drawing.Size(115, 26);
+            this.PPolarBox.TabIndex = 65;
             // 
             // SetDACbtn
             // 
@@ -859,18 +778,12 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox DitherXQAmp_txBox;
         private System.Windows.Forms.TextBox DitherYIAmp_txBox;
-        private System.Windows.Forms.ComboBox YIPolarBox;
-        private System.Windows.Forms.ComboBox YQPolarBox;
-        private System.Windows.Forms.ComboBox YPPolarBox;
-        private System.Windows.Forms.ComboBox XPPolarBox;
-        private System.Windows.Forms.ComboBox XQPolarBox;
-        private System.Windows.Forms.ComboBox XIPolarBox;
+        private System.Windows.Forms.ComboBox IPolarBox;
+        private System.Windows.Forms.ComboBox QPolarBox;
+        private System.Windows.Forms.ComboBox PPolarBox;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button SetPolarbtn;
         private System.Windows.Forms.Button ManualModebtn;
         private System.Windows.Forms.Button AutoModebtn;
