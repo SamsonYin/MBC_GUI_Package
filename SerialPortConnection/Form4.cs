@@ -792,11 +792,11 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "6D", "0", "0", "0", "0", "0", "0" };
+            string[] strArray = { "6E", "0", "0", "0", "0", "0", "0" };
 
             Command_tx(strArray);
 
-            FormParameter.UART_CMD = 109;
+            FormParameter.UART_CMD = 110;
 
             // 输出当前时间
             DateTime dt = DateTime.Now;
