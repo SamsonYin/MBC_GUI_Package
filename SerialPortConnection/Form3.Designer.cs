@@ -102,7 +102,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(429, 368);
+            this.groupBox1.Size = new System.Drawing.Size(429, 206);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Polar Setting";
@@ -112,7 +112,7 @@
             this.SetPolarbtn.Location = new System.Drawing.Point(285, 42);
             this.SetPolarbtn.Margin = new System.Windows.Forms.Padding(5);
             this.SetPolarbtn.Name = "SetPolarbtn";
-            this.SetPolarbtn.Size = new System.Drawing.Size(113, 296);
+            this.SetPolarbtn.Size = new System.Drawing.Size(113, 136);
             this.SetPolarbtn.TabIndex = 75;
             this.SetPolarbtn.Text = "Set Polar";
             this.SetPolarbtn.UseVisualStyleBackColor = true;
@@ -320,10 +320,10 @@
             // 
             // ReadVpibtn
             // 
-            this.ReadVpibtn.Location = new System.Drawing.Point(215, 357);
+            this.ReadVpibtn.Location = new System.Drawing.Point(215, 272);
             this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadVpibtn.Name = "ReadVpibtn";
-            this.ReadVpibtn.Size = new System.Drawing.Size(155, 55);
+            this.ReadVpibtn.Size = new System.Drawing.Size(155, 106);
             this.ReadVpibtn.TabIndex = 46;
             this.ReadVpibtn.Text = "Read Vpi";
             this.ReadVpibtn.UseVisualStyleBackColor = true;
@@ -387,11 +387,11 @@
             this.groupBox8.Controls.Add(this.label16);
             this.groupBox8.Controls.Add(this.DitherQAmp_txBox);
             this.groupBox8.Controls.Add(this.label17);
-            this.groupBox8.Location = new System.Drawing.Point(442, 549);
+            this.groupBox8.Location = new System.Drawing.Point(442, 427);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox8.Size = new System.Drawing.Size(429, 224);
+            this.groupBox8.Size = new System.Drawing.Size(429, 149);
             this.groupBox8.TabIndex = 15;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "DitherAmplitude Setting";
@@ -412,7 +412,7 @@
             this.DitherAmpSetbtn.Location = new System.Drawing.Point(276, 54);
             this.DitherAmpSetbtn.Margin = new System.Windows.Forms.Padding(5);
             this.DitherAmpSetbtn.Name = "DitherAmpSetbtn";
-            this.DitherAmpSetbtn.Size = new System.Drawing.Size(113, 153);
+            this.DitherAmpSetbtn.Size = new System.Drawing.Size(113, 71);
             this.DitherAmpSetbtn.TabIndex = 54;
             this.DitherAmpSetbtn.Text = "Set Dither Amp";
             this.DitherAmpSetbtn.UseVisualStyleBackColor = true;
@@ -477,7 +477,7 @@
             this.groupBox7.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox7.Size = new System.Drawing.Size(411, 504);
+            this.groupBox7.Size = new System.Drawing.Size(411, 402);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Read Parameters";
@@ -566,7 +566,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(475, 394);
+            this.groupBox2.Size = new System.Drawing.Size(475, 335);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Response of MBC";
@@ -578,7 +578,7 @@
             this.txtReceive.Margin = new System.Windows.Forms.Padding(5);
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
-            this.txtReceive.Size = new System.Drawing.Size(423, 336);
+            this.txtReceive.Size = new System.Drawing.Size(423, 285);
             this.txtReceive.TabIndex = 0;
             this.txtReceive.Text = "";
             this.txtReceive.TextChanged += new System.EventHandler(this.txtReceive_TextChanged);
@@ -589,7 +589,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(580, 781);
+            this.btnClear.Location = new System.Drawing.Point(580, 662);
             this.btnClear.Margin = new System.Windows.Forms.Padding(5);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(140, 35);
@@ -600,7 +600,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(731, 781);
+            this.btnExit.Location = new System.Drawing.Point(731, 662);
             this.btnExit.Margin = new System.Windows.Forms.Padding(5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(140, 35);
@@ -617,7 +617,7 @@
             this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.SetDACtxBox);
             this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Location = new System.Drawing.Point(442, 395);
+            this.groupBox3.Location = new System.Drawing.Point(442, 249);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
@@ -640,11 +640,11 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.OriginalDataTextBox);
-            this.groupBox5.Location = new System.Drawing.Point(892, 422);
+            this.groupBox5.Location = new System.Drawing.Point(892, 369);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox5.Size = new System.Drawing.Size(475, 394);
+            this.groupBox5.Size = new System.Drawing.Size(475, 335);
             this.groupBox5.TabIndex = 82;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Original data";
@@ -656,7 +656,7 @@
             this.OriginalDataTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.OriginalDataTextBox.Name = "OriginalDataTextBox";
             this.OriginalDataTextBox.ReadOnly = true;
-            this.OriginalDataTextBox.Size = new System.Drawing.Size(423, 336);
+            this.OriginalDataTextBox.Size = new System.Drawing.Size(423, 285);
             this.OriginalDataTextBox.TabIndex = 0;
             this.OriginalDataTextBox.Text = "";
             this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
@@ -665,7 +665,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1390, 827);
+            this.ClientSize = new System.Drawing.Size(1390, 713);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);

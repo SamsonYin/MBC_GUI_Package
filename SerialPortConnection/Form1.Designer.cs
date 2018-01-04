@@ -426,10 +426,10 @@
             // 
             // ReadVpibtn
             // 
-            this.ReadVpibtn.Location = new System.Drawing.Point(215, 357);
+            this.ReadVpibtn.Location = new System.Drawing.Point(215, 272);
             this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadVpibtn.Name = "ReadVpibtn";
-            this.ReadVpibtn.Size = new System.Drawing.Size(155, 55);
+            this.ReadVpibtn.Size = new System.Drawing.Size(155, 223);
             this.ReadVpibtn.TabIndex = 46;
             this.ReadVpibtn.Text = "Read Vpi";
             this.ReadVpibtn.UseVisualStyleBackColor = true;
