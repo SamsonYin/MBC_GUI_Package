@@ -25,3 +25,4 @@ E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortCon
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.exe
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.pdb
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form3.resources
+E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form4.resources

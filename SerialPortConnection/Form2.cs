@@ -49,7 +49,11 @@ namespace SerialPortConnection
                     Common.formstatus = 1;
                     break;
                 case 3:
-                    MessageBox.Show("MZM", "Error");
+                    sp1.Close();
+                    MBC_Control_Unit = new Form4();
+                    this.Hide();
+                    MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
                     break;
                 case 4:
                     MessageBox.Show("Q", "Error");
