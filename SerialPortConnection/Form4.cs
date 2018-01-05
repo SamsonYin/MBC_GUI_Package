@@ -414,14 +414,14 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 106:
+                case 107:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 106)
+                        if (FormParameter.UART_CMD == 107)
                         {
                             switch (uart_result[1])
                             {
@@ -1059,9 +1059,9 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "6A", "2", "0", "0", "0", "0", "0" };
+            string[] strArray = { "6B", "2", "0", "0", "0", "0", "0" };
 
-            FormParameter.UART_CMD = 106;
+            FormParameter.UART_CMD = 107;
             FormParameter.mode_flag = 2;
 
             Command_tx(strArray);
@@ -1075,9 +1075,9 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "6A", "1", "0", "0", "0", "0", "0" };
+            string[] strArray = { "6B", "1", "0", "0", "0", "0", "0" };
 
-            FormParameter.UART_CMD = 106;
+            FormParameter.UART_CMD = 107;
             FormParameter.mode_flag = 1;
 
             Command_tx(strArray);
