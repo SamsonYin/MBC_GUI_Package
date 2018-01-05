@@ -223,7 +223,7 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 103:
+                case 105:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
@@ -232,46 +232,19 @@ namespace SerialPortConnection
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
                         if (FormParameter.UART_CMD == 103)
                         {
-                            switch (FormParameter.arm)
+                            if(uart_result[5] == 17)
                             {
-                                case 1:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "I_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        IVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "Q_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        QVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                case 3:
-                                    {
-                                        float_U32 vpi = new float_U32();
-                                        vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "P_Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
-                                        PVpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        txtReceive.Text += "ReadVpi Error. Please try again. \r\n";
-                                        break;
-                                    }
+                                float_U32 vpi = new float_U32();
+                                vpi.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                                vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                                vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                                vpi.intData = vpi.intData + (Convert.ToUInt32(uart_result[1]));
+                                txtReceive.Text += "Vpi:" + (Convert.ToString(vpi.floatData)) + " V\r\n";
+                                VpitxBox.Text = Convert.ToString(vpi.floatData) + "V";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Read Vpi Error. Please try again. \r\n";
                             }
                         }
                         else
@@ -802,25 +775,10 @@ namespace SerialPortConnection
                 return;
             }
 
-            FormParameter.UART_CMD = 103;
+            FormParameter.UART_CMD = 105;
 
-            string[] strArray = { "67", "1", "0", "0", "0", "0", "0" };
-            FormParameter.arm = 1;
+            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
             Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
-
-            strArray[1] = "2";
-            FormParameter.arm = 2;
-            Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
-
-            strArray[1] = "3";
-            FormParameter.arm = 3;
-            Command_tx(strArray);
-            //Delay_s(1);
-            Delay_ms(100);
 
         }
 

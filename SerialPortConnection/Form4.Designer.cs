@@ -62,12 +62,8 @@
             this.DitherQAmp_txBox = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.PVpitxBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.QVpitxBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.IVpitxBox = new System.Windows.Forms.TextBox();
+            this.VpitxBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtReceive = new System.Windows.Forms.RichTextBox();
             this.tmSend = new System.Windows.Forms.Timer(this.components);
@@ -449,12 +445,8 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.ReadDCbtn);
-            this.groupBox7.Controls.Add(this.label3);
-            this.groupBox7.Controls.Add(this.PVpitxBox);
-            this.groupBox7.Controls.Add(this.label2);
-            this.groupBox7.Controls.Add(this.QVpitxBox);
             this.groupBox7.Controls.Add(this.label1);
-            this.groupBox7.Controls.Add(this.IVpitxBox);
+            this.groupBox7.Controls.Add(this.VpitxBox);
             this.groupBox7.Controls.Add(this.ReadStatusbtn);
             this.groupBox7.Controls.Add(this.ReadPolarbtn);
             this.groupBox7.Controls.Add(this.ReadVpibtn);
@@ -469,68 +461,26 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Read Parameters";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 355);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 18);
-            this.label3.TabIndex = 88;
-            this.label3.Text = "P Vpi:";
-            // 
-            // PVpitxBox
-            // 
-            this.PVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.PVpitxBox.Location = new System.Drawing.Point(97, 350);
-            this.PVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.PVpitxBox.MaxLength = 0;
-            this.PVpitxBox.Name = "PVpitxBox";
-            this.PVpitxBox.ReadOnly = true;
-            this.PVpitxBox.Size = new System.Drawing.Size(100, 28);
-            this.PVpitxBox.TabIndex = 87;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 316);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
-            this.label2.TabIndex = 86;
-            this.label2.Text = "Q Vpi:";
-            // 
-            // QVpitxBox
-            // 
-            this.QVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.QVpitxBox.Location = new System.Drawing.Point(97, 311);
-            this.QVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.QVpitxBox.MaxLength = 0;
-            this.QVpitxBox.Name = "QVpitxBox";
-            this.QVpitxBox.ReadOnly = true;
-            this.QVpitxBox.Size = new System.Drawing.Size(100, 28);
-            this.QVpitxBox.TabIndex = 85;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(27, 277);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 84;
-            this.label1.Text = "I Vpi:";
+            this.label1.Text = "Vpi:";
             // 
-            // IVpitxBox
+            // VpitxBox
             // 
-            this.IVpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.IVpitxBox.Location = new System.Drawing.Point(97, 272);
-            this.IVpitxBox.Margin = new System.Windows.Forms.Padding(2);
-            this.IVpitxBox.MaxLength = 0;
-            this.IVpitxBox.Name = "IVpitxBox";
-            this.IVpitxBox.ReadOnly = true;
-            this.IVpitxBox.Size = new System.Drawing.Size(100, 28);
-            this.IVpitxBox.TabIndex = 83;
+            this.VpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.VpitxBox.Location = new System.Drawing.Point(97, 272);
+            this.VpitxBox.Margin = new System.Windows.Forms.Padding(2);
+            this.VpitxBox.MaxLength = 0;
+            this.VpitxBox.Name = "VpitxBox";
+            this.VpitxBox.ReadOnly = true;
+            this.VpitxBox.Size = new System.Drawing.Size(100, 28);
+            this.VpitxBox.TabIndex = 83;
             // 
             // groupBox2
             // 
@@ -722,11 +672,7 @@
         private System.Windows.Forms.ComboBox SetDACBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox IVpitxBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox PVpitxBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox QVpitxBox;
+        private System.Windows.Forms.TextBox VpitxBox;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox OriginalDataTextBox;
         private System.Windows.Forms.Label label8;
