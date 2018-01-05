@@ -365,14 +365,14 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 105:
+                case 112:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 105)
+                        if (FormParameter.UART_CMD == 112)
                         {
                             switch (uart_result[1])
                             {
@@ -777,11 +777,11 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "69", "0", "0", "0", "0", "0", "0" };
+            string[] strArray = { "70", "0", "0", "0", "0", "0", "0" };
 
             Command_tx(strArray);
 
-            FormParameter.UART_CMD = 105;
+            FormParameter.UART_CMD = 112;
         }
 
         private void Resetbtn_Click(object sender, EventArgs e)
