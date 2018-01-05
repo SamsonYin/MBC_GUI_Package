@@ -47,7 +47,6 @@
             this.ManualModebtn = new System.Windows.Forms.Button();
             this.Resumebtn = new System.Windows.Forms.Button();
             this.Pausebtn = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
             this.ReadBiasbtn = new System.Windows.Forms.Button();
             this.ReadPowerbtn = new System.Windows.Forms.Button();
             this.ReadVpibtn = new System.Windows.Forms.Button();
@@ -69,7 +68,6 @@
             this.QVpitxBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.IVpitxBox = new System.Windows.Forms.TextBox();
-            this.BiasChBox = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtReceive = new System.Windows.Forms.RichTextBox();
             this.tmSend = new System.Windows.Forms.Timer(this.components);
@@ -286,17 +284,6 @@
             this.Pausebtn.UseVisualStyleBackColor = true;
             this.Pausebtn.Click += new System.EventHandler(this.Pausebtn_Click);
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("宋体", 9F);
-            this.label15.Location = new System.Drawing.Point(15, 210);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(125, 18);
-            this.label15.TabIndex = 51;
-            this.label15.Text = "Bias Channel:";
-            // 
             // ReadBiasbtn
             // 
             this.ReadBiasbtn.Location = new System.Drawing.Point(215, 195);
@@ -468,12 +455,10 @@
             this.groupBox7.Controls.Add(this.QVpitxBox);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.IVpitxBox);
-            this.groupBox7.Controls.Add(this.BiasChBox);
             this.groupBox7.Controls.Add(this.ReadStatusbtn);
             this.groupBox7.Controls.Add(this.ReadPolarbtn);
             this.groupBox7.Controls.Add(this.ReadVpibtn);
             this.groupBox7.Controls.Add(this.ReadPowerbtn);
-            this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.ReadBiasbtn);
             this.groupBox7.Location = new System.Drawing.Point(11, 302);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(5);
@@ -546,20 +531,6 @@
             this.IVpitxBox.ReadOnly = true;
             this.IVpitxBox.Size = new System.Drawing.Size(100, 28);
             this.IVpitxBox.TabIndex = 83;
-            // 
-            // BiasChBox
-            // 
-            this.BiasChBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BiasChBox.FormattingEnabled = true;
-            this.BiasChBox.Items.AddRange(new object[] {
-            "I",
-            "Q",
-            "P"});
-            this.BiasChBox.Location = new System.Drawing.Point(138, 207);
-            this.BiasChBox.Margin = new System.Windows.Forms.Padding(5);
-            this.BiasChBox.Name = "BiasChBox";
-            this.BiasChBox.Size = new System.Drawing.Size(58, 26);
-            this.BiasChBox.TabIndex = 82;
             // 
             // groupBox2
             // 
@@ -728,7 +699,6 @@
         private System.Windows.Forms.Button ReadVpibtn;
         private System.Windows.Forms.Button ReadPowerbtn;
         private System.Windows.Forms.Button ReadBiasbtn;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button Pausebtn;
         private System.Windows.Forms.Button Resumebtn;
         private System.Windows.Forms.Label label16;
@@ -751,7 +721,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ComboBox SetDACBox;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox BiasChBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox IVpitxBox;
         private System.Windows.Forms.Label label3;

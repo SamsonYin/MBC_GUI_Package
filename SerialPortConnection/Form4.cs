@@ -58,7 +58,6 @@ namespace SerialPortConnection
             Resumebtn.Enabled = false;
             AutoModebtn.Enabled = false;
             SetDACBox.SelectedIndex = 0;
-            BiasChBox.SelectedIndex = 0;
 
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
@@ -202,53 +201,21 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 102:
+                case 104:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 102)
+                        if (FormParameter.UART_CMD == 104)
                         {
-                            switch (BiasChBox.Text)
-                            {
-                                case "I":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "I_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                case "Q":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "Q_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                case "P":
-                                    {
-                                        float_U32 bias = new float_U32();
-                                        bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                                        bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
-                                        txtReceive.Text += "P_Bias:" + (Convert.ToString(bias.floatData)) + " V\r\n";
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        txtReceive.Text += "ReadBias Error. Please try again. \r\n";
-                                        break;
-                                    }
-                            }
+                            float_U32 bias = new float_U32();
+                            bias.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            bias.intData = bias.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            bias.intData = bias.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            bias.intData = bias.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "Bias Voltage:" + (Convert.ToString(bias.floatData)) + " V\r\n";
                         }
                         else
                         {
@@ -893,33 +860,10 @@ namespace SerialPortConnection
                 return;
             }
 
-            FormParameter.UART_CMD = 102;
+            FormParameter.UART_CMD = 104;
 
-            string[] strArray = { "66", "0", "0", "0", "0", "0", "0" };
+            string[] strArray = { "68", "0", "0", "0", "0", "0", "0" };
 
-            switch (BiasChBox.Text)
-            {
-                case "I":
-                    {
-                        strArray[1] = Convert.ToString(1);
-                        break;
-                    }
-                case "Q":
-                    {
-                        strArray[1] = Convert.ToString(2);
-                        break;
-                    }
-                case "P":
-                    {
-                        strArray[1] = Convert.ToString(3);
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Please choose bias channel", "Error 017");
-                        return;
-                    }
-            }
             Command_tx(strArray);
         }
 
