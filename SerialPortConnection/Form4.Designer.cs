@@ -77,6 +77,7 @@
             this.ReadDCbtn = new System.Windows.Forms.Button();
             this.JumpVpiNbtn = new System.Windows.Forms.Button();
             this.JumpVpiPbtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -621,11 +622,23 @@
             this.JumpVpiPbtn.UseVisualStyleBackColor = true;
             this.JumpVpiPbtn.Click += new System.EventHandler(this.JumpVpiPbtn_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(442, 595);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(155, 55);
+            this.button1.TabIndex = 90;
+            this.button1.Text = "Read Error Bias";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1390, 713);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
@@ -706,6 +719,7 @@
         private System.Windows.Forms.Button ReadDCbtn;
         private System.Windows.Forms.Button JumpVpiPbtn;
         private System.Windows.Forms.Button JumpVpiNbtn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

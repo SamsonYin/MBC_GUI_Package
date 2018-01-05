@@ -642,6 +642,32 @@ namespace SerialPortConnection
                         }
                         break;
                     }
+                case 156:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 156)
+                        {
+                            int errorbias;
+                            errorbias = (uart_result[1] * 256) + uart_result[2];
+                            if(uart_result[3] == 0)
+                            {
+                                txtReceive.Text += "Current Error Bias = " + (Convert.ToString(errorbias)) + " \r\n";
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Current Error Bias = -" + (Convert.ToString(errorbias)) + " \r\n";
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 255:
                     {
                         break;
@@ -1135,6 +1161,21 @@ namespace SerialPortConnection
             string[] strArray = { "6F", "2", "0", "0", "0", "0", "0" };
 
             FormParameter.UART_CMD = 111;
+
+            Command_tx(strArray);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("Please open a serial port！", "Error 027");
+                return;
+            }
+
+            string[] strArray = { "9C", "0", "0", "0", "0", "0", "0" };
+
+            FormParameter.UART_CMD = 156;
 
             Command_tx(strArray);
         }
