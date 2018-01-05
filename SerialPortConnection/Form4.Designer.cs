@@ -80,6 +80,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
+            this.ReadDCbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -460,6 +461,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.ReadDCbtn);
             this.groupBox7.Controls.Add(this.label3);
             this.groupBox7.Controls.Add(this.PVpitxBox);
             this.groupBox7.Controls.Add(this.label2);
@@ -661,6 +663,17 @@
             this.OriginalDataTextBox.Text = "";
             this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
             // 
+            // ReadDCbtn
+            // 
+            this.ReadDCbtn.Location = new System.Drawing.Point(215, 120);
+            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadDCbtn.Name = "ReadDCbtn";
+            this.ReadDCbtn.Size = new System.Drawing.Size(155, 55);
+            this.ReadDCbtn.TabIndex = 89;
+            this.ReadDCbtn.Text = "Read DC";
+            this.ReadDCbtn.UseVisualStyleBackColor = true;
+            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -749,6 +762,7 @@
         private System.Windows.Forms.RichTextBox OriginalDataTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button ReadDCbtn;
     }
 }
 

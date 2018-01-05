@@ -644,28 +644,28 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                //case 120:
-                //    {
-                //        // 输出当前时间
-                //        DateTime dt = DateTime.Now;
-                //        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                //        txtReceive.SelectAll();
-                //        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                //        if (FormParameter.UART_CMD == 120)
-                //        {
-                //            float_U32 DCvalue = new float_U32();
-                //            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                //            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
-                //            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
-                //        }
-                //        else
-                //        {
-                //            txtReceive.Text += "Unknown Error. Please try again. \r\n";
-                //        }
-                //        break;
-                //    }
+                case 102:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 102)
+                        {
+                            float_U32 DCvalue = new float_U32();
+                            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 255:
                     {
                         break;
@@ -1157,5 +1157,18 @@ namespace SerialPortConnection
             OriginalDataTextBox.ScrollToCaret();
         }
 
+        private void ReadDCbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("Please open a serial port！", "Error 014");
+                return;
+            }
+
+            FormParameter.UART_CMD = 102;
+
+            string[] strArray = { "66", "0", "0", "0", "0", "0", "0" };
+            Command_tx(strArray);
+        }
     }
 }
