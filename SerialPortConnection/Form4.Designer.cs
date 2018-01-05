@@ -336,7 +336,7 @@
             this.ReadPolarbtn.Name = "ReadPolarbtn";
             this.ReadPolarbtn.Size = new System.Drawing.Size(155, 55);
             this.ReadPolarbtn.TabIndex = 45;
-            this.ReadPolarbtn.Text = "Read Polar";
+            this.ReadPolarbtn.Text = "Read Point";
             this.ReadPolarbtn.UseVisualStyleBackColor = true;
             this.ReadPolarbtn.Click += new System.EventHandler(this.ReadPolarbtn_Click);
             // 

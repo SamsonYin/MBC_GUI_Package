@@ -313,50 +313,46 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 104:
+                case 154:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 104)
+                        if (FormParameter.UART_CMD == 154)
                         {
-                            int polarI;
-                            int polarQ;
-                            int polarP;
+                            int MS;
+                            int PLR;
+                            int Point;
 
-                            polarI = uart_result[1] + 1;
-                            polarQ = uart_result[2] + 1;
-                            polarP = uart_result[3] + 1;
+                            MS = uart_result[1];
+                            PLR = uart_result[2];
 
-                            if (polarI == 1)
+                            if ((MS == 2) && (PLR == 1))
                             {
-                                txtReceive.Text += "Polar I: Positive \r\n";
+                                txtReceive.Text += "Current Point: Null Point \r\n";
+                                Point = 2;
+                            }
+                            else if ((MS == 2) && (PLR == 2))
+                            {
+                                txtReceive.Text += "Current Point: Peak Point \r\n";
+                                Point = 1;
+                            }
+                            else if ((MS == 3) && (PLR == 1))
+                            {
+                                txtReceive.Text += "Current Point: Quad+ Point \r\n";
+                                Point = 3;
+                            }
+                            else if ((MS == 3) && (PLR == 2))
+                            {
+                                txtReceive.Text += "Current Point: Quad- Point \r\n";
+                                Point = 4;
                             }
                             else
                             {
-                                txtReceive.Text += "Polar I: Negative \r\n";
-                            }
-                            if (polarQ == 1)
-                            {
-                                txtReceive.Text += "Polar Q: Positive \r\n";
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Polar Q: Negative \r\n";
-                            }
-                            if (polarP == 1)
-                            {
-                                txtReceive.Text += "Polar P: Positive \r\n";
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Polar P: Negative \r\n";
-                            }
-                            if (uart_result[4] == 119)
-                            {
-                                txtReceive.Text += "This function cannot be used now, please try later \r\n";
+                                txtReceive.Text += "Error! \r\n";
+                                Point = 0;
                             }
                         }
                         else
@@ -818,11 +814,11 @@ namespace SerialPortConnection
                 return;
             }
 
-            string[] strArray = { "68", "0", "0", "0", "0", "0", "0" };
+            string[] strArray = { "9A", "0", "0", "0", "0", "0", "0" };
 
             Command_tx(strArray);
 
-            FormParameter.UART_CMD = 104;
+            FormParameter.UART_CMD = 154;
         }
 
         private void txtReceive_TextChanged(object sender, EventArgs e)
