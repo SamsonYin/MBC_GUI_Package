@@ -180,14 +180,14 @@ namespace SerialPortConnection
             OriginalDataTextBox.Text += FormParameter.strRcv + "\r\n";
             switch (FormParameter.byteID)
             {
-                case 101:
+                case 103:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 101)
+                        if (FormParameter.UART_CMD == 103)
                         {
                             float_U32 Power = new float_U32();
                             Power.intData = (Convert.ToUInt32(uart_result[4]) << 24);
@@ -879,9 +879,9 @@ namespace SerialPortConnection
                 return;
             }
 
-            FormParameter.UART_CMD = 101;
+            FormParameter.UART_CMD = 103;
 
-            string[] strArray = { "65", "0", "0", "0", "0", "0", "0" };
+            string[] strArray = { "67", "0", "0", "0", "0", "0", "0" };
             Command_tx(strArray);
         }
 
