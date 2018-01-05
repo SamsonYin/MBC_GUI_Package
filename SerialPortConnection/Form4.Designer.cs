@@ -75,6 +75,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
             this.ReadDCbtn = new System.Windows.Forms.Button();
+            this.JumpVpiNbtn = new System.Windows.Forms.Button();
+            this.JumpVpiPbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -282,7 +284,7 @@
             // 
             // ReadBiasbtn
             // 
-            this.ReadBiasbtn.Location = new System.Drawing.Point(215, 195);
+            this.ReadBiasbtn.Location = new System.Drawing.Point(204, 181);
             this.ReadBiasbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadBiasbtn.Name = "ReadBiasbtn";
             this.ReadBiasbtn.Size = new System.Drawing.Size(155, 55);
@@ -293,7 +295,7 @@
             // 
             // ReadPowerbtn
             // 
-            this.ReadPowerbtn.Location = new System.Drawing.Point(30, 120);
+            this.ReadPowerbtn.Location = new System.Drawing.Point(19, 106);
             this.ReadPowerbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadPowerbtn.Name = "ReadPowerbtn";
             this.ReadPowerbtn.Size = new System.Drawing.Size(155, 55);
@@ -304,10 +306,10 @@
             // 
             // ReadVpibtn
             // 
-            this.ReadVpibtn.Location = new System.Drawing.Point(215, 272);
+            this.ReadVpibtn.Location = new System.Drawing.Point(204, 258);
             this.ReadVpibtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadVpibtn.Name = "ReadVpibtn";
-            this.ReadVpibtn.Size = new System.Drawing.Size(155, 106);
+            this.ReadVpibtn.Size = new System.Drawing.Size(155, 55);
             this.ReadVpibtn.TabIndex = 46;
             this.ReadVpibtn.Text = "Read Vpi";
             this.ReadVpibtn.UseVisualStyleBackColor = true;
@@ -315,7 +317,7 @@
             // 
             // ReadPolarbtn
             // 
-            this.ReadPolarbtn.Location = new System.Drawing.Point(215, 45);
+            this.ReadPolarbtn.Location = new System.Drawing.Point(204, 31);
             this.ReadPolarbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadPolarbtn.Name = "ReadPolarbtn";
             this.ReadPolarbtn.Size = new System.Drawing.Size(155, 55);
@@ -326,7 +328,7 @@
             // 
             // Resetbtn
             // 
-            this.Resetbtn.Location = new System.Drawing.Point(30, 195);
+            this.Resetbtn.Location = new System.Drawing.Point(30, 270);
             this.Resetbtn.Margin = new System.Windows.Forms.Padding(5);
             this.Resetbtn.Name = "Resetbtn";
             this.Resetbtn.Size = new System.Drawing.Size(155, 55);
@@ -337,7 +339,7 @@
             // 
             // ReadStatusbtn
             // 
-            this.ReadStatusbtn.Location = new System.Drawing.Point(30, 45);
+            this.ReadStatusbtn.Location = new System.Drawing.Point(19, 31);
             this.ReadStatusbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadStatusbtn.Name = "ReadStatusbtn";
             this.ReadStatusbtn.Size = new System.Drawing.Size(155, 55);
@@ -348,6 +350,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.JumpVpiPbtn);
+            this.groupBox4.Controls.Add(this.JumpVpiNbtn);
             this.groupBox4.Controls.Add(this.Resetbtn);
             this.groupBox4.Controls.Add(this.Pausebtn);
             this.groupBox4.Controls.Add(this.Resumebtn);
@@ -358,7 +362,7 @@
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(411, 277);
+            this.groupBox4.Size = new System.Drawing.Size(411, 344);
             this.groupBox4.TabIndex = 42;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Operation Setting";
@@ -452,11 +456,11 @@
             this.groupBox7.Controls.Add(this.ReadVpibtn);
             this.groupBox7.Controls.Add(this.ReadPowerbtn);
             this.groupBox7.Controls.Add(this.ReadBiasbtn);
-            this.groupBox7.Location = new System.Drawing.Point(11, 302);
+            this.groupBox7.Location = new System.Drawing.Point(11, 369);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox7.Size = new System.Drawing.Size(411, 402);
+            this.groupBox7.Size = new System.Drawing.Size(411, 328);
             this.groupBox7.TabIndex = 14;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Read Parameters";
@@ -464,7 +468,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 277);
+            this.label1.Location = new System.Drawing.Point(16, 263);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
@@ -474,7 +478,7 @@
             // VpitxBox
             // 
             this.VpitxBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.VpitxBox.Location = new System.Drawing.Point(97, 272);
+            this.VpitxBox.Location = new System.Drawing.Point(86, 258);
             this.VpitxBox.Margin = new System.Windows.Forms.Padding(2);
             this.VpitxBox.MaxLength = 0;
             this.VpitxBox.Name = "VpitxBox";
@@ -586,7 +590,7 @@
             // 
             // ReadDCbtn
             // 
-            this.ReadDCbtn.Location = new System.Drawing.Point(215, 120);
+            this.ReadDCbtn.Location = new System.Drawing.Point(204, 106);
             this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
             this.ReadDCbtn.Name = "ReadDCbtn";
             this.ReadDCbtn.Size = new System.Drawing.Size(155, 55);
@@ -594,6 +598,28 @@
             this.ReadDCbtn.Text = "Read DC";
             this.ReadDCbtn.UseVisualStyleBackColor = true;
             this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            // 
+            // JumpVpiNbtn
+            // 
+            this.JumpVpiNbtn.Location = new System.Drawing.Point(30, 195);
+            this.JumpVpiNbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.JumpVpiNbtn.Name = "JumpVpiNbtn";
+            this.JumpVpiNbtn.Size = new System.Drawing.Size(155, 55);
+            this.JumpVpiNbtn.TabIndex = 56;
+            this.JumpVpiNbtn.Text = "JumpVpi-";
+            this.JumpVpiNbtn.UseVisualStyleBackColor = true;
+            this.JumpVpiNbtn.Click += new System.EventHandler(this.JumpVpiNbtn_Click);
+            // 
+            // JumpVpiPbtn
+            // 
+            this.JumpVpiPbtn.Location = new System.Drawing.Point(215, 195);
+            this.JumpVpiPbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.JumpVpiPbtn.Name = "JumpVpiPbtn";
+            this.JumpVpiPbtn.Size = new System.Drawing.Size(155, 55);
+            this.JumpVpiPbtn.TabIndex = 57;
+            this.JumpVpiPbtn.Text = "JumpVpi+";
+            this.JumpVpiPbtn.UseVisualStyleBackColor = true;
+            this.JumpVpiPbtn.Click += new System.EventHandler(this.JumpVpiPbtn_Click);
             // 
             // Form4
             // 
@@ -678,6 +704,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button ReadDCbtn;
+        private System.Windows.Forms.Button JumpVpiPbtn;
+        private System.Windows.Forms.Button JumpVpiNbtn;
     }
 }
 
