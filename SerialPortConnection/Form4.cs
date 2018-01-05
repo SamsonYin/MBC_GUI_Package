@@ -101,8 +101,7 @@ namespace SerialPortConnection
             public static int UART_CMD;
             public static int mode_flag;
             public static uint arm;
-            public static string I_dither_amp;
-            public static string Q_dither_amp;
+            public static string dither_amp;
             public static uint shortDataLength = 9;
         }
 
@@ -510,14 +509,14 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 111:
+                case 114:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 111)
+                        if (FormParameter.UART_CMD == 114)
                         {
                             switch (uart_result[1])
                             {
@@ -960,41 +959,21 @@ namespace SerialPortConnection
                 return;
             }
 
-            FormParameter.UART_CMD = 111;
+            FormParameter.UART_CMD = 114;
 
-            if (String.IsNullOrEmpty(DitherIAmp_txBox.Text) == false)
+            if (String.IsNullOrEmpty(DitherAmp_txBox.Text) == false)
             {
-                FormParameter.I_dither_amp = DitherIAmp_txBox.Text;
+                FormParameter.dither_amp = DitherAmp_txBox.Text;
             }
             else
             {
-                MessageBox.Show("Please enter I dither amplitude coefficient!", "Error 021");
-                return;
-            }
-            if (String.IsNullOrEmpty(DitherQAmp_txBox.Text) == false)
-            {
-                FormParameter.Q_dither_amp = DitherQAmp_txBox.Text;
-            }
-            else
-            {
-                MessageBox.Show("Please enter Q dither amplitude coefficient!", "Error 022");
+                MessageBox.Show("Please enter dither amplitude coefficient!", "Error 021");
                 return;
             }
 
-            string[] strArray = { "6F", "1", "1", "0", "0", "0", "0" };
-            strArray[1] = FormParameter.I_dither_amp;
-            strArray[2] = FormParameter.Q_dither_amp;
+            string[] strArray = { "72", "1", "0", "0", "0", "0", "0" };
+            strArray[1] = FormParameter.dither_amp;
             Command_tx(strArray);
-        }
-
-        private void DitherIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void DitherQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void SetPolarbtn_Click(object sender, EventArgs e)
@@ -1219,6 +1198,14 @@ namespace SerialPortConnection
             FormParameter.UART_CMD = 155;
 
             Command_tx(strArray);
+        }
+
+        private void DitherAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

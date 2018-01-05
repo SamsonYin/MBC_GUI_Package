@@ -1003,12 +1003,18 @@ namespace SerialPortConnection
 
         private void DitherIAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
         }
 
         private void DitherQAmp_txBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
+            {
+                e.Handled = true;
+            }
         }
 
         private void SetPolarbtn_Click(object sender, EventArgs e)
