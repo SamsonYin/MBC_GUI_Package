@@ -440,7 +440,37 @@ namespace SerialPortConnection
                             txtReceive.Text += "Unknown Error. Please try again. \r\n";
                         }
                         break;
-                    }   
+                    }
+                case 113:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 113)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "Bias offset has been set! \r\n";
+                                        Resumebtn.Enabled = false;
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 114:
                     {
                         // 输出当前时间
@@ -675,13 +705,20 @@ namespace SerialPortConnection
                         {
                             int errorbias;
                             errorbias = (uart_result[1] * 256) + uart_result[2];
-                            if(uart_result[3] == 0)
+                            if (errorbias == 0)
                             {
                                 txtReceive.Text += "Current Error Bias = " + (Convert.ToString(errorbias)) + " \r\n";
                             }
                             else
                             {
-                                txtReceive.Text += "Current Error Bias = -" + (Convert.ToString(errorbias)) + " \r\n";
+                                if (uart_result[3] == 0)
+                                {
+                                    txtReceive.Text += "Current Error Bias = +" + (Convert.ToString(errorbias)) + " \r\n";
+                                }
+                                else
+                                {
+                                    txtReceive.Text += "Current Error Bias = -" + (Convert.ToString(errorbias)) + " \r\n";
+                                }
                             }
                         }
                         else
@@ -1195,6 +1232,52 @@ namespace SerialPortConnection
             if ((e.KeyChar <= 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void ErrorBiasbtn_Click(object sender, EventArgs e)
+        {
+            if (!sp1.IsOpen)
+            {
+                MessageBox.Show("Please open a serial port！", "Error 028");
+                return;
+            }
+
+            FormParameter.UART_CMD = 113;
+
+            string[] strArray = { "71", "0", "0", "0", "0", "0", "0" };
+
+            Int32 ErrorBiasvalue;
+            uint dataOne;
+            uint dataTwo;
+            try
+            {
+                if (String.IsNullOrEmpty(ErrorBiasBox.Text) == false)
+                {
+                    ErrorBiasvalue = Convert.ToInt32(ErrorBiasBox.Text);
+                    if (ErrorBiasvalue > 0)
+                    {
+                        strArray[3] = "2";
+                    }
+                    else
+                    {
+                        strArray[3] = "1";
+                    }
+                    dataOne = (uint)System.Math.Abs(ErrorBiasvalue) / 256;
+                    dataTwo = (uint)System.Math.Abs(ErrorBiasvalue) % 256;
+                    strArray[1] = dataOne.ToString("x2");  //转成两位十六进制数
+                    strArray[2] = dataTwo.ToString("x2");
+                    Command_tx(strArray);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter bias offset value!", "Error 036");
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Illegal input!", "Error 035");
             }
         }
     }

@@ -71,6 +71,11 @@
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
             this.ReadErrorBiasbtn = new System.Windows.Forms.Button();
             this.ReadDitherAmpbtn = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ErrorBiasbtn = new System.Windows.Forms.Button();
+            this.ErrorBiasBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -78,6 +83,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -89,7 +95,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(429, 206);
+            this.groupBox1.Size = new System.Drawing.Size(429, 122);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Point Setting";
@@ -99,7 +105,7 @@
             this.SetPolarbtn.Location = new System.Drawing.Point(285, 42);
             this.SetPolarbtn.Margin = new System.Windows.Forms.Padding(5);
             this.SetPolarbtn.Name = "SetPolarbtn";
-            this.SetPolarbtn.Size = new System.Drawing.Size(113, 136);
+            this.SetPolarbtn.Size = new System.Drawing.Size(113, 55);
             this.SetPolarbtn.TabIndex = 75;
             this.SetPolarbtn.Text = "Set Point";
             this.SetPolarbtn.UseVisualStyleBackColor = true;
@@ -135,7 +141,7 @@
             this.SetDACbtn.Location = new System.Drawing.Point(293, 61);
             this.SetDACbtn.Margin = new System.Windows.Forms.Padding(5);
             this.SetDACbtn.Name = "SetDACbtn";
-            this.SetDACbtn.Size = new System.Drawing.Size(113, 64);
+            this.SetDACbtn.Size = new System.Drawing.Size(113, 55);
             this.SetDACbtn.TabIndex = 80;
             this.SetDACbtn.Text = "SetDAC";
             this.SetDACbtn.UseVisualStyleBackColor = true;
@@ -317,11 +323,11 @@
             this.groupBox8.Controls.Add(this.DitherAmpSetbtn);
             this.groupBox8.Controls.Add(this.DitherAmp_txBox);
             this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Location = new System.Drawing.Point(442, 427);
+            this.groupBox8.Location = new System.Drawing.Point(442, 447);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox8.Size = new System.Drawing.Size(429, 149);
+            this.groupBox8.Size = new System.Drawing.Size(429, 119);
             this.groupBox8.TabIndex = 15;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "DitherAmplitude Setting";
@@ -342,7 +348,7 @@
             this.DitherAmpSetbtn.Location = new System.Drawing.Point(276, 54);
             this.DitherAmpSetbtn.Margin = new System.Windows.Forms.Padding(5);
             this.DitherAmpSetbtn.Name = "DitherAmpSetbtn";
-            this.DitherAmpSetbtn.Size = new System.Drawing.Size(113, 71);
+            this.DitherAmpSetbtn.Size = new System.Drawing.Size(113, 55);
             this.DitherAmpSetbtn.TabIndex = 54;
             this.DitherAmpSetbtn.Text = "Set Dither Amp";
             this.DitherAmpSetbtn.UseVisualStyleBackColor = true;
@@ -475,7 +481,7 @@
             this.groupBox3.Controls.Add(this.SetDACbtn);
             this.groupBox3.Controls.Add(this.SetDACtxBox);
             this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Location = new System.Drawing.Point(442, 249);
+            this.groupBox3.Location = new System.Drawing.Point(442, 150);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5);
@@ -541,11 +547,68 @@
             this.ReadDitherAmpbtn.UseVisualStyleBackColor = true;
             this.ReadDitherAmpbtn.Click += new System.EventHandler(this.ReadDitherAmpbtn_Click);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.ErrorBiasbtn);
+            this.groupBox6.Controls.Add(this.ErrorBiasBox);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Location = new System.Drawing.Point(442, 296);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(5);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox6.Size = new System.Drawing.Size(429, 144);
+            this.groupBox6.TabIndex = 92;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Setting Bias Voltage";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(20, 27);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(332, 18);
+            this.label2.TabIndex = 81;
+            this.label2.Text = "*This function works in manual mode!";
+            // 
+            // ErrorBiasbtn
+            // 
+            this.ErrorBiasbtn.Location = new System.Drawing.Point(293, 61);
+            this.ErrorBiasbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ErrorBiasbtn.Name = "ErrorBiasbtn";
+            this.ErrorBiasbtn.Size = new System.Drawing.Size(113, 55);
+            this.ErrorBiasbtn.TabIndex = 80;
+            this.ErrorBiasbtn.Text = "Set Bias Offset";
+            this.ErrorBiasbtn.UseVisualStyleBackColor = true;
+            this.ErrorBiasbtn.Click += new System.EventHandler(this.ErrorBiasbtn_Click);
+            // 
+            // ErrorBiasBox
+            // 
+            this.ErrorBiasBox.Location = new System.Drawing.Point(159, 97);
+            this.ErrorBiasBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ErrorBiasBox.MaxLength = 5;
+            this.ErrorBiasBox.Name = "ErrorBiasBox";
+            this.ErrorBiasBox.Size = new System.Drawing.Size(119, 28);
+            this.ErrorBiasBox.TabIndex = 78;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 101);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 18);
+            this.label3.TabIndex = 79;
+            this.label3.Text = "Set Bias Offset:";
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1390, 713);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.ReadDitherAmpbtn);
             this.Controls.Add(this.ReadErrorBiasbtn);
             this.Controls.Add(this.groupBox5);
@@ -575,6 +638,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -622,6 +687,11 @@
         private System.Windows.Forms.Button JumpVpiNbtn;
         private System.Windows.Forms.Button ReadErrorBiasbtn;
         private System.Windows.Forms.Button ReadDitherAmpbtn;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ErrorBiasbtn;
+        private System.Windows.Forms.TextBox ErrorBiasBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 
