@@ -967,7 +967,6 @@ namespace SerialPortConnection
                 MessageBox.Show("Please enter dither amplitude coefficient!", "Error 021");
                 return;
             }
-
             string[] strArray = { "72", "1", "0", "0", "0", "0", "0" };
             strArray[1] = FormParameter.dither_amp;
             Command_tx(strArray);
