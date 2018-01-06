@@ -483,7 +483,7 @@ namespace SerialPortConnection
                                     }
                                 case 136:
                                     {
-                                        txtReceive.Text += "Output voltage failed. \r\n";
+                                        txtReceive.Text += "Output voltage update failed. \r\n";
                                         break;
                                     }
                                 default:

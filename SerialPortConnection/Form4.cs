@@ -50,14 +50,13 @@ namespace SerialPortConnection
         private void Form4_Load(object sender, EventArgs e)
         {
             //预设Polar值
-            IPolarBox.SelectedIndex = 0;
+            PointBox.SelectedIndex = 0;
             QPolarBox.SelectedIndex = 0;
             PPolarBox.SelectedIndex = 0;
 
             //预设控件状态
             Resumebtn.Enabled = false;
             AutoModebtn.Enabled = false;
-            SetDACBox.SelectedIndex = 0;
 
             //检查是否含有串口
             string[] str = SerialPort.GetPortNames();
@@ -399,7 +398,7 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 107:
+                case 108:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
@@ -418,7 +417,7 @@ namespace SerialPortConnection
                                     }
                                 case 136:
                                     {
-                                        txtReceive.Text += "Output voltage failed. \r\n";
+                                        txtReceive.Text += "Output voltage update failed. \r\n";
                                         break;
                                     }
                                 default:
@@ -434,7 +433,7 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 108:
+                case 118:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
@@ -447,7 +446,7 @@ namespace SerialPortConnection
                             {
                                 case 17:
                                     {
-                                        txtReceive.Text += "Set Polar Command Sended! \r\n";
+                                        txtReceive.Text += "New Point has been set! \r\n";
                                         break;
                                     }
                                 case 119:
@@ -985,35 +984,45 @@ namespace SerialPortConnection
             }
 
 
-            FormParameter.UART_CMD = 108;
+            FormParameter.UART_CMD = 118;
 
-            string[] strArray = { "6C", "1", "1", "1", "0", "0", "0" };
-            if ((IPolarBox.Text) == "Positive")
+            string[] strArray = { "76", "1", "1", "0", "0", "0", "0" };
+            switch(PointBox.Text)
             {
-                strArray[1] = Convert.ToString(1);
+                case "Peak":
+                    {
+                        strArray[1] = Convert.ToString(1);
+                        strArray[2] = Convert.ToString(2);
+                        Command_tx(strArray);
+                        break;
+                    }
+                case "Null":
+                    {
+                        strArray[1] = Convert.ToString(1);
+                        strArray[2] = Convert.ToString(1);
+                        Command_tx(strArray);
+                        break;
+                    }
+                case "Quad+":
+                    {
+                        strArray[1] = Convert.ToString(2);
+                        strArray[2] = Convert.ToString(1);
+                        Command_tx(strArray);
+                        break;
+                    }
+                case "Quad-":
+                    {
+                        strArray[1] = Convert.ToString(2);
+                        strArray[2] = Convert.ToString(2);
+                        Command_tx(strArray);
+                        break;
+                    }
+                default:
+                    {
+                        MessageBox.Show("Please select", "Error 068");
+                        break;
+                    }
             }
-            else
-            {
-                strArray[1] = Convert.ToString(2);
-            }
-            if ((QPolarBox.Text) == "Positive")
-            {
-                strArray[2] = Convert.ToString(1);
-            }
-            else
-            {
-                strArray[2] = Convert.ToString(2);
-            }
-            if ((PPolarBox.Text) == "Positive")
-            {
-                strArray[3] = Convert.ToString(1);
-            }
-            else
-            {
-                strArray[3] = Convert.ToString(2);
-            }
-
-            Command_tx(strArray);
         }
 
         private void ManualModebtn_Click(object sender, EventArgs e)
@@ -1056,32 +1065,9 @@ namespace SerialPortConnection
                 return;
             }
 
-            FormParameter.UART_CMD = 107;
+            FormParameter.UART_CMD = 108;
 
-            string[] strArray = { "6B", "0", "0", "0", "0", "0", "0" };
-            switch (SetDACBox.Text)
-            {
-                case "I":
-                    {
-                        strArray[1] = Convert.ToString(1);
-                        break;
-                    }
-                case "Q":
-                    {
-                        strArray[1] = Convert.ToString(2);
-                        break;
-                    }
-                case "P":
-                    {
-                        strArray[1] = Convert.ToString(3);
-                        break;
-                    }
-                default:
-                    {
-                        MessageBox.Show("Please choose a bias channel", "Error 029");
-                        return;
-                    }
-            }
+            string[] strArray = { "6C", "0", "0", "0", "0", "0", "0" };
 
             double SetDACvalue;
             double tempVoltage;

@@ -35,14 +35,12 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.IPolarBox = new System.Windows.Forms.ComboBox();
+            this.PointBox = new System.Windows.Forms.ComboBox();
             this.QPolarBox = new System.Windows.Forms.ComboBox();
             this.PPolarBox = new System.Windows.Forms.ComboBox();
             this.SetDACbtn = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.SetDACtxBox = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.SetDACBox = new System.Windows.Forms.ComboBox();
             this.AutoModebtn = new System.Windows.Forms.Button();
             this.ManualModebtn = new System.Windows.Forms.Button();
             this.Resumebtn = new System.Windows.Forms.Button();
@@ -54,12 +52,15 @@
             this.Resetbtn = new System.Windows.Forms.Button();
             this.ReadStatusbtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.JumpVpiPbtn = new System.Windows.Forms.Button();
+            this.JumpVpiNbtn = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
             this.DitherAmp_txBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.ReadDCbtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.VpitxBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -72,9 +73,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
-            this.ReadDCbtn = new System.Windows.Forms.Button();
-            this.JumpVpiNbtn = new System.Windows.Forms.Button();
-            this.JumpVpiPbtn = new System.Windows.Forms.Button();
             this.ReadErrorBiasbtn = new System.Windows.Forms.Button();
             this.ReadDitherAmpbtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -92,7 +90,7 @@
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.IPolarBox);
+            this.groupBox1.Controls.Add(this.PointBox);
             this.groupBox1.Controls.Add(this.QPolarBox);
             this.groupBox1.Controls.Add(this.PPolarBox);
             this.groupBox1.Location = new System.Drawing.Point(442, 18);
@@ -102,7 +100,7 @@
             this.groupBox1.Size = new System.Drawing.Size(429, 206);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Polar Setting";
+            this.groupBox1.Text = "Point Setting";
             // 
             // SetPolarbtn
             // 
@@ -111,7 +109,7 @@
             this.SetPolarbtn.Name = "SetPolarbtn";
             this.SetPolarbtn.Size = new System.Drawing.Size(113, 136);
             this.SetPolarbtn.TabIndex = 75;
-            this.SetPolarbtn.Text = "Set Polar";
+            this.SetPolarbtn.Text = "Set Point";
             this.SetPolarbtn.UseVisualStyleBackColor = true;
             this.SetPolarbtn.Click += new System.EventHandler(this.SetPolarbtn_Click);
             // 
@@ -141,22 +139,24 @@
             this.label20.Location = new System.Drawing.Point(20, 45);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(116, 18);
+            this.label20.Size = new System.Drawing.Size(98, 18);
             this.label20.TabIndex = 69;
-            this.label20.Text = "Set I Polar:";
+            this.label20.Text = "Set Point:";
             // 
-            // IPolarBox
+            // PointBox
             // 
-            this.IPolarBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.IPolarBox.FormattingEnabled = true;
-            this.IPolarBox.Items.AddRange(new object[] {
-            "Positive",
-            "Negative"});
-            this.IPolarBox.Location = new System.Drawing.Point(150, 42);
-            this.IPolarBox.Margin = new System.Windows.Forms.Padding(5);
-            this.IPolarBox.Name = "IPolarBox";
-            this.IPolarBox.Size = new System.Drawing.Size(115, 26);
-            this.IPolarBox.TabIndex = 63;
+            this.PointBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PointBox.FormattingEnabled = true;
+            this.PointBox.Items.AddRange(new object[] {
+            "Null",
+            "Peak",
+            "Quad+",
+            "Quad-"});
+            this.PointBox.Location = new System.Drawing.Point(150, 42);
+            this.PointBox.Margin = new System.Windows.Forms.Padding(5);
+            this.PointBox.Name = "PointBox";
+            this.PointBox.Size = new System.Drawing.Size(115, 26);
+            this.PointBox.TabIndex = 63;
             // 
             // QPolarBox
             // 
@@ -213,30 +213,6 @@
             this.SetDACtxBox.Name = "SetDACtxBox";
             this.SetDACtxBox.Size = new System.Drawing.Size(119, 28);
             this.SetDACtxBox.TabIndex = 78;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(12, 64);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(125, 18);
-            this.label26.TabIndex = 77;
-            this.label26.Text = "Bias Channel:";
-            // 
-            // SetDACBox
-            // 
-            this.SetDACBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SetDACBox.FormattingEnabled = true;
-            this.SetDACBox.Items.AddRange(new object[] {
-            "I",
-            "Q",
-            "P"});
-            this.SetDACBox.Location = new System.Drawing.Point(159, 61);
-            this.SetDACBox.Margin = new System.Windows.Forms.Padding(5);
-            this.SetDACBox.Name = "SetDACBox";
-            this.SetDACBox.Size = new System.Drawing.Size(119, 26);
-            this.SetDACBox.TabIndex = 76;
             // 
             // AutoModebtn
             // 
@@ -367,6 +343,28 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Operation Setting";
             // 
+            // JumpVpiPbtn
+            // 
+            this.JumpVpiPbtn.Location = new System.Drawing.Point(215, 195);
+            this.JumpVpiPbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.JumpVpiPbtn.Name = "JumpVpiPbtn";
+            this.JumpVpiPbtn.Size = new System.Drawing.Size(155, 55);
+            this.JumpVpiPbtn.TabIndex = 57;
+            this.JumpVpiPbtn.Text = "JumpVpi+";
+            this.JumpVpiPbtn.UseVisualStyleBackColor = true;
+            this.JumpVpiPbtn.Click += new System.EventHandler(this.JumpVpiPbtn_Click);
+            // 
+            // JumpVpiNbtn
+            // 
+            this.JumpVpiNbtn.Location = new System.Drawing.Point(30, 195);
+            this.JumpVpiNbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.JumpVpiNbtn.Name = "JumpVpiNbtn";
+            this.JumpVpiNbtn.Size = new System.Drawing.Size(155, 55);
+            this.JumpVpiNbtn.TabIndex = 56;
+            this.JumpVpiNbtn.Text = "JumpVpi-";
+            this.JumpVpiNbtn.UseVisualStyleBackColor = true;
+            this.JumpVpiNbtn.Click += new System.EventHandler(this.JumpVpiNbtn_Click);
+            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.label8);
@@ -443,6 +441,17 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Read Parameters";
             // 
+            // ReadDCbtn
+            // 
+            this.ReadDCbtn.Location = new System.Drawing.Point(204, 106);
+            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadDCbtn.Name = "ReadDCbtn";
+            this.ReadDCbtn.Size = new System.Drawing.Size(155, 55);
+            this.ReadDCbtn.TabIndex = 89;
+            this.ReadDCbtn.Text = "Read DC";
+            this.ReadDCbtn.UseVisualStyleBackColor = true;
+            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -518,8 +527,6 @@
             // 
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.SetDACbtn);
-            this.groupBox3.Controls.Add(this.SetDACBox);
-            this.groupBox3.Controls.Add(this.label26);
             this.groupBox3.Controls.Add(this.SetDACtxBox);
             this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.Location = new System.Drawing.Point(442, 249);
@@ -565,39 +572,6 @@
             this.OriginalDataTextBox.TabIndex = 0;
             this.OriginalDataTextBox.Text = "";
             this.OriginalDataTextBox.TextChanged += new System.EventHandler(this.OriginalDataTextBox_TextChanged);
-            // 
-            // ReadDCbtn
-            // 
-            this.ReadDCbtn.Location = new System.Drawing.Point(204, 106);
-            this.ReadDCbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadDCbtn.Name = "ReadDCbtn";
-            this.ReadDCbtn.Size = new System.Drawing.Size(155, 55);
-            this.ReadDCbtn.TabIndex = 89;
-            this.ReadDCbtn.Text = "Read DC";
-            this.ReadDCbtn.UseVisualStyleBackColor = true;
-            this.ReadDCbtn.Click += new System.EventHandler(this.ReadDCbtn_Click);
-            // 
-            // JumpVpiNbtn
-            // 
-            this.JumpVpiNbtn.Location = new System.Drawing.Point(30, 195);
-            this.JumpVpiNbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.JumpVpiNbtn.Name = "JumpVpiNbtn";
-            this.JumpVpiNbtn.Size = new System.Drawing.Size(155, 55);
-            this.JumpVpiNbtn.TabIndex = 56;
-            this.JumpVpiNbtn.Text = "JumpVpi-";
-            this.JumpVpiNbtn.UseVisualStyleBackColor = true;
-            this.JumpVpiNbtn.Click += new System.EventHandler(this.JumpVpiNbtn_Click);
-            // 
-            // JumpVpiPbtn
-            // 
-            this.JumpVpiPbtn.Location = new System.Drawing.Point(215, 195);
-            this.JumpVpiPbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.JumpVpiPbtn.Name = "JumpVpiPbtn";
-            this.JumpVpiPbtn.Size = new System.Drawing.Size(155, 55);
-            this.JumpVpiPbtn.TabIndex = 57;
-            this.JumpVpiPbtn.Text = "JumpVpi+";
-            this.JumpVpiPbtn.UseVisualStyleBackColor = true;
-            this.JumpVpiPbtn.Click += new System.EventHandler(this.JumpVpiPbtn_Click);
             // 
             // ReadErrorBiasbtn
             // 
@@ -682,7 +656,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button DitherAmpSetbtn;
         private System.Windows.Forms.TextBox DitherAmp_txBox;
-        private System.Windows.Forms.ComboBox IPolarBox;
+        private System.Windows.Forms.ComboBox PointBox;
         private System.Windows.Forms.ComboBox QPolarBox;
         private System.Windows.Forms.ComboBox PPolarBox;
         private System.Windows.Forms.Label label20;
@@ -694,8 +668,6 @@
         private System.Windows.Forms.Button SetDACbtn;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox SetDACtxBox;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.ComboBox SetDACBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox VpitxBox;
