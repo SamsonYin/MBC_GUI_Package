@@ -51,8 +51,6 @@ namespace SerialPortConnection
         {
             //预设Polar值
             PointBox.SelectedIndex = 0;
-            QPolarBox.SelectedIndex = 0;
-            PPolarBox.SelectedIndex = 0;
 
             //预设控件状态
             Resumebtn.Enabled = false;
