@@ -1556,36 +1556,43 @@ namespace SerialPortConnection
             double tempVoltage;
             uint dataOne;
             uint dataTwo;
-            if (String.IsNullOrEmpty(SetDACtxBox.Text) == false)
+            try
             {
-                SetDACvalue = Convert.ToDouble(SetDACtxBox.Text);
-                if(SetDACvalue >= 0)
+                if (String.IsNullOrEmpty(SetDACtxBox.Text) == false)
                 {
-                    strArray[4] = "0";
+                    SetDACvalue = Convert.ToDouble(SetDACtxBox.Text);
+                    if (SetDACvalue >= 0)
+                    {
+                        strArray[4] = "0";
+                    }
+                    else
+                    {
+                        strArray[4] = "1";
+                    }
+                    tempVoltage = Math.Floor(System.Math.Abs(SetDACvalue) * 1000);
+                    dataOne = (uint)Math.Floor(tempVoltage / 256);
+                    dataTwo = ((uint)tempVoltage) % 256;
+                    strArray[2] = dataOne.ToString("x2");   //转成两位十六进制数
+                    strArray[3] = dataTwo.ToString("x2");
+                    if (ManualModebtn.Enabled == false)
+                    {
+                        Command_tx(strArray);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This function can only be used in Manual Mode!", "Error 030");
+                        return;
+                    }
                 }
                 else
                 {
-                    strArray[4] = "1";
-                }
-                tempVoltage = Math.Floor(System.Math.Abs(SetDACvalue)*1000);
-                dataOne = (uint)Math.Floor(tempVoltage/256);
-                dataTwo = ((uint)tempVoltage) % 256;
-                strArray[2] = dataOne.ToString("x2");   //转成两位十六进制数
-                strArray[3] = dataTwo.ToString("x2");
-                if(ManualModebtn.Enabled == false)
-                {
-                    Command_tx(strArray);
-                }
-                else
-                {
-                    MessageBox.Show("This function can only be used in Manual Mode!", "Error 030");
+                    MessageBox.Show("Please enter bias voltage value!", "Error 031");
                     return;
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please enter bias voltage value!", "Error 031");
-                return;
+                MessageBox.Show("Illegal input!", "Error 035");
             }
         }
 
