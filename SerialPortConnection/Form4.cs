@@ -175,6 +175,28 @@ namespace SerialPortConnection
             OriginalDataTextBox.Text += FormParameter.strRcv + "\r\n";
             switch (FormParameter.byteID)
             {
+                case 102:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 102)
+                        {
+                            float_U32 DCvalue = new float_U32();
+                            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
+                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
+                            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
                 case 103:
                     {
                         // 输出当前时间
@@ -249,103 +271,6 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 154:
-                    {
-                        // 输出当前时间
-                        DateTime dt = DateTime.Now;
-                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                        txtReceive.SelectAll();
-                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 154)
-                        {
-                            int MS;
-                            int PLR;
-                            int Point;
-
-                            MS = uart_result[1];
-                            PLR = uart_result[2];
-
-                            if ((MS == 2) && (PLR == 1))
-                            {
-                                txtReceive.Text += "Current Point: Null Point \r\n";
-                                Point = 2;
-                            }
-                            else if ((MS == 2) && (PLR == 2))
-                            {
-                                txtReceive.Text += "Current Point: Peak Point \r\n";
-                                Point = 1;
-                            }
-                            else if ((MS == 3) && (PLR == 1))
-                            {
-                                txtReceive.Text += "Current Point: Quad+ Point \r\n";
-                                Point = 3;
-                            }
-                            else if ((MS == 3) && (PLR == 2))
-                            {
-                                txtReceive.Text += "Current Point: Quad- Point \r\n";
-                                Point = 4;
-                            }
-                            else
-                            {
-                                txtReceive.Text += "Error! \r\n";
-                                Point = 0;
-                            }
-                        }
-                        else
-                        {
-                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
-                        }
-                        break;
-                    }
-                case 112:
-                    {
-                        // 输出当前时间
-                        DateTime dt = DateTime.Now;
-                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                        txtReceive.SelectAll();
-                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 112)
-                        {
-                            switch (uart_result[1])
-                            {
-                                case 1:
-                                    {
-                                        txtReceive.Text += "Stablizing. \r\n";
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        txtReceive.Text += "Stablized. \r\n";
-                                        break;
-                                    }
-                                case 3:
-                                    {
-                                        txtReceive.Text += "Light too weak. \r\n";
-                                        break;
-                                    }
-                                case 4:
-                                    {
-                                        txtReceive.Text += "Light too strong. \r\n";
-                                        break;
-                                    }
-                                case 5:
-                                    {
-                                        txtReceive.Text += "Manual control. \r\n";
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        txtReceive.Text += "Error! \r\n";
-                                        break;
-                                    }
-                            }
-                        }
-                        else
-                        {
-                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
-                        }
-                        break;
-                    }
                 case 107:
                     {
                         // 输出当前时间
@@ -403,7 +328,7 @@ namespace SerialPortConnection
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 107)
+                        if (FormParameter.UART_CMD == 108)
                         {
                             switch (uart_result[1])
                             {
@@ -416,45 +341,6 @@ namespace SerialPortConnection
                                 case 136:
                                     {
                                         txtReceive.Text += "Output voltage update failed. \r\n";
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        txtReceive.Text += "Error! \r\n";
-                                        break;
-                                    }
-                            }
-                        }
-                        else
-                        {
-                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
-                        }
-                        break;
-                    }
-                case 118:
-                    {
-                        // 输出当前时间
-                        DateTime dt = DateTime.Now;
-                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
-                        txtReceive.SelectAll();
-                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 108)
-                        {
-                            switch (uart_result[1])
-                            {
-                                case 17:
-                                    {
-                                        txtReceive.Text += "New Point has been set! \r\n";
-                                        break;
-                                    }
-                                case 119:
-                                    {
-                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
-                                        break;
-                                    }
-                                case 136:
-                                    {
-                                        txtReceive.Text += "Setup failed, please try later. \r\n";
                                         break;
                                     }
                                 default:
@@ -506,6 +392,55 @@ namespace SerialPortConnection
                         }
                         break;
                     }
+                case 112:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 112)
+                        {
+                            switch (uart_result[1])
+                            {
+                                case 1:
+                                    {
+                                        txtReceive.Text += "Stablizing. \r\n";
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        txtReceive.Text += "Stablized. \r\n";
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        txtReceive.Text += "Light too weak. \r\n";
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        txtReceive.Text += "Light too strong. \r\n";
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        txtReceive.Text += "Manual control. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }   
                 case 114:
                     {
                         // 输出当前时间
@@ -616,21 +551,86 @@ namespace SerialPortConnection
                         }
                         break;
                     }
-                case 102:
+                case 118:
                     {
                         // 输出当前时间
                         DateTime dt = DateTime.Now;
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 102)
+                        if (FormParameter.UART_CMD == 118)
                         {
-                            float_U32 DCvalue = new float_U32();
-                            DCvalue.intData = (Convert.ToUInt32(uart_result[4]) << 24);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[3]) << 16);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[2]) << 8);
-                            DCvalue.intData = DCvalue.intData + (Convert.ToUInt32(uart_result[1]));
-                            txtReceive.Text += "DC = " + (Convert.ToString(DCvalue.floatData)) + " \r\n";
+                            switch (uart_result[1])
+                            {
+                                case 17:
+                                    {
+                                        txtReceive.Text += "New Point has been set! \r\n";
+                                        break;
+                                    }
+                                case 119:
+                                    {
+                                        txtReceive.Text += "This function cannot be used now, please try later. \r\n";
+                                        break;
+                                    }
+                                case 136:
+                                    {
+                                        txtReceive.Text += "Setup failed, please try later. \r\n";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        txtReceive.Text += "Error! \r\n";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            txtReceive.Text += "Unknown Error. Please try again. \r\n";
+                        }
+                        break;
+                    }
+                case 154:
+                    {
+                        // 输出当前时间
+                        DateTime dt = DateTime.Now;
+                        txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
+                        txtReceive.SelectAll();
+                        txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
+                        if (FormParameter.UART_CMD == 154)
+                        {
+                            int MS;
+                            int PLR;
+                            //int Point;
+
+                            MS = uart_result[1];
+                            PLR = uart_result[2];
+
+                            if ((MS == 2) && (PLR == 1))
+                            {
+                                txtReceive.Text += "Current Point: Null Point \r\n";
+                                //Point = 2;
+                            }
+                            else if ((MS == 2) && (PLR == 2))
+                            {
+                                txtReceive.Text += "Current Point: Peak Point \r\n";
+                                //Point = 1;
+                            }
+                            else if ((MS == 3) && (PLR == 1))
+                            {
+                                txtReceive.Text += "Current Point: Quad+ Point \r\n";
+                                //Point = 3;
+                            }
+                            else if ((MS == 3) && (PLR == 2))
+                            {
+                                txtReceive.Text += "Current Point: Quad- Point \r\n";
+                                //Point = 4;
+                            }
+                            else
+                            {
+                                txtReceive.Text += "Error! \r\n";
+                                //Point = 0;
+                            }
                         }
                         else
                         {
@@ -1071,36 +1071,43 @@ namespace SerialPortConnection
             double tempVoltage;
             uint dataOne;
             uint dataTwo;
-            if (String.IsNullOrEmpty(SetDACtxBox.Text) == false)
+            try
             {
-                SetDACvalue = Convert.ToDouble(SetDACtxBox.Text);
-                if (SetDACvalue >= 0)
+                if (String.IsNullOrEmpty(SetDACtxBox.Text) == false)
                 {
-                    strArray[4] = "0";
+                    SetDACvalue = Convert.ToDouble(SetDACtxBox.Text);
+                    if (SetDACvalue >= 0)
+                    {
+                        strArray[4] = "0";
+                    }
+                    else
+                    {
+                        strArray[4] = "1";
+                    }
+                    tempVoltage = Math.Floor(System.Math.Abs(SetDACvalue) * 1000);
+                    dataOne = (uint)Math.Floor(tempVoltage / 256);
+                    dataTwo = ((uint)tempVoltage) % 256;
+                    strArray[2] = dataOne.ToString("x2");  //转成两位十六进制数
+                    strArray[3] = dataTwo.ToString("x2");
+                    if (ManualModebtn.Enabled == false)
+                    {
+                        Command_tx(strArray);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This function can only be used in Manual Mode!", "Error 030");
+                        return;
+                    }
                 }
                 else
                 {
-                    strArray[4] = "1";
-                }
-                tempVoltage = Math.Floor(System.Math.Abs(SetDACvalue) * 1000);
-                dataOne = (uint)Math.Floor(tempVoltage / 256);
-                dataTwo = ((uint)tempVoltage) % 256;
-                strArray[2] = dataOne.ToString("x2");   //转成两位十六进制数
-                strArray[3] = dataTwo.ToString("x2");
-                if (ManualModebtn.Enabled == false)
-                {
-                    Command_tx(strArray);
-                }
-                else
-                {
-                    MessageBox.Show("This function can only be used in Manual Mode!", "Error 030");
+                    MessageBox.Show("Please enter bias voltage value!", "Error 031");
                     return;
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Please enter bias voltage value!", "Error 031");
-                return;
+                MessageBox.Show("Illegal input!", "Error 035");
             }
         }
 
