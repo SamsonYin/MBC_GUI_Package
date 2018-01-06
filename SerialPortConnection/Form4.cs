@@ -226,7 +226,7 @@ namespace SerialPortConnection
                         txtReceive.Text += DateTime.Now.Date.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-us")) + " " + DateTime.Now.ToString("t") + "\r\n";//dt.GetDateTimeFormats('f')[0].ToString() + "\r\n";
                         txtReceive.SelectAll();
                         txtReceive.SelectionColor = Color.Blue;         //改变字体的颜色
-                        if (FormParameter.UART_CMD == 103)
+                        if (FormParameter.UART_CMD == 105)
                         {
                             if(uart_result[5] == 17)
                             {
