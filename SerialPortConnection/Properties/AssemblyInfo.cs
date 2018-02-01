@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SerialPortConnection")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MBC Control Unit")]
+[assembly: AssemblyDescription("PlugTech MBC Control Unit")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("微软中国")]
-[assembly: AssemblyProduct("SerialPortConnection")]
-[assembly: AssemblyCopyright("Copyright © 微软中国 2012")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("PlugTech Ltd.")]
+[assembly: AssemblyProduct("PlugTech MBC Control Unit")]
+[assembly: AssemblyCopyright("Copyright © PlugTech 2017")]
+[assembly: AssemblyTrademark("PlugTech")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
