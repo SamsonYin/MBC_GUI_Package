@@ -39,3 +39,5 @@ C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debu
 C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.exe
 C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.pdb
 C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form5.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form6.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form7.resources

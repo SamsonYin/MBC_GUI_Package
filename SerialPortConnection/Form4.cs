@@ -428,6 +428,11 @@ namespace SerialPortConnection
                                         txtReceive.Text += "Manual control. \r\n";
                                         break;
                                     }
+                                case 6:
+                                    {
+                                        txtReceive.Text += "Pause State. \r\n";
+                                        break;
+                                    }
                                 default:
                                     {
                                         txtReceive.Text += "Error! \r\n";

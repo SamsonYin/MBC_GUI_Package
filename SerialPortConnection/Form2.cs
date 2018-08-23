@@ -68,7 +68,7 @@ namespace SerialPortConnection
                     break;
                 case 5:
                     sp1.Close();
-                    MBC_Control_Unit = new Form4();
+                    MBC_Control_Unit = new Form6();
                     this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
@@ -76,7 +76,7 @@ namespace SerialPortConnection
                     break;
                 case 6:
                     sp1.Close();
-                    MBC_Control_Unit = new Form4();
+                    MBC_Control_Unit = new Form7();
                     this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
