@@ -52,6 +52,7 @@
             this.JumpVpiNbtn = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.ReadDitherAmpbtn = new System.Windows.Forms.Button();
             this.DitherAmpSetbtn = new System.Windows.Forms.Button();
             this.DitherAmp_txBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.OriginalDataTextBox = new System.Windows.Forms.RichTextBox();
             this.ReadErrorBiasbtn = new System.Windows.Forms.Button();
-            this.ReadDitherAmpbtn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.ErrorBiasbtn = new System.Windows.Forms.Button();
             this.ErrorBiasBox = new System.Windows.Forms.TextBox();
@@ -343,6 +343,17 @@
             this.label8.TabIndex = 82;
             this.label8.Text = "*Input Range:1-9";
             // 
+            // ReadDitherAmpbtn
+            // 
+            this.ReadDitherAmpbtn.Location = new System.Drawing.Point(249, 95);
+            this.ReadDitherAmpbtn.Margin = new System.Windows.Forms.Padding(5);
+            this.ReadDitherAmpbtn.Name = "ReadDitherAmpbtn";
+            this.ReadDitherAmpbtn.Size = new System.Drawing.Size(113, 50);
+            this.ReadDitherAmpbtn.TabIndex = 91;
+            this.ReadDitherAmpbtn.Text = "Read Dither Amp";
+            this.ReadDitherAmpbtn.UseVisualStyleBackColor = true;
+            this.ReadDitherAmpbtn.Click += new System.EventHandler(this.ReadDitherAmpbtn_Click);
+            // 
             // DitherAmpSetbtn
             // 
             this.DitherAmpSetbtn.Location = new System.Drawing.Point(249, 35);
@@ -536,17 +547,6 @@
             this.ReadErrorBiasbtn.UseVisualStyleBackColor = true;
             this.ReadErrorBiasbtn.Click += new System.EventHandler(this.ReadErrorBiasbtn_Click);
             // 
-            // ReadDitherAmpbtn
-            // 
-            this.ReadDitherAmpbtn.Location = new System.Drawing.Point(249, 95);
-            this.ReadDitherAmpbtn.Margin = new System.Windows.Forms.Padding(5);
-            this.ReadDitherAmpbtn.Name = "ReadDitherAmpbtn";
-            this.ReadDitherAmpbtn.Size = new System.Drawing.Size(113, 50);
-            this.ReadDitherAmpbtn.TabIndex = 91;
-            this.ReadDitherAmpbtn.Text = "Read Dither Amp";
-            this.ReadDitherAmpbtn.UseVisualStyleBackColor = true;
-            this.ReadDitherAmpbtn.Click += new System.EventHandler(this.ReadDitherAmpbtn_Click);
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.ErrorBiasbtn);
@@ -594,8 +594,10 @@
             // 
             // Form4
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1390, 713);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);

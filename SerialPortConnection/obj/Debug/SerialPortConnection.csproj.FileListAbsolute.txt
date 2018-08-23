@@ -26,3 +26,16 @@ E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortCon
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.pdb
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form3.resources
 E:\plug tech\Code\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form4.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\bin\Debug\SerialPortConnection.exe
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\bin\Debug\SerialPortConnection.pdb
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.csprojAssemblyReference.cache
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form1.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form2.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form3.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form4.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Properties.Resources.resources
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.csproj.GenerateResource.cache
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.csproj.CoreCompileInputs.cache
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.exe
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.pdb
+C:\Code\GUI_Program\Full_Package\SerialApplication\SerialPortConnection\obj\Debug\SerialPortConnection.Form5.resources

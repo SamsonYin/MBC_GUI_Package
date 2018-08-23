@@ -40,6 +40,7 @@ namespace SerialPortConnection
                     this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
+                    //DPIQ
                     break;
                 case 2:
                     sp1.Close();
@@ -47,6 +48,7 @@ namespace SerialPortConnection
                     this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
+                    //IQ
                     break;
                 case 3:
                     sp1.Close();
@@ -54,15 +56,31 @@ namespace SerialPortConnection
                     this.Hide();
                     MBC_Control_Unit.Show();
                     Common.formstatus = 1;
+                    //MZM
                     break;
                 case 4:
-                    MessageBox.Show("Q", "Error");
+                    sp1.Close();
+                    MBC_Control_Unit = new Form5();
+                    this.Hide();
+                    MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
+                    // Q
                     break;
                 case 5:
-                    MessageBox.Show("NULL", "Error");
+                    sp1.Close();
+                    MBC_Control_Unit = new Form4();
+                    this.Hide();
+                    MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
+                    //NULL
                     break;
                 case 6:
-                    MessageBox.Show("Q_Ditherless", "Error");
+                    sp1.Close();
+                    MBC_Control_Unit = new Form4();
+                    this.Hide();
+                    MBC_Control_Unit.Show();
+                    Common.formstatus = 1;
+                    //Q_Ditherless
                     break;
                 default:
                     MessageBox.Show("Unable to launch control unit,please try again!", "Error 001"); //控制器响应异常，无法分辨控制器版本
@@ -254,7 +272,7 @@ namespace SerialPortConnection
             // 
             // btnSwitch
             // 
-            this.btnSwitch.Location = new System.Drawing.Point(222, 26);
+            this.btnSwitch.Location = new System.Drawing.Point(298, 46);
             this.btnSwitch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(82, 31);
@@ -267,7 +285,7 @@ namespace SerialPortConnection
             // 
             this.cbSerial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSerial.FormattingEnabled = true;
-            this.cbSerial.Location = new System.Drawing.Point(121, 31);
+            this.cbSerial.Location = new System.Drawing.Point(197, 51);
             this.cbSerial.Margin = new System.Windows.Forms.Padding(5);
             this.cbSerial.Name = "cbSerial";
             this.cbSerial.Size = new System.Drawing.Size(91, 26);
@@ -277,7 +295,7 @@ namespace SerialPortConnection
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(27, 34);
+            this.label1.Location = new System.Drawing.Point(45, 51);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 21);
@@ -286,7 +304,11 @@ namespace SerialPortConnection
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(339, 93);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(435, 130);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbSerial);
             this.Controls.Add(this.btnSwitch);

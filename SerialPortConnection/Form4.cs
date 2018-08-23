@@ -335,7 +335,7 @@ namespace SerialPortConnection
                                 case 17:
                                     {
                                         txtReceive.Text += "Output voltage has been Updated! \r\n";
-                                        Resumebtn.Enabled = true;
+                                        //Resumebtn.Enabled = true;
                                         break;
                                     }
                                 case 136:

@@ -663,8 +663,10 @@
             // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1390, 713);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
